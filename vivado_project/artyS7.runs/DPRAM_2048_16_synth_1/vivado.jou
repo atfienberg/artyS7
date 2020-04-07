@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Apr  7 13:48:35 2020
+# Process ID: 9752
+# Current directory: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/DPRAM_2048_16_synth_1
+# Command line: vivado.exe -log DPRAM_2048_16.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source DPRAM_2048_16.tcl
+# Log file: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/DPRAM_2048_16_synth_1/DPRAM_2048_16.vds
+# Journal file: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/DPRAM_2048_16_synth_1\vivado.jou
+#-----------------------------------------------------------
+source DPRAM_2048_16.tcl -notrace

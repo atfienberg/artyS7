@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../../IPCORES/DPRAM_2048_16/sim/DPRAM_2048_16.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

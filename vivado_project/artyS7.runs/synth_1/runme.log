@@ -1,0 +1,825 @@
+
+*** Running vivado
+    with args -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source top.tcl -notrace
+Command: synth_design -top top -part xc7s50csga324-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Device 21-403] Loading part xc7s50csga324-2
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 17188 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 708.262 ; gain = 177.402
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:6]
+	Parameter FW_VNUM bound to: 16'b0000000000000001 
+INFO: [Synth 8-6157] synthesizing module 'LCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'LCLK_MMCM' (1#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'xdom' [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
+INFO: [Synth 8-6157] synthesizing module 'ft232r_proc_buffered' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
+INFO: [Synth 8-6157] synthesizing module 'ft232r_hs' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_hs/ft232r_hs.v:17]
+	Parameter P_CLK_FREQ_HZ bound to: 100000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter S0 bound to: 0 - type: integer 
+	Parameter S1 bound to: 1 - type: integer 
+	Parameter S2 bound to: 2 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'rs232_ser' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
+	Parameter P_CLK_FREQ_HZ bound to: 100000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter S_IDLE bound to: 2'b00 
+	Parameter S_START bound to: 2'b01 
+	Parameter S_SHIFT bound to: 2'b10 
+	Parameter S_STOP bound to: 2'b11 
+	Parameter LAUNCH_CNT_MAX bound to: 33 - type: integer 
+	Parameter NBITS_LAUNCH_CNT bound to: 6 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:78]
+INFO: [Synth 8-6155] done synthesizing module 'rs232_ser' (2#1) [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
+INFO: [Synth 8-6157] synthesizing module 'posedge_detector' [C:/Users/atfie/IceCube/artyS7/hdl/posedge_detector/posedge_detector.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'posedge_detector' (3#1) [C:/Users/atfie/IceCube/artyS7/hdl/posedge_detector/posedge_detector.v:5]
+INFO: [Synth 8-6157] synthesizing module 'rs232_des' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_des/rs232_des.v:16]
+	Parameter P_CLK_FREQ_HZ bound to: 100000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter S_IDLE bound to: 2'b00 
+	Parameter S_START bound to: 2'b01 
+	Parameter S_SHIFT bound to: 2'b10 
+	Parameter S_STOP bound to: 2'b11 
+	Parameter START_LATCH_CNT_MAX bound to: 16 - type: integer 
+	Parameter SHIFT_LATCH_CNT_MAX bound to: 33 - type: integer 
+	Parameter STOP_LATCH_CNT_MAX bound to: 33 - type: integer 
+	Parameter NBITS_LATCH_CNT bound to: 6 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sync' [C:/Users/atfie/IceCube/artyS7/hdl/sync/sync.v:5]
+	Parameter P_DEFVAL bound to: 1'b0 
+	Parameter P_NFF bound to: 2 - type: integer 
+	Parameter NFF bound to: 2 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [C:/Users/atfie/IceCube/artyS7/hdl/sync/sync.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'sync' (4#1) [C:/Users/atfie/IceCube/artyS7/hdl/sync/sync.v:5]
+INFO: [Synth 8-6157] synthesizing module 'negedge_detector' [C:/Users/atfie/IceCube/artyS7/hdl/negedge_detector/negedge_detector.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'negedge_detector' (5#1) [C:/Users/atfie/IceCube/artyS7/hdl/negedge_detector/negedge_detector.v:5]
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/rs232_des/rs232_des.v:78]
+INFO: [Synth 8-6155] done synthesizing module 'rs232_des' (6#1) [C:/Users/atfie/IceCube/artyS7/hdl/rs232_des/rs232_des.v:16]
+INFO: [Synth 8-6155] done synthesizing module 'ft232r_hs' (7#1) [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_hs/ft232r_hs.v:17]
+INFO: [Synth 8-6157] synthesizing module 'uart_proc_hs' [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:16]
+	Parameter P_TIMEOUT_CNT_MAX bound to: 100000000 - type: integer 
+	Parameter L_HDR1 bound to: 8'b10001111 
+	Parameter L_HDR0 bound to: 8'b11000111 
+	Parameter L_SINGLE bound to: 8'b00000000 
+	Parameter L_BURST bound to: 8'b10000000 
+	Parameter L_WR bound to: 8'b00000001 
+	Parameter L_RD bound to: 8'b00000010 
+	Parameter L_ERR_CRC_WR bound to: 1 - type: integer 
+	Parameter S_HDR1 bound to: 0 - type: integer 
+	Parameter S_HDR0 bound to: 1 - type: integer 
+	Parameter S_PID1 bound to: 2 - type: integer 
+	Parameter S_PID0 bound to: 3 - type: integer 
+	Parameter S_LEN1 bound to: 4 - type: integer 
+	Parameter S_LEN0 bound to: 5 - type: integer 
+	Parameter S_ADR1 bound to: 6 - type: integer 
+	Parameter S_ADR0 bound to: 7 - type: integer 
+	Parameter S_WR_DATA0 bound to: 8 - type: integer 
+	Parameter S_WR_DATA1 bound to: 9 - type: integer 
+	Parameter S_WR_WAIT bound to: 10 - type: integer 
+	Parameter S_WR_CRC1 bound to: 11 - type: integer 
+	Parameter S_WR_CRC0 bound to: 12 - type: integer 
+	Parameter S_BWR_RDREQ bound to: 13 - type: integer 
+	Parameter S_BWR_WAIT_0 bound to: 14 - type: integer 
+	Parameter S_SWR_HS bound to: 15 - type: integer 
+	Parameter S_BWR_HS bound to: 16 - type: integer 
+	Parameter S_RD_HS bound to: 17 - type: integer 
+	Parameter S_RD_DATA1 bound to: 18 - type: integer 
+	Parameter S_RD_DATA0 bound to: 19 - type: integer 
+	Parameter S_RD_WAIT bound to: 20 - type: integer 
+	Parameter S_RD_CRC1 bound to: 21 - type: integer 
+	Parameter S_RD_CRC0 bound to: 22 - type: integer 
+	Parameter S_BWR_BUF_CLR bound to: 23 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'crc' [C:/Users/atfie/IceCube/artyS7/hdl/crc16_8b_parallel/crc16_8b_parallel.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'crc' (8#1) [C:/Users/atfie/IceCube/artyS7/hdl/crc16_8b_parallel/crc16_8b_parallel.v:14]
+INFO: [Synth 8-6157] synthesizing module 'err_mngr' [C:/Users/atfie/IceCube/artyS7/hdl/err_mngr/err_mngr.v:11]
+	Parameter S_IDLE bound to: 0 - type: integer 
+	Parameter S_HANDSHAKE bound to: 1 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/err_mngr/err_mngr.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'err_mngr' (9#1) [C:/Users/atfie/IceCube/artyS7/hdl/err_mngr/err_mngr.v:11]
+WARNING: [Synth 8-6014] Unused sequential element n_burst_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:221]
+WARNING: [Synth 8-6014] Unused sequential element err_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:222]
+INFO: [Synth 8-6155] done synthesizing module 'uart_proc_hs' (10#1) [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:16]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_2048_32' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_2048_32' (11#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ft232r_proc_buffered' (12#1) [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
+INFO: [Synth 8-6157] synthesizing module 'crs_master' [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:12]
+	Parameter S_IDLE bound to: 0 - type: integer 
+	Parameter S_BWR_BUF_EMPTY bound to: 1 - type: integer 
+	Parameter S_BWR_WAIT_0 bound to: 2 - type: integer 
+	Parameter S_BWR_WRITE bound to: 3 - type: integer 
+	Parameter S_ACK bound to: 4 - type: integer 
+	Parameter S_RD_WAIT bound to: 5 - type: integer 
+	Parameter L_RD_WAIT_CNT_MAX bound to: 0 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'i_buf_wr_data_reg' and it is trimmed from '32' to '28' bits. [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:133]
+INFO: [Synth 8-6155] done synthesizing module 'crs_master' (13#1) [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:12]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:161]
+INFO: [Synth 8-6157] synthesizing module 'DPRAM_2048_16' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'DPRAM_2048_16' (14#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-17596-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
+WARNING: [Synth 8-689] width (12) of port connection 'addra' does not match port width (11) of module 'DPRAM_2048_16' [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:184]
+WARNING: [Synth 8-3848] Net debug_err_ack in module/entity xdom does not have driver. [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'xdom' (15#1) [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
+INFO: [Synth 8-6157] synthesizing module 'rgb_led_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/rgb_led_ctrl/rgb_led_ctrl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'pwm' [C:/Users/atfie/IceCube/artyS7/hdl/pwm/pwm.v:11]
+	Parameter PERIOD bound to: 65536 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'pwm' (16#1) [C:/Users/atfie/IceCube/artyS7/hdl/pwm/pwm.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'rgb_led_ctrl' (17#1) [C:/Users/atfie/IceCube/artyS7/hdl/rgb_led_ctrl/rgb_led_ctrl.v:9]
+INFO: [Synth 8-6157] synthesizing module 'light_show' [C:/Users/atfie/IceCube/artyS7/hdl/light_show/light_show.v:7]
+	Parameter INCREMENT bound to: 32'b00000000000000000000000000000100 
+	Parameter INCS_PER_STATE bound to: 32'b00000000000000000000011111010000 
+	Parameter MAX_BRIGHNESS bound to: 15'b001111101000000 
+	Parameter S_IDLE bound to: 3'b000 
+	Parameter S_INCRED_DECBLUE bound to: 3'b001 
+	Parameter S_INCGREEN_DECRED bound to: 3'b010 
+	Parameter S_INCBLUE_DECGREEN bound to: 3'b011 
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/light_show/light_show.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'light_show' (18#1) [C:/Users/atfie/IceCube/artyS7/hdl/light_show/light_show.v:7]
+INFO: [Synth 8-6157] synthesizing module 'knight_rider' [C:/Users/atfie/IceCube/artyS7/hdl/knight_rider/knight_rider.v:6]
+	Parameter S_LEFT bound to: 1'b0 
+	Parameter S_RIGHT bound to: 1'b1 
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/knight_rider/knight_rider.v:16]
+INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/knight_rider/knight_rider.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'knight_rider' (19#1) [C:/Users/atfie/IceCube/artyS7/hdl/knight_rider/knight_rider.v:6]
+WARNING: [Synth 8-3848] Net lck_rst in module/entity top does not have driver. [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:92]
+INFO: [Synth 8-6155] done synthesizing module 'top' (20#1) [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:6]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[28]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 775.699 ; gain = 244.840
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 777.719 ; gain = 246.859
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 777.719 ; gain = 246.859
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK_MMCM_in_context.xdc] for cell 'lclk_mmcm_0'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK_MMCM_in_context.xdc] for cell 'lclk_mmcm_0'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16/DPRAM_2048_16_in_context.xdc] for cell 'XDOM_0/DPRAM_2048_16_0'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16/DPRAM_2048_16_in_context.xdc] for cell 'XDOM_0/DPRAM_2048_16_0'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32/FIFO_2048_32_in_context.xdc] for cell 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32/FIFO_2048_32_in_context.xdc] for cell 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0'
+Parsing XDC File [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 918.016 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 918.016 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'XDOM_0/DPRAM_2048_16_0' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s50csga324-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for OSC_12MHZ. (constraint file  c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK_MMCM_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for OSC_12MHZ. (constraint file  c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK_MMCM_in_context.xdc, line 4).
+Applied set_property DONT_TOUCH = true for lclk_mmcm_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for XDOM_0/DPRAM_2048_16_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for XDOM_0/UART_DEBUG_0/FIFO_2048_32_0. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_ser'
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_des'
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'ft232r_hs'
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'uart_proc_hs'
+INFO: [Synth 8-5546] ROM "logic_rd_req" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "logic_wr_req" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "uart_rsp_req" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-4471] merging register 'y_ack_reg' into 'i_ack_reg' [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:276]
+INFO: [Synth 8-802] inferred FSM for state register 'i_index_reg' in module 'crs_master'
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'crs_master'
+INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'light_show'
+INFO: [Synth 8-5544] ROM "fsm" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                               00 |                               00
+                 S_START |                               01 |                               01
+                 S_SHIFT |                               10 |                               10
+                  S_STOP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'rs232_ser'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                               00 |                               00
+                 S_START |                               01 |                               01
+                 S_SHIFT |                               10 |                               10
+                  S_STOP |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'rs232_des'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                      S0 |                               00 |                               00
+                      S1 |                               01 |                               01
+                      S2 |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'ft232r_hs'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_HDR1 |                            00000 |                            00000
+                  S_HDR0 |                            00001 |                            00001
+                  S_PID1 |                            00010 |                            00010
+                  S_PID0 |                            00011 |                            00011
+                  S_LEN1 |                            00100 |                            00100
+                  S_LEN0 |                            00101 |                            00101
+                  S_ADR1 |                            00110 |                            00110
+                  S_ADR0 |                            00111 |                            00111
+                 S_RD_HS |                            01000 |                            10001
+              S_RD_DATA1 |                            01001 |                            10010
+              S_RD_DATA0 |                            01010 |                            10011
+               S_RD_WAIT |                            01011 |                            10100
+               S_RD_CRC1 |                            01100 |                            10101
+               S_RD_CRC0 |                            01101 |                            10110
+              S_WR_DATA1 |                            01110 |                            01001
+              S_WR_DATA0 |                            01111 |                            01000
+               S_WR_WAIT |                            10000 |                            01010
+               S_WR_CRC1 |                            10001 |                            01011
+               S_WR_CRC0 |                            10010 |                            01100
+           S_BWR_BUF_CLR |                            10011 |                            10111
+             S_BWR_RDREQ |                            10100 |                            01101
+            S_BWR_WAIT_0 |                            10101 |                            01110
+                S_BWR_HS |                            10110 |                            10000
+                S_SWR_HS |                            10111 |                            01111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'uart_proc_hs'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE1 |                               00 |                               00
+                  iSTATE |                               01 |                               01
+                 iSTATE0 |                               10 |                               10
+                 iSTATE2 |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'i_index_reg' using encoding 'sequential' in module 'crs_master'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                              000 |                              000
+         S_BWR_BUF_EMPTY |                              001 |                              001
+            S_BWR_WAIT_0 |                              010 |                              010
+             S_BWR_WRITE |                              011 |                              011
+               S_RD_WAIT |                              100 |                              101
+                   S_ACK |                              101 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'crs_master'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                               00 |                              000
+        S_INCRED_DECBLUE |                               01 |                              001
+       S_INCGREEN_DECRED |                               10 |                              010
+      S_INCBLUE_DECGREEN |                               11 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'light_show'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input     17 Bit       Adders := 6     
+	   2 Input     16 Bit       Adders := 1     
+	   2 Input     15 Bit       Adders := 6     
+	   2 Input     12 Bit       Adders := 2     
+	   2 Input      6 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 2     
++---XORs : 
+	   2 Input      1 Bit         XORs := 12    
+	   5 Input      1 Bit         XORs := 1     
+	   8 Input      1 Bit         XORs := 1     
+	   4 Input      1 Bit         XORs := 1     
+	   3 Input      1 Bit         XORs := 3     
+	   6 Input      1 Bit         XORs := 1     
+	   7 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 4     
+	               16 Bit    Registers := 6     
+	               15 Bit    Registers := 6     
+	               12 Bit    Registers := 2     
+	                8 Bit    Registers := 4     
+	                6 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 36    
++---Muxes : 
+	  24 Input     32 Bit        Muxes := 1     
+	   4 Input     32 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 2     
+	   4 Input     28 Bit        Muxes := 1     
+	  24 Input     16 Bit        Muxes := 6     
+	   4 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
+	   8 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   4 Input     15 Bit        Muxes := 3     
+	   3 Input     12 Bit        Muxes := 1     
+	  24 Input     12 Bit        Muxes := 2     
+	   4 Input     12 Bit        Muxes := 1     
+	   6 Input     12 Bit        Muxes := 1     
+	   4 Input      8 Bit        Muxes := 1     
+	  24 Input      8 Bit        Muxes := 2     
+	   2 Input      6 Bit        Muxes := 5     
+	   4 Input      6 Bit        Muxes := 2     
+	  24 Input      5 Bit        Muxes := 2     
+	   2 Input      5 Bit        Muxes := 9     
+	   3 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 2     
+	   6 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 5     
+	   4 Input      3 Bit        Muxes := 2     
+	   6 Input      3 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 4     
+	   2 Input      2 Bit        Muxes := 5     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 50    
+	   4 Input      1 Bit        Muxes := 28    
+	   3 Input      1 Bit        Muxes := 6     
+	  24 Input      1 Bit        Muxes := 18    
+	   6 Input      1 Bit        Muxes := 9     
+	   7 Input      1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module rs232_ser 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   4 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 2     
+	   4 Input      6 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 5     
+Module posedge_detector 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module sync 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+Module negedge_detector 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module rs232_des 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      6 Bit        Muxes := 3     
+	   4 Input      6 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 3     
+Module ft232r_hs 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 5     
+Module crc 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 12    
+	   5 Input      1 Bit         XORs := 1     
+	   8 Input      1 Bit         XORs := 1     
+	   4 Input      1 Bit         XORs := 1     
+	   3 Input      1 Bit         XORs := 3     
+	   6 Input      1 Bit         XORs := 1     
+	   7 Input      1 Bit         XORs := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
+Module err_mngr 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 5     
+Module uart_proc_hs 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 3     
+	               12 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 10    
++---Muxes : 
+	  24 Input     32 Bit        Muxes := 1     
+	  24 Input     16 Bit        Muxes := 6     
+	   3 Input     12 Bit        Muxes := 1     
+	  24 Input     12 Bit        Muxes := 2     
+	  24 Input      8 Bit        Muxes := 2     
+	  24 Input      5 Bit        Muxes := 2     
+	   2 Input      5 Bit        Muxes := 9     
+	   3 Input      5 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 9     
+	   3 Input      1 Bit        Muxes := 1     
+	  24 Input      1 Bit        Muxes := 18    
+Module crs_master 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 2     
+	               12 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   4 Input     28 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
+	   6 Input     12 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
+	   4 Input      1 Bit        Muxes := 17    
+	   6 Input      1 Bit        Muxes := 9     
+Module xdom 
+Detailed RTL Component Info : 
++---Registers : 
+	               15 Bit    Registers := 3     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
++---Muxes : 
+	   8 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+	   7 Input      1 Bit        Muxes := 6     
+Module pwm 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     17 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module light_show 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input     15 Bit       Adders := 6     
++---Registers : 
+	               32 Bit    Registers := 2     
+	               15 Bit    Registers := 3     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 3     
+	   2 Input     32 Bit        Muxes := 2     
+	   4 Input     15 Bit        Muxes := 3     
+	   4 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 2     
+Module knight_rider 
+Detailed RTL Component Info : 
++---Registers : 
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 120 (col length:60)
+BRAMs: 150 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a0_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a1_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a2_buf_wr_data[28]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[31]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[30]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[29]
+WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[28]
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++---------------------+-----------------+---------------+----------------+
+|Module Name          | RTL Object      | Depth x Width | Implemented As | 
++---------------------+-----------------+---------------+----------------+
+|ft232r_proc_buffered | UART_PROC_HS_0/ | 32x5          | LUT            | 
++---------------------+-----------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5578] Moved timing constraint from pin 'lclk_mmcm_0/clk_100MHZ' to pin 'lclk_mmcm_0/bbstub_clk_100MHZ/O'
+INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 920.996 ; gain = 390.137
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 959.672 ; gain = 428.813
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |LCLK_MMCM     |         1|
+|2     |DPRAM_2048_16 |         1|
+|3     |FIFO_2048_32  |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+--------------+------+
+|      |Cell          |Count |
++------+--------------+------+
+|1     |DPRAM_2048_16 |     1|
+|2     |FIFO_2048_32  |     1|
+|3     |LCLK_MMCM     |     1|
+|4     |CARRY4        |   148|
+|5     |LUT1          |    77|
+|6     |LUT2          |   169|
+|7     |LUT3          |    86|
+|8     |LUT4          |   354|
+|9     |LUT5          |   102|
+|10    |LUT6          |   141|
+|11    |MUXF7         |     4|
+|12    |FDCE          |     8|
+|13    |FDPE          |    16|
+|14    |FDRE          |   616|
+|15    |FDSE          |     2|
+|16    |IBUF          |     1|
+|17    |OBUF          |    11|
++------+--------------+------+
+
+Report Instance Areas: 
++------+---------------------+---------------------+------+
+|      |Instance             |Module               |Cells |
++------+---------------------+---------------------+------+
+|1     |top                  |                     |  1803|
+|2     |  XDOM_0             |xdom                 |   849|
+|3     |    CRSM_0           |crs_master           |   196|
+|4     |      NEDGE_0        |negedge_detector_9   |     7|
+|5     |    UART_DEBUG_0     |ft232r_proc_buffered |   547|
+|6     |      FT232R_HS_0    |ft232r_hs            |   127|
+|7     |        NEDGE_0      |negedge_detector_7   |     3|
+|8     |        PEDGE_0      |posedge_detector     |     1|
+|9     |        RS232_DES_0  |rs232_des            |    69|
+|10    |          NEDGE0     |negedge_detector_8   |     5|
+|11    |          SYNC0      |sync                 |     3|
+|12    |        RS232_SER_0  |rs232_ser            |    51|
+|13    |      UART_PROC_HS_0 |uart_proc_hs         |   386|
+|14    |        CRC16_8B_P_0 |crc                  |    63|
+|15    |        NEDGE_0      |negedge_detector     |     1|
+|16    |        NEDGE_1      |negedge_detector_6   |     2|
+|17    |  led_kr             |knight_rider         |    90|
+|18    |  rgb_0              |rgb_led_ctrl         |   243|
+|19    |    blue_0           |pwm_3                |    81|
+|20    |    green_0          |pwm_4                |    81|
+|21    |    red_0            |pwm_5                |    81|
+|22    |  rgb_1              |rgb_led_ctrl_0       |   243|
+|23    |    blue_0           |pwm                  |    81|
+|24    |    green_0          |pwm_1                |    81|
+|25    |    red_0            |pwm_2                |    81|
+|26    |  rgb_lightshow_0    |light_show           |   364|
++------+---------------------+---------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 960.684 ; gain = 429.824
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 16 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:32 . Memory (MB): peak = 960.684 ; gain = 286.547
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 960.684 ; gain = 429.824
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 152 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 960.684 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+81 Infos, 39 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 960.684 ; gain = 666.715
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 960.684 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Apr  7 17:43:55 2020...
