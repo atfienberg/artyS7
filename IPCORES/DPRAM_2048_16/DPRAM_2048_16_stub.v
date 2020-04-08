@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 // Date        : Tue Apr  7 13:50:02 2020
 // Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top DPRAM_2048_16 -prefix
+//               DPRAM_2048_16_ DPRAM_2048_16_stub.v
 // Design      : DPRAM_2048_16
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7s50csga324-2

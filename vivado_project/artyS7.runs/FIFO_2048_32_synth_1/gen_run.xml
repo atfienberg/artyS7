@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="FIFO_2048_32_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1586282441">
   <File Type="PA-TCL" Name="FIFO_2048_32.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="FIFO_2048_32_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="FIFO_2048_32_reports.tcl"/>
   <File Type="RDS-RDS" Name="FIFO_2048_32.vds"/>
   <File Type="RDS-UTIL" Name="FIFO_2048_32_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="FIFO_2048_32_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="FIFO_2048_32.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="FIFO_2048_32_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="FIFO_2048_32_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/FIFO_2048_32">
     <File Path="$PPRDIR/../IPCORES/FIFO_2048_32/FIFO_2048_32.xci">
       <FileInfo>
@@ -42,9 +39,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

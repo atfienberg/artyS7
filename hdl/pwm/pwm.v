@@ -8,7 +8,7 @@
 // 
 
 
-module pwm #(parameter[31:0] PERIOD=31'h10000)  
+module pwm #(parameter[31:0] PERIOD=32'h10000)  
 (
   input clk,
   input rst,

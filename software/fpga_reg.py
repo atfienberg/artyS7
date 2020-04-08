@@ -9,7 +9,7 @@ import sys
 def print_register_map():
     print('FPGA register map:')
 
-    for key, value in degg_adc.deggADC.fpga_adrs.items():
+    for key, value in artyS7.fpga_adrs.items():
         try:
             value = hex(value)
         except TypeError:

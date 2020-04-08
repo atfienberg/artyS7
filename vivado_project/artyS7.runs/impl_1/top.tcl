@@ -66,7 +66,6 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
-  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7s50csga324-2
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
@@ -76,9 +75,9 @@ set rc [catch {
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   add_files -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/top.dcp
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM.xci
-  read_ip -quiet c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
-  read_ip -quiet c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32.xci
   read_xdc C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc
   link_design -top top -part xc7s50csga324-2
   close_msg_db -file init_design.pb

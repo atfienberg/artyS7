@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 -- Date        : Tue Apr  7 13:50:02 2020
 -- Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top DPRAM_2048_16 -prefix
+--               DPRAM_2048_16_ DPRAM_2048_16_sim_netlist.vhdl
 -- Design      : DPRAM_2048_16
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -29,8 +29,6 @@ entity DPRAM_2048_16_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end DPRAM_2048_16_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of DPRAM_2048_16_blk_mem_gen_prim_wrapper is
@@ -302,8 +300,6 @@ entity DPRAM_2048_16_blk_mem_gen_prim_width is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end DPRAM_2048_16_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of DPRAM_2048_16_blk_mem_gen_prim_width is
@@ -343,8 +339,6 @@ entity DPRAM_2048_16_blk_mem_gen_generic_cstr is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end DPRAM_2048_16_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of DPRAM_2048_16_blk_mem_gen_generic_cstr is
@@ -384,8 +378,6 @@ entity DPRAM_2048_16_blk_mem_gen_top is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end DPRAM_2048_16_blk_mem_gen_top;
 
 architecture STRUCTURE of DPRAM_2048_16_blk_mem_gen_top is
@@ -425,8 +417,6 @@ entity DPRAM_2048_16_blk_mem_gen_v8_4_3_synth is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
 end DPRAM_2048_16_blk_mem_gen_v8_4_3_synth;
 
 architecture STRUCTURE of DPRAM_2048_16_blk_mem_gen_v8_4_3_synth is
@@ -667,8 +657,6 @@ entity DPRAM_2048_16_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B of DPRAM_2048_16_blk_mem_gen_v8_4_3 : entity is 16;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of DPRAM_2048_16_blk_mem_gen_v8_4_3 : entity is "spartan7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of DPRAM_2048_16_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of DPRAM_2048_16_blk_mem_gen_v8_4_3 : entity is "yes";
 end DPRAM_2048_16_blk_mem_gen_v8_4_3;

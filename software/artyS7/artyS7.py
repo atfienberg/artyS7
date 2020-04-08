@@ -95,7 +95,7 @@ class artyS7():
         sets the configurable RGB LED intensities accordingly        
         '''
 
-        if len(rgb_vals) is not 3:
+        if len(rgb_vals) != 3:
             raise ValueError('rgb_vals must be length 3!')
 
         h_data = ''.join(f'{val:04x}' for val in rgb_vals[::-1])

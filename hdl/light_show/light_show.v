@@ -80,10 +80,10 @@ always @(posedge clk) begin
 	  green <= 15'b0;
           blue <= blue - INCREMENT;
 
-	  cnt <= 31'b0;          
+	  cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
-            incs <= 31'b0;
+            incs <= 32'b0;
             fsm <= S_INCGREEN_DECRED;
           end        
         end
@@ -95,10 +95,10 @@ always @(posedge clk) begin
           green <= green + INCREMENT;
           blue <= 15'b0;
 	
-	  cnt <= 31'b0;          
+	  cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
-            incs <= 31'b0;
+            incs <= 32'b0;
             fsm <= S_INCBLUE_DECGREEN;
           end        
         end
@@ -110,10 +110,10 @@ always @(posedge clk) begin
           green <= green - INCREMENT;
           blue <= blue + INCREMENT;
 	
-	  cnt <= 31'b0;          
+	  cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
-            incs <= 31'b0;
+            incs <= 32'b0;
             fsm <= S_INCRED_DECBLUE;
           end        
         end

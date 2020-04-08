@@ -18,7 +18,6 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7s50csga324-2
 
 set_param project.singleFileAddWarning.threshold 0
@@ -51,15 +50,15 @@ read_verilog -library xil_defaultlib {
   C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v
   C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v
 }
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_ooc.xdc]
+
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_ooc.xdc]
 
-read_ip -quiet c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
-set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_ooc.xdc]
-
-read_ip -quiet c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32.xci
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32_ooc.xdc]
 
@@ -74,6 +73,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc
 set_property used_in_implementation false [get_files C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc]
 
+read_xdc dont_touch.xdc
+set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 

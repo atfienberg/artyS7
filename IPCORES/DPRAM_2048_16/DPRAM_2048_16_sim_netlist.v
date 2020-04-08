@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 // Date        : Tue Apr  7 13:50:02 2020
 // Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top DPRAM_2048_16 -prefix
+//               DPRAM_2048_16_ DPRAM_2048_16_sim_netlist.v
 // Design      : DPRAM_2048_16
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -214,7 +214,6 @@ module DPRAM_2048_16
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module DPRAM_2048_16_blk_mem_gen_generic_cstr
    (douta,
     doutb,
@@ -269,7 +268,6 @@ module DPRAM_2048_16_blk_mem_gen_generic_cstr
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module DPRAM_2048_16_blk_mem_gen_prim_width
    (douta,
     doutb,
@@ -324,7 +322,6 @@ module DPRAM_2048_16_blk_mem_gen_prim_width
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
 module DPRAM_2048_16_blk_mem_gen_prim_wrapper
    (douta,
     doutb,
@@ -590,7 +587,6 @@ module DPRAM_2048_16_blk_mem_gen_prim_wrapper
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web,web,web,web}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module DPRAM_2048_16_blk_mem_gen_top
    (douta,
     doutb,
@@ -670,7 +666,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "2048" *) 
 (* C_WRITE_DEPTH_B = "2048" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "16" *) (* C_WRITE_WIDTH_B = "16" *) (* C_XDEVICEFAMILY = "spartan7" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* downgradeipidentifiedwarnings = "yes" *) 
 module DPRAM_2048_16_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -892,7 +888,6 @@ module DPRAM_2048_16_blk_mem_gen_v8_4_3
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module DPRAM_2048_16_blk_mem_gen_v8_4_3_synth
    (douta,
     doutb,
