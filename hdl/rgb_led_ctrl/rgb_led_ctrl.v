@@ -1,9 +1,9 @@
 // Aaron Fienberg
 // April 2020
 //
-// Takes rgb brightness controls and 
-// outputs signals to drive RGB LEDs on the 
-// ARTY S7 board
+// Takes rgb brightness settings and 
+// outputs signals to drive rgb LEDs
+//
 
 
 module rgb_led_ctrl

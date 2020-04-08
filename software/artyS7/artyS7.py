@@ -3,10 +3,8 @@
 # Aaron Fienberg
 # April 2020
 #
-# Class for interfacing with Arty S7 project via the USB UART interface
+# Class for interfacing with the Arty S7 FPGA via the USB UART interface
 #
-# adapted from the mdotADC class, used for the IceCube Upgrade project
-
 
 import logging
 import time
@@ -15,8 +13,8 @@ from .uartClass import uartClass
 
 
 class artyS7():
-    ''' class for interfacing with the FPGA and the artyS7 board
-    via the USB uart interface
+    ''' class for interfacing with the FPGA on the arty S7 board
+    via the USB UART interface
     '''
 
     # address and data maps
