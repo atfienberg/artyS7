@@ -55,7 +55,8 @@ module waveform_buffer
 // pretrigger buffer
 wire [P_DATA_WIDTH-1:0] ptb_out;
 wire ptb_rdy;
-pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH))
+pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH), 
+	            .P_DATA_WIDTH(P_DATA_WIDTH))
  PTB
   (
    .clk(clk),
