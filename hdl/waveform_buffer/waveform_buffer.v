@@ -137,11 +137,10 @@ wvb_wr_ctrl
    .test_config(test_conf),
    .cnst_config(cnst_conf),
    .trig_mode(trig_mode),
+   .cnst_run(cnst_run),
    .arm(arm),
    .trig(trig && ptb_rdy),
-   .trig_src(trig_src),
-   .wvb_rd_addr(wvb_rd_addr),
-   .hdr_full(hdr_full),
+   .trig_src(trig_src),   
    .overflow_in(overflow_in)   
   );
 

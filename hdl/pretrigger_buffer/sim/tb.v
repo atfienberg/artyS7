@@ -5,13 +5,13 @@
 
 `timescale 1ns/1ns
 
-module tb();
+module ptb_tb();
    
    parameter CLK_PERIOD = 10;
    reg clk;
    initial begin
      // clock initialization        
-     clk = 1'b0;  	
+     clk = 1'b0;    
    end
 
    // clock driver
@@ -32,7 +32,7 @@ module tb();
    wire tot_out = ptb_out[1];
    wire ptb_rdy;
    pretrigger_buffer #(.P_PRE_CONF_WIDTH(5), 
-	               .P_DATA_WIDTH(22))
+                 .P_DATA_WIDTH(22))
     PTB
      (
       .clk(clk),
@@ -50,8 +50,8 @@ module tb();
      cnt <= cnt + 1;
 
      if (!rst) begin
-	adc_in <= adc_in + 1;
-	discr_in <= discr_in + 1;
+       adc_in <= adc_in + 1;
+       discr_in <= discr_in + 1;
      end
 
      if (cnt == 4) begin
