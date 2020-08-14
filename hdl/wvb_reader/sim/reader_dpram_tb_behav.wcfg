@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="reader_dpram_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="reader_dpram_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1480766667fs"></ZoomStartTime>
+      <ZoomEndTime time="1566166668fs"></ZoomEndTime>
+      <Cursor1Time time="1495000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="329"></NameColumnWidth>
+      <ValueColumnWidth column_width="191"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject fp_name="/reader_dpram_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/trig" type="logic">
+      <obj_property name="ElementShortName">trig</obj_property>
+      <obj_property name="ObjectShortName">trig</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/trig_src" type="array">
+      <obj_property name="ElementShortName">trig_src[1:0]</obj_property>
+      <obj_property name="ObjectShortName">trig_src[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/adc_in" type="array">
+      <obj_property name="ElementShortName">adc_in[11:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_in[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/discr_in" type="array">
+      <obj_property name="ElementShortName">discr_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">discr_in[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/ltc" type="array">
+      <obj_property name="ElementShortName">ltc[47:0]</obj_property>
+      <obj_property name="ObjectShortName">ltc[47:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_run" type="logic">
+      <obj_property name="ElementShortName">dpram_run</obj_property>
+      <obj_property name="ObjectShortName">dpram_run</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_busy" type="logic">
+      <obj_property name="ElementShortName">dpram_busy</obj_property>
+      <obj_property name="ObjectShortName">dpram_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_done" type="logic">
+      <obj_property name="ElementShortName">dpram_done</obj_property>
+      <obj_property name="ObjectShortName">dpram_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/reader_enable" type="logic">
+      <obj_property name="ElementShortName">reader_enable</obj_property>
+      <obj_property name="ObjectShortName">reader_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_wren" type="logic">
+      <obj_property name="ElementShortName">dpram_wren</obj_property>
+      <obj_property name="ObjectShortName">dpram_wren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/read" type="logic">
+      <obj_property name="ElementShortName">read</obj_property>
+      <obj_property name="ObjectShortName">read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_len" type="array">
+      <obj_property name="ElementShortName">dpram_len[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_len[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_rd_data" type="array">
+      <obj_property name="ElementShortName">dpram_rd_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_rd_data[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_adc_data" type="array">
+      <obj_property name="ElementShortName">dpram_adc_data[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_adc_data[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_discr_data" type="array">
+      <obj_property name="ElementShortName">dpram_discr_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_discr_data[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_dpram_tb/dpram_rd_addr" type="array">
+      <obj_property name="ElementShortName">dpram_rd_addr[10:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_rd_addr[10:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
