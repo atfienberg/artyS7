@@ -8,7 +8,7 @@ module waveform_buffer
 #(
    parameter P_DATA_WIDTH = 22,
    parameter P_ADR_WIDTH = 12,
-   parameter P_HDR_WIDTH = 160,
+   parameter P_HDR_WIDTH = 80,
    parameter P_LTC_WIDTH = 48,
    parameter P_N_WVF_IN_BUF_WIDTH = 10,
    parameter P_CONST_CONF_WIDTH = 12,
@@ -44,10 +44,10 @@ module waveform_buffer
   input wvb_rddone,
 
   // Config inputs
-  input[P_PRE_CONF_WIDTH] pre_conf,
-  input[P_POST_CONF_WIDTH] post_conf,
-  input[P_TEST_CONF_WIDTH] test_conf,
-  input[P_CONST_CONF_WIDTH] cnst_conf,
+  input[P_PRE_CONF_WIDTH-1:0] pre_conf,
+  input[P_POST_CONF_WIDTH-1:0] post_conf,
+  input[P_TEST_CONF_WIDTH-1:0] test_conf,
+  input[P_CONST_CONF_WIDTH-1:0] cnst_conf,
   input cnst_run,
   input trig_mode
 );
@@ -98,9 +98,12 @@ waveform_buffer_storage
    // Inputs
    .eoe_in(eoe),
    .wvb_data_in(ptb_out),
+   .wvb_wr_addr(wvb_wr_addr),
+   .wvb_rd_addr(wvb_rd_addr), 
    .wvb_wrreq(wvb_wrreq),
    .hdr_data_in(hdr_data_in),
-   .hdr_wrreq(hdr_wrreq)
+   .hdr_wrreq(hdr_wrreq),
+   .hdr_rdreq(hdr_rdreq)
   );
 
 // write controller 
@@ -158,6 +161,7 @@ wvb_rd_addr_ctrl
    .hdr_data     (hdr_data_out),
    .hdr_rdreq    (hdr_rdreq),
    .wvb_rdreq    (wvb_rdreq),
+   .wvb_rddone   (wvb_rddone),
    .wvb_rd_addr  (wvb_rd_addr)
   ); 
 
@@ -176,11 +180,11 @@ wvb_overflow_ctrl
    .overflow(overflow_in),
    .wvb_wused(wvb_wused),
 
-   // Inputs
-   .wvb_rd_addr(wvb_rd_addr),
-   .wvb_rddone(wvb_rd_done),
+   // Inputs   
+   .wvb_rddone(wvb_rddone),
    .wvb_wr_addr(wvb_wr_addr),
-   .wvb_hdr_data(hdr_data_out)   
+   .hdr_data(hdr_data_out),
+   .hdr_full(hdr_full)
   );
 
 endmodule

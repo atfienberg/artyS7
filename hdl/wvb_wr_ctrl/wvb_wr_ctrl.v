@@ -6,7 +6,7 @@
 
 module wvb_wr_ctrl #(parameter P_DATA_WIDTH = 22,
                      parameter P_ADR_WIDTH = 12,
-                     parameter P_HDR_WIDTH = 160,
+                     parameter P_HDR_WIDTH = 80,
                      parameter P_LTC_WIDTH = 48,
                      parameter P_CONST_CONF_WIDTH = 12,
                      parameter P_TEST_CONF_WIDTH = 12,
@@ -157,7 +157,7 @@ end
 
 // signal that this is the final write of a waveform
 reg final_write = 0;
-assign hdr_wren = final_write || overflow_pe;
+assign hdr_wren = wvb_wren && (final_write || overflow_pe);
 always @(*) eoe = hdr_wren;
 
 // "final write" logic
@@ -174,13 +174,22 @@ always @(*) begin
 end
 
 // wvb_wren logic
-wire write_condition = trig || (fsm != S_IDLE);
+wire write_condition = (trig && !overflow_in) || (fsm != S_IDLE);
 wire mode_0_condition = (trig_mode == 0);
 wire mode_1_condition = (trig_mode == 1) && armed; 
 assign wvb_wren = !overflow_out && write_condition && (mode_0_condition || mode_1_condition);
 
-// HEADER FAN IN GOES HERE
-// HDR FAN IN
+// header bundle fan_in
+mDOM_wvb_hdr_bundle_0_fan_in HDR_FAN_IN
+(
+  .bundle(hdr_data),
+  .evt_ltc(i_evt_ltc),
+  .start_addr(i_start_addr),
+  .stop_addr(i_stop_addr),
+  .trig_src(i_trig_src),
+  .cnst_run(i_cnst_run),
+  .pre_conf(i_pre_conf)
+);
 
 // FSM logic
 
@@ -197,7 +206,8 @@ always @(posedge clk) begin
 
   else begin
     // always advance write address following a write
-    if (wvb_wren) begin
+    // except for when we're about to overflow
+    if (wvb_wren && !overflow_pe) begin
       wvb_wr_addr <= wvb_wr_addr + 1;
     end
 
