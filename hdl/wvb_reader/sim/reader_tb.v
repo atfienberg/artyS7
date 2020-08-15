@@ -86,7 +86,7 @@ waveform_buffer WVB
 wire[9:0] dpram_a;
 wire[31:0] dpram_data;
 wire[15:0] dpram_high = dpram_data[31:16];
-wire[11:0] reader_adc_word = dpram_high[11:0];
+wire[11:0] reader_adc_word = dpram_low[11:0];
 wire[15:0] dpram_low = dpram_data[15:0];
 wire dpram_wren;
 wire[15:0] dpram_len;
@@ -150,7 +150,7 @@ always @(posedge clk) begin
   // test DPRAM abort case; increase waveform length
   // and fire the trigger
   if (ltc == 127) begin
-    test_conf <= 1024;
+    test_conf <= 1035;
   end
 
   if (ltc == 129) begin

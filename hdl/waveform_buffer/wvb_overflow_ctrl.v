@@ -33,24 +33,25 @@ mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT
 	.pre_conf()
 );
 
-reg[P_ADR_WIDTH-1:0] next_rd_addr = 0;
+reg[P_ADR_WIDTH-1:0] last_rd_addr = -1;
 always @(posedge clk) begin
 	if (rst) begin
-		next_rd_addr <= 0;
+		last_rd_addr <= -1;
 	end
 
 	// stop addr is the last written address of the
 	// event. So, after an event has been read, the next
 	// address to read is stop_addr + 1
 	else if (wvb_rddone) begin
-		next_rd_addr <= stop_addr + 1;
+		last_rd_addr <= stop_addr;
 	end
 end
 
-// overflow condition: hdr_full or wr_addr + 1 == next_rd_addr
-assign overflow = hdr_full || (wvb_wr_addr + 1 == next_rd_addr);
+// overflow condition: hdr_full or wr_addr == last_rd_addr
+assign overflow = hdr_full || (wvb_wr_addr == last_rd_addr);
 
 // calculate number of words used
+wire[P_ADR_WIDTH-1:0] next_rd_addr = last_rd_addr + 1;
 assign wvb_wused = wvb_wr_addr - next_rd_addr;
 
 endmodule

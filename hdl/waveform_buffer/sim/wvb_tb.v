@@ -5,6 +5,9 @@
 
 `timescale 1ns/1ns
 
+// `define TEST_CASE_1 // various triggering patterns
+`define TEST_CASE_2 // targeted overflow edge cases
+
 module wvb_tb();
 
 parameter CLK_PERIOD = 10;
@@ -42,6 +45,8 @@ wire[79:0] hdr_out;
 wire hdr_full;
 wire hdr_empty;
 
+reg[11:0] test_conf = 10;
+
 // instantiate the waveform buffer
 waveform_buffer WVB 
   (
@@ -73,7 +78,7 @@ waveform_buffer WVB
    // Config inputs
    .pre_conf(4),
    .post_conf(4),
-   .test_conf(10),
+   .test_conf(test_conf),
    .cnst_run(0),
    .cnst_conf(10),
    .trig_mode(0)
@@ -103,6 +108,7 @@ wire[15:0] wfm_len = addr_diff + 1;
 reg filled_hdr_fifo = 0;
 reg reader_enable = 0;
 
+`ifdef TEST_CASE_1
 always @(posedge clk) begin
   ltc <= ltc + 1;
 
@@ -181,7 +187,41 @@ always @(posedge clk) begin
   end
 
 end
+`endif
 
+`ifdef TEST_CASE_2
+always @(posedge clk) begin
+  ltc <= ltc + 1;
+
+  if (!rst) begin
+    adc_in <= adc_in + 1;
+    discr_in <= discr_in + 1;
+  end
+
+  trig <= 0;
+  trig_src <= 0;
+
+  if (ltc == 5) begin
+    rst <= 0;
+    test_conf <= 4094;
+  end
+
+  // test length 4094 waveform
+  // external trigger at ltc == 45  
+  if (ltc == 45) begin
+    trig <= 1;
+    trig_src <= 3;
+  end
+
+  // trigger again, causing an overflow
+
+  if (ltc == 4141) begin
+    trig <= 1;
+    trig_src <= 3;
+  end
+
+end
+`endif
 
 // simple wvb reader 
 localparam S_IDLE = 0,

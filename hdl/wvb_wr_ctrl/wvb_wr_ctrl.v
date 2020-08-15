@@ -44,9 +44,13 @@ module wvb_wr_ctrl #(parameter P_DATA_WIDTH = 22,
 reg[P_ADR_WIDTH-1:0] i_evt_len = 0;
 reg[P_LTC_WIDTH-1:0] i_evt_ltc = 0;
 reg[P_PRE_CONF_WIDTH-1:0] i_pre_conf = 0;
+reg[P_PRE_CONF_WIDTH-1:0] i_pre_cnt_max = 0;
 reg[P_POST_CONF_WIDTH-1:0] i_post_conf = 0;
+reg[P_POST_CONF_WIDTH-1:0] i_post_cnt_max = 0;
 reg[P_TEST_CONF_WIDTH-1:0] i_test_conf = 0;
+reg[P_TEST_CONF_WIDTH-1:0] i_test_cnt_max = 0;
 reg[P_CONST_CONF_WIDTH-1:0] i_const_conf = 0;
+reg[P_CONST_CONF_WIDTH-1:0] i_const_cnt_max = 0;
 reg[P_ADR_WIDTH-1:0] i_start_addr = 0;
 reg[P_ADR_WIDTH-1:0] i_stop_addr = 0;
 reg i_cnst_run = 0;
@@ -76,6 +80,11 @@ always @(posedge clk) begin
     i_post_conf <= 0;
     i_test_conf <= 0;
     i_const_conf <= 0;
+
+    i_pre_cnt_max <= 0;
+    i_post_cnt_max <= 0;
+    i_test_cnt_max <= 0;
+    i_const_cnt_max <= 0;
   end
 
   else if (fsm == S_IDLE) begin
@@ -83,6 +92,11 @@ always @(posedge clk) begin
     i_post_conf <= post_config >= POST_CONF_MIN ? post_config : POST_CONF_MIN;
     i_test_conf <= test_config >= TEST_CONF_MIN ? test_config : TEST_CONF_MIN;
     i_const_conf <= cnst_config >= CONST_CONF_MIN ? cnst_config : CONST_CONF_MIN;
+
+    i_pre_cnt_max <= i_pre_conf - 1;
+    i_post_cnt_max <= i_post_conf - 1;
+    i_test_cnt_max <= i_test_conf - 1;
+    i_const_cnt_max <= i_const_conf - 1;
   end
 end
 
@@ -108,8 +122,6 @@ always @(*) i_stop_addr = wvb_wr_addr;
 // overflow control
 // an overflow will stop all writes
 // until the write controller is reset
-wire overflow_pe;
-posedge_detector OFLOW_PEDGE(.clk(clk), .rst_n(!rst), .a(overflow_in), .y(overflow_pe));
 always @(posedge clk) begin
   if (rst) begin
     overflow_out <= 0;
@@ -157,7 +169,7 @@ end
 
 // signal that this is the final write of a waveform
 reg final_write = 0;
-assign hdr_wren = wvb_wren && (final_write || overflow_pe);
+assign hdr_wren = wvb_wren && (final_write || overflow_in);
 always @(*) eoe = hdr_wren;
 
 // "final write" logic
@@ -166,9 +178,9 @@ always @(*) begin
     S_IDLE:  final_write = 0;
     S_PRE:   final_write = 0;
     S_SOT:   final_write = 0;
-    S_POST:  final_write = !trig && (cnt == i_post_conf - 1);
-    S_CONST: final_write = cnt == i_const_conf - 1;
-    S_TEST:  final_write = cnt == i_test_conf - 1;
+    S_POST:  final_write = !trig && (cnt == i_post_cnt_max);
+    S_CONST: final_write = cnt == i_const_cnt_max;
+    S_TEST:  final_write = cnt == i_test_cnt_max;
     default: final_write = 0;
   endcase
 end
@@ -207,7 +219,7 @@ always @(posedge clk) begin
   else begin
     // always advance write address following a write
     // except for when we're about to overflow
-    if (wvb_wren && !overflow_pe) begin
+    if (wvb_wren && !overflow_in) begin
       wvb_wr_addr <= wvb_wr_addr + 1;
     end
 
@@ -247,7 +259,7 @@ always @(posedge clk) begin
           sot_cnt <= cnt + 1;
         end
         
-        if (cnt == i_pre_conf - 1) begin
+        if (cnt == i_pre_cnt_max) begin
           cnt <= 0;
           fsm <= S_SOT;
         end
@@ -283,7 +295,7 @@ always @(posedge clk) begin
         end
         
         else begin
-          if (cnt == i_post_conf - 1) begin
+          if (cnt == i_post_cnt_max) begin
             cnt <= 0;
             fsm <= S_IDLE;
           end  
@@ -293,7 +305,7 @@ always @(posedge clk) begin
       S_TEST: begin
         cnt <= cnt + 1;
 
-        if (cnt == i_test_conf - 1) begin
+        if (cnt == i_test_cnt_max) begin
           cnt <= 0;
           fsm <= S_IDLE;
         end
@@ -302,7 +314,7 @@ always @(posedge clk) begin
       S_CONST: begin
         cnt <= cnt + 1;
 
-        if (cnt == i_const_conf - 1) begin
+        if (cnt == i_const_cnt_max) begin
           cnt <= 0;
           fsm <= S_IDLE;
         end

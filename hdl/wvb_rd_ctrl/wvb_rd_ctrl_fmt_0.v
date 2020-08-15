@@ -119,6 +119,8 @@ localparam
 reg[3:0] fsm = S_IDLE;
 reg loop_s_ftr = 0;
 reg[31:0] wait_cnt = 0;
+// register evt_len for improved timing
+reg[15:0] evt_len_reg = 0;
 
 always @(posedge clk) begin
   if (rst) begin
@@ -133,6 +135,7 @@ always @(posedge clk) begin
 
     loop_s_ftr <= 0;
     wait_cnt <= 0;
+    evt_len_reg <= 0;
 
     fsm <= S_IDLE;
   end
@@ -151,14 +154,16 @@ always @(posedge clk) begin
         
         loop_s_ftr <= 0;
         wait_cnt <= 0;
+        evt_len_reg <= 0;
 
         if (req) begin
           fsm <= S_CHAN_LEN;
+          evt_len_reg <= evt_len;
         end
       end
 
       S_CHAN_LEN: begin
-        dpram_data <= {evt_len, L_FMT, idx};
+        dpram_data <= {evt_len_reg, L_FMT, idx};
         
         // begin streaming the sample data
         wvb_rdreq <= 1;        
@@ -189,7 +194,10 @@ always @(posedge clk) begin
                       wvb_adc_ext};
 
         // stop streaming data when nearing end of DPRAM
-        if (dpram_a < L_DPRAM_A_STOP_STREAM) begin
+        // (but not if dpram_a == L_DPRAM_LAST, which
+        //  indicates we're starting a new DPRAM in mode 1)
+        if ( (dpram_a < L_DPRAM_A_STOP_STREAM) ||
+             (dpram_a == L_DPRAM_A_LAST) ) begin
           wvb_rdreq <= 1;          
         end
 
@@ -223,7 +231,7 @@ always @(posedge clk) begin
 
       S_FTR: begin
         if (dpram_a != L_DPRAM_A_LAST || loop_s_ftr) begin
-          dpram_data <= {hdr_0, evt_len};
+          dpram_data <= {hdr_0, evt_len_reg};
 
           dpram_wren <= 1;
           dpram_a <= dpram_a + 1;

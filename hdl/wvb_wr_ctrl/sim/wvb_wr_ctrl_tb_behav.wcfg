@@ -3,120 +3,72 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="wvb_wr_ctrl_tb_behav.wdb" id="1">
+      <db_ref path="wvb_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="wvb_wr_ctrl_tb" />
+            <top_module name="wvb_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1081050000fs"></ZoomStartTime>
-      <ZoomEndTime time="1284350001fs"></ZoomEndTime>
-      <Cursor1Time time="3000000000fs"></Cursor1Time>
+      <ZoomStartTime time="200893470000fs"></ZoomStartTime>
+      <ZoomEndTime time="201000070001fs"></ZoomEndTime>
+      <Cursor1Time time="41429917000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="525"></NameColumnWidth>
-      <ValueColumnWidth column_width="167"></ValueColumnWidth>
+      <NameColumnWidth column_width="151"></NameColumnWidth>
+      <ValueColumnWidth column_width="210"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="22" />
-   <wvobject fp_name="/wvb_wr_ctrl_tb/clk" type="logic">
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/wvb_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/ltc" type="array">
+   <wvobject fp_name="/wvb_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/wvb_tb/ltc" type="array">
       <obj_property name="ElementShortName">ltc[47:0]</obj_property>
       <obj_property name="ObjectShortName">ltc[47:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/discr_in" type="array">
-      <obj_property name="ElementShortName">discr_in[7:0]</obj_property>
-      <obj_property name="ObjectShortName">discr_in[7:0]</obj_property>
+   <wvobject fp_name="/wvb_tb/wvb_wused" type="array">
+      <obj_property name="ElementShortName">wvb_wused[11:0]</obj_property>
+      <obj_property name="ObjectShortName">wvb_wused[11:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/adc_in" type="array">
-      <obj_property name="ElementShortName">adc_in[11:0]</obj_property>
-      <obj_property name="ObjectShortName">adc_in[11:0]</obj_property>
+   <wvobject fp_name="/wvb_tb/wvb_n_wvf_in_buf" type="array">
+      <obj_property name="ElementShortName">wvb_n_wvf_in_buf[9:0]</obj_property>
+      <obj_property name="ObjectShortName">wvb_n_wvf_in_buf[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/hdr_wrreq" type="logic">
-      <obj_property name="ElementShortName">hdr_wrreq</obj_property>
-      <obj_property name="ObjectShortName">hdr_wrreq</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/wvb_wrreq" type="logic">
-      <obj_property name="ElementShortName">wvb_wrreq</obj_property>
-      <obj_property name="ObjectShortName">wvb_wrreq</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/trig" type="logic">
+   <wvobject fp_name="/wvb_tb/trig" type="logic">
       <obj_property name="ElementShortName">trig</obj_property>
       <obj_property name="ObjectShortName">trig</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/i_evt_ltc" type="array">
-      <obj_property name="ElementShortName">i_evt_ltc[47:0]</obj_property>
-      <obj_property name="ObjectShortName">i_evt_ltc[47:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/wvb_tb/hdr_full" type="logic">
+      <obj_property name="ElementShortName">hdr_full</obj_property>
+      <obj_property name="ObjectShortName">hdr_full</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/i_trig_src" type="array">
-      <obj_property name="ElementShortName">i_trig_src[1:0]</obj_property>
-      <obj_property name="ObjectShortName">i_trig_src[1:0]</obj_property>
+   <wvobject fp_name="/wvb_tb/WVB/wvb_wrreq" type="logic">
+      <obj_property name="ElementShortName">wvb_wrreq</obj_property>
+      <obj_property name="ObjectShortName">wvb_wrreq</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/tot_out" type="logic">
-      <obj_property name="ElementShortName">tot_out</obj_property>
-      <obj_property name="ObjectShortName">tot_out</obj_property>
+   <wvobject fp_name="/wvb_tb/WVB/hdr_wrreq" type="logic">
+      <obj_property name="ElementShortName">hdr_wrreq</obj_property>
+      <obj_property name="ObjectShortName">hdr_wrreq</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/discr_out" type="array">
-      <obj_property name="ElementShortName">discr_out[7:0]</obj_property>
-      <obj_property name="ObjectShortName">discr_out[7:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/wvb_tb/overflow_out" type="logic">
+      <obj_property name="ElementShortName">overflow_out</obj_property>
+      <obj_property name="ObjectShortName">overflow_out</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/adc_out" type="array">
-      <obj_property name="ElementShortName">adc_out[11:0]</obj_property>
-      <obj_property name="ObjectShortName">adc_out[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/wvb_tb/hdr_rdreq" type="logic">
+      <obj_property name="ElementShortName">hdr_rdreq</obj_property>
+      <obj_property name="ObjectShortName">hdr_rdreq</obj_property>
    </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/final_write" type="logic">
-      <obj_property name="ElementShortName">final_write</obj_property>
-      <obj_property name="ObjectShortName">final_write</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/i_evt_len" type="array">
-      <obj_property name="ElementShortName">i_evt_len[11:0]</obj_property>
-      <obj_property name="ObjectShortName">i_evt_len[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/fsm" type="array">
-      <obj_property name="ElementShortName">fsm[2:0]</obj_property>
-      <obj_property name="ObjectShortName">fsm[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/cnt" type="array">
-      <obj_property name="ElementShortName">cnt[31:0]</obj_property>
-      <obj_property name="ObjectShortName">cnt[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/write_condition" type="logic">
-      <obj_property name="ElementShortName">write_condition</obj_property>
-      <obj_property name="ObjectShortName">write_condition</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/mode_0_condition" type="logic">
-      <obj_property name="ElementShortName">mode_0_condition</obj_property>
-      <obj_property name="ObjectShortName">mode_0_condition</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/mode_1_condition" type="logic">
-      <obj_property name="ElementShortName">mode_1_condition</obj_property>
-      <obj_property name="ObjectShortName">mode_1_condition</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/wvb_wr_addr" type="array">
-      <obj_property name="ElementShortName">wvb_wr_addr[11:0]</obj_property>
-      <obj_property name="ObjectShortName">wvb_wr_addr[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/i_start_addr" type="array">
-      <obj_property name="ElementShortName">i_start_addr[11:0]</obj_property>
-      <obj_property name="ObjectShortName">i_start_addr[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/wvb_wr_ctrl_tb/WR_CTRL/i_stop_addr" type="array">
-      <obj_property name="ElementShortName">i_stop_addr[11:0]</obj_property>
-      <obj_property name="ObjectShortName">i_stop_addr[11:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/wvb_tb/wvb_rdreq" type="logic">
+      <obj_property name="ElementShortName">wvb_rdreq</obj_property>
+      <obj_property name="ObjectShortName">wvb_rdreq</obj_property>
    </wvobject>
 </wave_config>

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="63702141667fs"></ZoomStartTime>
-      <ZoomEndTime time="63779291668fs"></ZoomEndTime>
-      <Cursor1Time time="63495000000fs"></Cursor1Time>
+      <ZoomStartTime time="63697750000fs"></ZoomStartTime>
+      <ZoomEndTime time="63868450001fs"></ZoomEndTime>
+      <Cursor1Time time="63695000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="455"></NameColumnWidth>
-      <ValueColumnWidth column_width="226"></ValueColumnWidth>
+      <NameColumnWidth column_width="362"></NameColumnWidth>
+      <ValueColumnWidth column_width="219"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="28" />
    <wvobject fp_name="/reader_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -82,6 +82,16 @@
    <wvobject fp_name="/reader_tb/WVB/hdr_rdreq" type="logic">
       <obj_property name="ElementShortName">hdr_rdreq</obj_property>
       <obj_property name="ObjectShortName">hdr_rdreq</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_tb/WVB_READER/RD_CTRL/evt_len" type="array">
+      <obj_property name="ElementShortName">evt_len[15:0]</obj_property>
+      <obj_property name="ObjectShortName">evt_len[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_tb/WVB_READER/RD_CTRL/evt_len_reg" type="array">
+      <obj_property name="ElementShortName">evt_len_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">evt_len_reg[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/reader_tb/WVB/wvb_rdreq" type="logic">
       <obj_property name="ElementShortName">wvb_rdreq</obj_property>
