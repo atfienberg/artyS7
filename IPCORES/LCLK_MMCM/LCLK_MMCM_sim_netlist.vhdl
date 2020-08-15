@@ -1,9 +1,9 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Mon Apr  6 17:17:39 2020
+-- Date        : Sat Aug 15 15:54:50 2020
 -- Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim C:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_sim_netlist.vhdl
 -- Design      : LCLK_MMCM
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,7 +15,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity LCLK_MMCM_LCLK_MMCM_clk_wiz is
   port (
-    clk_100MHZ : out STD_LOGIC;
+    clk_125MHZ : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
@@ -25,7 +25,7 @@ entity LCLK_MMCM_LCLK_MMCM_clk_wiz is
 end LCLK_MMCM_LCLK_MMCM_clk_wiz;
 
 architecture STRUCTURE of LCLK_MMCM_LCLK_MMCM_clk_wiz is
-  signal clk_100MHZ_LCLK_MMCM : STD_LOGIC;
+  signal clk_125MHZ_LCLK_MMCM : STD_LOGIC;
   signal clk_in1_LCLK_MMCM : STD_LOGIC;
   signal clkfbout_LCLK_MMCM : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
@@ -65,8 +65,8 @@ clkin1_ibufg: unisim.vcomponents.IBUF
     );
 clkout1_buf: unisim.vcomponents.BUFG
      port map (
-      I => clk_100MHZ_LCLK_MMCM,
-      O => clk_100MHZ
+      I => clk_125MHZ_LCLK_MMCM,
+      O => clk_125MHZ
     );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
@@ -76,7 +76,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 83.333000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 7.500000,
+      CLKOUT0_DIVIDE_F => 6.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
@@ -128,7 +128,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKIN2 => '0',
       CLKINSEL => '1',
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
-      CLKOUT0 => clk_100MHZ_LCLK_MMCM,
+      CLKOUT0 => clk_125MHZ_LCLK_MMCM,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
       CLKOUT1 => NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
@@ -161,7 +161,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity LCLK_MMCM is
   port (
-    clk_100MHZ : out STD_LOGIC;
+    clk_125MHZ : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
@@ -174,7 +174,7 @@ architecture STRUCTURE of LCLK_MMCM is
 begin
 inst: entity work.LCLK_MMCM_LCLK_MMCM_clk_wiz
      port map (
-      clk_100MHZ => clk_100MHZ,
+      clk_125MHZ => clk_125MHZ,
       clk_in1 => clk_in1,
       locked => locked,
       reset => reset

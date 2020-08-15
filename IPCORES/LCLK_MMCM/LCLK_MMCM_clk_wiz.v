@@ -56,7 +56,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_100MHZ___100.000______0.000______50.0______479.872____668.310
+// clk_125MHZ___125.000______0.000______50.0______467.172____668.310
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -69,7 +69,7 @@ module LCLK_MMCM_clk_wiz
 
  (// Clock in ports
   // Clock out ports
-  output        clk_100MHZ,
+  output        clk_125MHZ,
   // Status and control signals
   input         reset,
   output        locked,
@@ -93,7 +93,7 @@ wire clk_in2_LCLK_MMCM;
   //    * Unused inputs are tied off
   //    * Unused outputs are labeled unused
 
-  wire        clk_100MHZ_LCLK_MMCM;
+  wire        clk_125MHZ_LCLK_MMCM;
   wire        clk_out2_LCLK_MMCM;
   wire        clk_out3_LCLK_MMCM;
   wire        clk_out4_LCLK_MMCM;
@@ -130,7 +130,7 @@ wire clk_in2_LCLK_MMCM;
     .CLKFBOUT_MULT_F      (62.500),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (7.500),
+    .CLKOUT0_DIVIDE_F     (6.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
@@ -140,7 +140,7 @@ wire clk_in2_LCLK_MMCM;
    (
     .CLKFBOUT            (clkfbout_LCLK_MMCM),
     .CLKFBOUTB           (clkfboutb_unused),
-    .CLKOUT0             (clk_100MHZ_LCLK_MMCM),
+    .CLKOUT0             (clk_125MHZ_LCLK_MMCM),
     .CLKOUT0B            (clkout0b_unused),
     .CLKOUT1             (clkout1_unused),
     .CLKOUT1B            (clkout1b_unused),
@@ -190,8 +190,8 @@ wire clk_in2_LCLK_MMCM;
 
 
   BUFG clkout1_buf
-   (.O   (clk_100MHZ),
-    .I   (clk_100MHZ_LCLK_MMCM));
+   (.O   (clk_125MHZ),
+    .I   (clk_125MHZ_LCLK_MMCM));
 
 
 

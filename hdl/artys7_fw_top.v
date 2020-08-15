@@ -14,17 +14,17 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'h2;
+localparam[15:0] FW_VNUM = 16'h3;
 
 //
-// 100 MHz logic clock generation
+// 125 MHz logic clock generation
 //
 
 wire lclk;
 wire lclk_mmcm_locked;
 LCLK_MMCM lclk_mmcm_0
 (
-  .clk_100MHZ(lclk),
+  .clk_125MHZ(lclk),
   .reset(1'b0),
   .locked(lclk_mmcm_locked),
   .clk_in1(OSC_12MHZ)

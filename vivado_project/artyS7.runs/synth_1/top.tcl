@@ -18,6 +18,7 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 create_project -in_memory -part xc7s50csga324-2
@@ -98,7 +99,7 @@ set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_4096_22/BUFFER_4096_22.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_4096_22/BUFFER_4096_22_ooc.xdc]
 
-read_ip -quiet c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM.xci
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
