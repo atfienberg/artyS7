@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Sat Aug 15 16:16:40 2020
+| Date             : Sat Aug 15 16:40:25 2020
 | Host             : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.214        |
+| Total On-Chip Power (W)  | 0.216        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.142        |
+| Dynamic (W)              | 0.144        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.9          |
 | Max Ambient (C)          | 83.9         |
@@ -52,19 +52,19 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.007 |        5 |       --- |             --- |
+| Clocks         |     0.009 |        5 |       --- |             --- |
 | Slice Logic    |     0.004 |     3353 |       --- |             --- |
 |   LUT as Logic |     0.003 |     1360 |     32600 |            4.17 |
 |   CARRY4       |    <0.001 |      256 |      8150 |            3.14 |
 |   Register     |    <0.001 |     1266 |     65200 |            1.94 |
 |   F7/F8 Muxes  |    <0.001 |        4 |     32600 |            0.01 |
 |   Others       |     0.000 |      111 |       --- |             --- |
-| Signals        |     0.004 |     2560 |       --- |             --- |
+| Signals        |     0.004 |     2563 |       --- |             --- |
 | Block RAM      |     0.020 |      8.5 |        75 |           11.33 |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
 | I/O            |     0.003 |       13 |       210 |            6.19 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.214 |          |           |                 |
+| Total          |     0.216 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.044 |       0.034 |      0.010 |
+| Vccint    |       1.000 |     0.046 |       0.036 |      0.010 |
 | Vccaux    |       1.800 |     0.070 |       0.058 |      0.013 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -143,20 +143,20 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| top                  |     0.142 |
+| top                  |     0.144 |
 |   WFM_ACQ_0          |     0.018 |
-|     WVB              |     0.017 |
+|     WVB              |     0.018 |
 |       PTB            |     0.005 |
 |       WBS            |     0.010 |
 |       WR_CTRL        |     0.002 |
-|   WVB_READER         |     0.002 |
+|   WVB_READER         |     0.003 |
 |     RD_CTRL          |     0.002 |
 |   XDOM_0             |     0.011 |
 |     DPRAM_2048_16_0  |     0.002 |
 |       U0             |     0.002 |
 |     RDOUT_DPRAM      |     0.004 |
 |       U0             |     0.004 |
-|     UART_DEBUG_0     |     0.002 |
+|     UART_DEBUG_0     |     0.003 |
 |       UART_PROC_HS_0 |     0.002 |
 |   lclk_mmcm_0        |     0.104 |
 |     inst             |     0.104 |

@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Sat Aug 15 16:15:24 2020
-# Process ID: 15140
+# Start of session at: Sat Aug 15 16:39:06 2020
+# Process ID: 12760
 # Current directory: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/impl_1
 # Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
 # Log file: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/impl_1/top.vdi

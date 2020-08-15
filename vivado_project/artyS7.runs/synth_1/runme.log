@@ -15,9 +15,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Device 21-403] Loading part xc7s50csga324-2
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 16980 
+INFO: Helper process launched with PID 15348 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 710.422 ; gain = 178.016
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 709.918 ; gain = 177.441
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:6]
 	Parameter L_WIDTH_MDOM_TRIG_BUNDLE_TRIG_ET bound to: 1 - type: integer 
@@ -73,24 +73,24 @@ INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/atfie/IceCube/artyS7/hd
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE_ZERO_PAD bound to: 0 - type: integer 
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE bound to: 40 - type: integer 
 	Parameter FW_VNUM bound to: 16'b0000000000000011 
-INFO: [Synth 8-6157] synthesizing module 'LCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'LCLK_MMCM' (1#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'LCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'LCLK_MMCM' (1#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'xdom' [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
 INFO: [Synth 8-6157] synthesizing module 'ft232r_proc_buffered' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
 INFO: [Synth 8-6157] synthesizing module 'ft232r_hs' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_hs/ft232r_hs.v:17]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 2500000 - type: integer 
 	Parameter S0 bound to: 0 - type: integer 
 	Parameter S1 bound to: 1 - type: integer 
 	Parameter S2 bound to: 2 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'rs232_ser' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 2500000 - type: integer 
 	Parameter S_IDLE bound to: 2'b00 
 	Parameter S_START bound to: 2'b01 
 	Parameter S_SHIFT bound to: 2'b10 
 	Parameter S_STOP bound to: 2'b11 
-	Parameter LAUNCH_CNT_MAX bound to: 41 - type: integer 
+	Parameter LAUNCH_CNT_MAX bound to: 50 - type: integer 
 	Parameter NBITS_LAUNCH_CNT bound to: 6 - type: integer 
 INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:78]
 INFO: [Synth 8-6155] done synthesizing module 'rs232_ser' (2#1) [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
@@ -98,14 +98,14 @@ INFO: [Synth 8-6157] synthesizing module 'posedge_detector' [C:/Users/atfie/IceC
 INFO: [Synth 8-6155] done synthesizing module 'posedge_detector' (3#1) [C:/Users/atfie/IceCube/artyS7/hdl/posedge_detector/posedge_detector.v:5]
 INFO: [Synth 8-6157] synthesizing module 'rs232_des' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_des/rs232_des.v:16]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 2500000 - type: integer 
 	Parameter S_IDLE bound to: 2'b00 
 	Parameter S_START bound to: 2'b01 
 	Parameter S_SHIFT bound to: 2'b10 
 	Parameter S_STOP bound to: 2'b11 
-	Parameter START_LATCH_CNT_MAX bound to: 20 - type: integer 
-	Parameter SHIFT_LATCH_CNT_MAX bound to: 41 - type: integer 
-	Parameter STOP_LATCH_CNT_MAX bound to: 41 - type: integer 
+	Parameter START_LATCH_CNT_MAX bound to: 25 - type: integer 
+	Parameter SHIFT_LATCH_CNT_MAX bound to: 50 - type: integer 
+	Parameter STOP_LATCH_CNT_MAX bound to: 50 - type: integer 
 	Parameter NBITS_LATCH_CNT bound to: 6 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'sync' [C:/Users/atfie/IceCube/artyS7/hdl/sync/sync.v:5]
 	Parameter P_DEFVAL bound to: 1'b0 
@@ -161,8 +161,8 @@ INFO: [Synth 8-6155] done synthesizing module 'err_mngr' (9#1) [C:/Users/atfie/I
 WARNING: [Synth 8-6014] Unused sequential element n_burst_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:222]
 WARNING: [Synth 8-6014] Unused sequential element err_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:223]
 INFO: [Synth 8-6155] done synthesizing module 'uart_proc_hs' (10#1) [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:16]
-INFO: [Synth 8-6157] synthesizing module 'FIFO_2048_32' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'FIFO_2048_32' (11#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_2048_32' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_2048_32' (11#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'ft232r_proc_buffered' (12#1) [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
 INFO: [Synth 8-6157] synthesizing module 'crs_master' [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:12]
 	Parameter S_IDLE bound to: 0 - type: integer 
@@ -230,11 +230,11 @@ INFO: [Synth 8-6157] synthesizing module 'mDOM_wvb_conf_bundle_fan_in' [C:/Users
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE_ZERO_PAD bound to: 0 - type: integer 
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE bound to: 40 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'mDOM_wvb_conf_bundle_fan_in' (15#1) [C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_conf_bundle/mDOM_wvb_conf_bundle_fan_in.v:1]
-INFO: [Synth 8-6157] synthesizing module 'DPRAM_2048_16' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'DPRAM_2048_16' (16#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'DPRAM_2048_16' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'DPRAM_2048_16' (16#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/DPRAM_2048_16_stub.v:6]
 WARNING: [Synth 8-689] width (12) of port connection 'addra' does not match port width (11) of module 'DPRAM_2048_16' [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:310]
-INFO: [Synth 8-6157] synthesizing module 'DIRECT_RDOUT_DPRAM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'DIRECT_RDOUT_DPRAM' (17#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'DIRECT_RDOUT_DPRAM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'DIRECT_RDOUT_DPRAM' (17#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
 INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:358]
 WARNING: [Synth 8-3848] Net debug_err_ack in module/entity xdom does not have driver. [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:68]
 INFO: [Synth 8-6155] done synthesizing module 'xdom' (18#1) [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
@@ -333,18 +333,18 @@ INFO: [Synth 8-6157] synthesizing module 'pretrigger_buffer' [C:/Users/atfie/Ice
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
 	Parameter RDY_CNT bound to: 32'b00000000000000000000000000100000 
 	Parameter RD_ADDR_OFFSET bound to: 32'b00000000000000000000000000000010 
-INFO: [Synth 8-6157] synthesizing module 'BUFFER_32_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'BUFFER_32_22' (24#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'BUFFER_32_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'BUFFER_32_22' (24#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'pretrigger_buffer' (25#1) [C:/Users/atfie/IceCube/artyS7/hdl/pretrigger_buffer/pretrigger_buffer.v:8]
 INFO: [Synth 8-6157] synthesizing module 'waveform_buffer_storage' [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer_storage/waveform_buffer_storage.v:7]
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
 	Parameter P_ADR_WIDTH bound to: 12 - type: integer 
 	Parameter P_HDR_WIDTH bound to: 80 - type: integer 
 	Parameter P_N_WVF_IN_BUF_WIDTH bound to: 10 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'BUFFER_4096_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/BUFFER_4096_22_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'BUFFER_4096_22' (26#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/BUFFER_4096_22_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'FIFO_256_80' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/FIFO_256_80_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'FIFO_256_80' (27#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-13128-LAPTOP-GBOUD091/realtime/FIFO_256_80_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'BUFFER_4096_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/BUFFER_4096_22_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'BUFFER_4096_22' (26#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/BUFFER_4096_22_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_256_80' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/FIFO_256_80_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_256_80' (27#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-10336-LAPTOP-GBOUD091/realtime/FIFO_256_80_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'waveform_buffer_storage' (28#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer_storage/waveform_buffer_storage.v:7]
 INFO: [Synth 8-6157] synthesizing module 'wvb_wr_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/wvb_wr_ctrl/wvb_wr_ctrl.v:7]
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
@@ -505,7 +505,7 @@ WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[30
 WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[29]
 WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[28]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 778.582 ; gain = 246.176
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 777.668 ; gain = 245.191
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -518,10 +518,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 778.582 ; gain = 246.176
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 777.668 ; gain = 245.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 778.582 ; gain = 246.176
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 777.668 ; gain = 245.191
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -549,11 +549,11 @@ Parsing XDC File [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth
 Finished Parsing XDC File [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 929.566 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 927.559 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 929.566 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 927.559 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'WFM_ACQ_0/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'WFM_ACQ_0/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'WFM_ACQ_0/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
@@ -561,14 +561,14 @@ WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'XDOM_0/RDOUT_DPRAM' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -583,7 +583,7 @@ Applied set_property DONT_TOUCH = true for WFM_ACQ_0/WVB/WBS/HDR_FIFO_FMT_0. (co
 Applied set_property DONT_TOUCH = true for WFM_ACQ_0/WVB/WBS/WAVEFORM_DISCR_BUFF. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for XDOM_0/RDOUT_DPRAM. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_ser'
 INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_des'
@@ -744,7 +744,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 's
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'light_show'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1212,7 +1212,7 @@ INFO: [Synth 8-3886] merging instance 'XDOM_0/dpram_len_reg[13]' (FDRE) to 'XDOM
 INFO: [Synth 8-3886] merging instance 'XDOM_0/dpram_len_reg[15]' (FDRE) to 'XDOM_0/dpram_len_reg[14]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (XDOM_0/\dpram_len_reg[14] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1240,13 +1240,13 @@ Start Applying XDC Timing Constraints
 INFO: [Synth 8-5578] Moved timing constraint from pin 'lclk_mmcm_0/clk_125MHZ' to pin 'lclk_mmcm_0/bbstub_clk_125MHZ/O'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 929.617 ; gain = 397.141
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 931.605 ; gain = 399.199
+Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 933.742 ; gain = 401.266
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1259,7 +1259,7 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\WFM_ACQ_0/WVB/RD_ADDR/hdr_rd_cnt_reg[2] )
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 942.258 ; gain = 409.852
+Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 941.816 ; gain = 409.340
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1285,7 +1285,7 @@ INFO: [Synth 8-5365] Flop WFM_ACQ_0/WVB/WR_CTRL/i_const_conf_reg[11] is being in
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1298,7 +1298,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1310,25 +1310,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1362,8 +1362,8 @@ Report Cell Usage:
 |9     |LUT1               |   143|
 |10    |LUT2               |   258|
 |11    |LUT3               |   140|
-|12    |LUT4               |   477|
-|13    |LUT5               |   203|
+|12    |LUT4               |   478|
+|13    |LUT5               |   202|
 |14    |LUT6               |   391|
 |15    |MUXF7              |     4|
 |16    |FDCE               |     7|
@@ -1419,27 +1419,27 @@ Report Instance Areas:
 |39    |  rgb_lightshow_0    |light_show              |   355|
 +------+---------------------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 17 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:39 . Memory (MB): peak = 948.484 ; gain = 263.055
-Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 948.484 ; gain = 416.078
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:37 . Memory (MB): peak = 948.023 ; gain = 263.598
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 948.023 ; gain = 415.547
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 250 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 948.484 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 948.023 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 190 Infos, 52 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 948.484 ; gain = 654.461
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 948.484 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 948.023 ; gain = 647.332
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 948.023 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Aug 15 16:15:17 2020...
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 15 16:39:00 2020...
