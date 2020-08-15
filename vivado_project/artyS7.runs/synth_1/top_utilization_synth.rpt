@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Wed Apr  8 12:13:25 2020
+| Date         : Fri Aug 14 19:57:16 2020
 | Host         : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  682 |     0 |     32600 |  2.09 |
-|   LUT as Logic          |  682 |     0 |     32600 |  2.09 |
+| Slice LUTs*             | 1137 |     0 |     32600 |  3.49 |
+|   LUT as Logic          | 1137 |     0 |     32600 |  3.49 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |  642 |     0 |     65200 |  0.98 |
-|   Register as Flip Flop |  642 |     0 |     65200 |  0.98 |
+| Slice Registers         | 1122 |     0 |     65200 |  1.72 |
+|   Register as Flip Flop | 1122 |     0 |     65200 |  1.72 |
 |   Register as Latch     |    0 |     0 |     65200 |  0.00 |
 | F7 Muxes                |    4 |     0 |     16300 |  0.02 |
 | F8 Muxes                |    0 |     0 |      8150 |  0.00 |
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 16    |          Yes |           - |          Set |
-| 8     |          Yes |           - |        Reset |
-| 2     |          Yes |         Set |            - |
-| 616   |          Yes |       Reset |            - |
+| 7     |          Yes |           - |        Reset |
+| 16    |          Yes |         Set |            - |
+| 1083  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -145,19 +145,19 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  616 |        Flop & Latch |
-| LUT4     |  354 |                 LUT |
-| LUT2     |  169 |                 LUT |
-| CARRY4   |  148 |          CarryLogic |
-| LUT6     |  141 |                 LUT |
-| LUT5     |  102 |                 LUT |
-| LUT3     |   86 |                 LUT |
-| LUT1     |   77 |                 LUT |
+| FDRE     | 1083 |        Flop & Latch |
+| LUT4     |  488 |                 LUT |
+| LUT6     |  309 |                 LUT |
+| LUT2     |  269 |                 LUT |
+| CARRY4   |  235 |          CarryLogic |
+| LUT5     |  185 |                 LUT |
+| LUT1     |  118 |                 LUT |
+| LUT3     |  116 |                 LUT |
+| FDSE     |   16 |        Flop & Latch |
 | FDPE     |   16 |        Flop & Latch |
 | OBUF     |   11 |                  IO |
-| FDCE     |    8 |        Flop & Latch |
+| FDCE     |    7 |        Flop & Latch |
 | MUXF7    |    4 |               MuxFx |
-| FDSE     |    2 |        Flop & Latch |
 | IBUF     |    1 |                  IO |
 +----------+------+---------------------+
 
@@ -165,13 +165,17 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+---------------+------+
-|    Ref Name   | Used |
-+---------------+------+
-| LCLK_MMCM     |    1 |
-| FIFO_2048_32  |    1 |
-| DPRAM_2048_16 |    1 |
-+---------------+------+
++--------------------+------+
+|      Ref Name      | Used |
++--------------------+------+
+| LCLK_MMCM          |    1 |
+| FIFO_256_80        |    1 |
+| FIFO_2048_32       |    1 |
+| DPRAM_2048_16      |    1 |
+| DIRECT_RDOUT_DPRAM |    1 |
+| BUFFER_4096_22     |    1 |
+| BUFFER_32_22       |    1 |
++--------------------+------+
 
 
 9. Instantiated Netlists

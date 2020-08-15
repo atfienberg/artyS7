@@ -56,7 +56,7 @@ module waveform_buffer
 wire [P_DATA_WIDTH-1:0] ptb_out;
 wire ptb_rdy;
 pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH), 
-	            .P_DATA_WIDTH(P_DATA_WIDTH))
+              .P_DATA_WIDTH(P_DATA_WIDTH))
  PTB
   (
    .clk(clk),
@@ -70,12 +70,12 @@ pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH),
   );
  
 // WVB storage
-wire [P_ADR_WIDTH-1:0] 	wvb_wr_addr;
-wire [P_ADR_WIDTH-1:0] 	wvb_rd_addr;
-wire 			wvb_wrreq; 
-wire [P_HDR_WIDTH-1:0] 	hdr_data_in;
-wire 			hdr_wrreq; 
-wire  	                eoe; 
+wire [P_ADR_WIDTH-1:0]  wvb_wr_addr;
+wire [P_ADR_WIDTH-1:0]  wvb_rd_addr;
+wire      wvb_wrreq; 
+wire [P_HDR_WIDTH-1:0]  hdr_data_in;
+wire      hdr_wrreq; 
+wire                    eoe; 
 waveform_buffer_storage 
   #(
     .P_DATA_WIDTH(P_DATA_WIDTH),

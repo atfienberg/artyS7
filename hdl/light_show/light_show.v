@@ -5,7 +5,7 @@
 //
 
 module light_show #(parameter[31:0] INCREMENT = 4,
-	            parameter[31:0] INCS_PER_STATE = 2000)
+                    parameter[31:0] INCS_PER_STATE = 2000)
 (
   input clk,
   input rst,
@@ -22,16 +22,16 @@ reg[31:0] ticks_per_increment;
 always @(*) begin
   case (period_sel)
     0: begin
-      ticks_per_increment = 32'd25_000;	
+      ticks_per_increment = 32'd25_000; 
     end
     1: begin
-      ticks_per_increment = 32'd75_000;	
+      ticks_per_increment = 32'd75_000; 
     end
     2: begin
-      ticks_per_increment = 32'd500_000;	
+      ticks_per_increment = 32'd500_000;        
     end
     3: begin
-      ticks_per_increment = 32'd1_000_000;	
+      ticks_per_increment = 32'd1_000_000;      
     end
     default: begin
       ticks_per_increment = 32'd500_000;
@@ -65,22 +65,22 @@ always @(posedge clk) begin
     
     case(fsm)
       S_IDLE: begin
-      	// start the pattern 
-      	cnt <= 32'd0;
-      	incs <= 32'd0;
-      	red <= 15'd0;
-      	green <= 15'd0;
-      	blue <= MAX_BRIGHNESS;
-      	fsm <= S_INCRED_DECBLUE;
+        // start the pattern 
+        cnt <= 32'd0;
+        incs <= 32'd0;
+        red <= 15'd0;
+        green <= 15'd0;
+        blue <= MAX_BRIGHNESS;
+        fsm <= S_INCRED_DECBLUE;
       end
 
       S_INCRED_DECBLUE: begin
         if (cnt >= ticks_per_increment - 1) begin
           red <= red + INCREMENT;
-	  green <= 15'b0;
+          green <= 15'b0;
           blue <= blue - INCREMENT;
 
-	  cnt <= 32'b0;          
+          cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
             incs <= 32'b0;
@@ -94,8 +94,8 @@ always @(posedge clk) begin
           red <= red - INCREMENT;
           green <= green + INCREMENT;
           blue <= 15'b0;
-	
-	  cnt <= 32'b0;          
+        
+          cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
             incs <= 32'b0;
@@ -109,8 +109,8 @@ always @(posedge clk) begin
           red <= 15'b0;
           green <= green - INCREMENT;
           blue <= blue + INCREMENT;
-	
-	  cnt <= 32'b0;          
+        
+          cnt <= 32'b0;          
           incs <= incs + 32'b1;          
           if (incs >= INCS_PER_STATE - 1) begin
             incs <= 32'b0;
@@ -120,12 +120,12 @@ always @(posedge clk) begin
       end
 
       default: begin
-      	fsm <= S_IDLE;
-      	cnt <= 32'b0;
-      	incs <= 32'b0;
-      	red <= 15'b0;
-      	green <= 15'b0;
-      	blue <= 15'b0;
+        fsm <= S_IDLE;
+        cnt <= 32'b0;
+        incs <= 32'b0;
+        red <= 15'b0;
+        green <= 15'b0;
+        blue <= 15'b0;
       end
 
     endcase

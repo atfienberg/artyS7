@@ -10,14 +10,14 @@ module posedge_detector
    output y
    );
 
-   reg 	  ff = 1'b0;
+   reg    ff = 1'b0;
    
-   always @(posedge clk or negedge rst_n)
+   always @(posedge clk)
      begin
-	if( !rst_n ) ff <= 1'b0;
-	else ff <= a;
+        if( !rst_n ) ff <= 1'b0;
+        else ff <= a;
      end
    
    assign y = !ff & a;
-	
+        
 endmodule

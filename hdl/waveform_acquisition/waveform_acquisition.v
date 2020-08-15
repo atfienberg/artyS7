@@ -13,8 +13,8 @@ module waveform_acquisition #(parameter[11:0] P_ADC_RAMP_START = 0,
                               parameter P_HDR_WIDTH = 80,
                               parameter P_LTC_WIDTH = 48,
                               parameter P_N_WVF_IN_BUF_WIDTH = 10,
-                              parameter P_WVF_TRIG_BUNDLE_WIDTH = 24,
-                              parameter P_WVB_CONFIG_BUNDLE_WIDTH = 34,
+                              parameter P_WVB_TRIG_BUNDLE_WIDTH = 20,
+                              parameter P_WVB_CONFIG_BUNDLE_WIDTH = 40,
                               parameter P_RATE_SCALER_STS_BUNDLE_WIDTH = 35,
                               parameter P_RATE_SCALER_CTRL_BUNDLE_WIDTH = 64)
 (
@@ -41,29 +41,39 @@ module waveform_acquisition #(parameter[11:0] P_ADC_RAMP_START = 0,
   output wvb_trig_test_out,
 
   // Rate scaler
-  input[P_RATE_SCALER_CTRL_BUNDLE_WIDTH-1:0] rate_scaler_ctrl_bundle, 
-  output[P_RATE_SCALER_STS_BUNDLE_WIDTH-1:0] rate_scaler_sts_bundle,
+  // input[P_RATE_SCALER_CTRL_BUNDLE_WIDTH-1:0] rate_scaler_ctrl_bundle, 
+  // output[P_RATE_SCALER_STS_BUNDLE_WIDTH-1:0] rate_scaler_sts_bundle,
 
   // XDOM interface
-  input[P_WVF_TRIG_BUNDLE_WIDTH-1:0] xdom_wvf_trig_bundle,
+  input[P_WVB_TRIG_BUNDLE_WIDTH-1:0] xdom_wvb_trig_bundle,
   input[P_WVB_CONFIG_BUNDLE_WIDTH-1:0] xdom_wvb_config_bundle,  
   output          xdom_wvb_armed, 
   output          xdom_wvb_overflow
 );
 
 // trig fan out
-wire wvf_trig_et;    
-wire wvf_trig_gt;    
-wire wvf_trig_lt;   
-wire wvf_trig_run;
-wire wvf_trig_discr_trig_pol;
-wire [11:0] wvf_trig_thr;   
-wire wvf_trig_discr_trig_en;
-wire wvf_trig_thresh_trig_en; 
-wire wvf_trig_ext_trig_en; 
-
-// FAN OUT GOES HERE
-// MDOM TRIG FAN OUT
+wire wvb_trig_et;
+wire wvb_trig_gt;    
+wire wvb_trig_lt;   
+wire wvb_trig_run;
+wire wvb_trig_discr_trig_pol;
+wire [11:0] wvb_trig_thr;   
+wire wvb_trig_discr_trig_en;
+wire wvb_trig_thresh_trig_en; 
+wire wvb_trig_ext_trig_en; 
+mDOM_trig_bundle_fan_out TRIG_FAN_OUT
+  (
+   .bundle(xdom_wvb_trig_bundle),
+   .trig_et(wvb_trig_et),
+   .trig_gt(wvb_trig_gt),
+   .trig_lt(wvb_trig_lt),
+   .trig_run(wvb_trig_run),
+   .discr_trig_pol(wvb_trig_discr_trig_pol),
+   .trig_thresh(wvb_trig_thr),
+   .disc_trig_en(wvb_trig_discr_trig_en),
+   .thresh_trig_en(wvb_trig_thresh_trig_en),
+   .ext_trig_en(wvb_trig_ext_trig_en)
+  );
 
 // wvb config bundle fan out
 wire[11:0] wvb_cnst_config;
@@ -73,9 +83,18 @@ wire[11:0] wvb_test_config;
 wire wvb_arm;
 wire wvb_trig_mode;
 wire wvb_cnst_run;
+mDOM_wvb_conf_bundle_fan_out CONF_FAN_OUT
+  (
+   .bundle(xdom_wvb_config_bundle),
+   .cnst_conf(wvb_cnst_config),
+   .test_conf(wvb_test_config),
+   .post_conf(wvb_post_config),
+   .pre_conf(wvb_pre_config),
+   .arm(wvb_arm),
+   .trig_mode(wvb_trig_mode),
+   .cnst_run(wvb_cnst_run)
+  );
 
-// FAN OUT GOES HERE
-// MDOM WVB CONF FAN OUT
 //
 // raw data streams
 //
@@ -108,22 +127,22 @@ mdom_trigger MDOM_TRIG
    .discr_stream_out(discr_data_stream_1),
 
    // threshold trigger settings 
-   .gt(wvf_trig_gt),
-   .et(wvf_trig_et),
-   .lt(wvf_trig_lt),
-   .thr(wvf_trig_thr),
-   .thresh_trig_en(wvf_trig_thresh_trig_en),
+   .gt(wvb_trig_gt),
+   .et(wvb_trig_et),
+   .lt(wvb_trig_lt),
+   .thr(wvb_trig_thr),
+   .thresh_trig_en(wvb_trig_thresh_trig_en),
 
    // sw trig
-   .run(wvf_trig_run),
+   .run(wvb_trig_run),
 
    // ext trig
-   .ext_trig_en(wvf_trig_ext_trig_en),
+   .ext_trig_en(wvb_trig_ext_trig_en),
    .ext_run(ext_trig_in),
     
    // discr trig
-   .discr_trig_en(wvf_trig_discr_trig_en),
-   .discr_trig_pol(wvf_trig_discr_trig_pol),
+   .discr_trig_en(wvb_trig_discr_trig_en),
+   .discr_trig_pol(wvb_trig_discr_trig_pol),
     
    // trigger outputs
    .trig_src(trig_src),
