@@ -36,6 +36,7 @@ module xdom
  input wvb_overflow,
  input[15:0] wfms_in_buf,
  input[15:0] buf_wds_used,
+ input wvb_hdr_full,
 
  // wvb reader (put inside xdom for initial test)
  input[15:0] dpram_len_in,
@@ -234,6 +235,7 @@ always @(*)
       12'hef9: begin y_rd_data =       {15'b0, wvb_rst};                                       end
       12'hef8: begin y_rd_data =       {15'b0, wvb_reader_enable};                             end
       12'hef7: begin y_rd_data =       {15'b0, wvb_reader_dpram_mode};                         end
+      12'hef6: begin y_rd_data =       {15'b0, wvb_hdr_full};                         end
       12'h8ff: begin y_rd_data =       {13'h0, led_toggle};                                    end
       12'h8fe: begin y_rd_data =       {1'h0, red_led_lvl};                                    end
       12'h8fd: begin y_rd_data =       {1'h0, green_led_lvl};                                  end
@@ -255,6 +257,7 @@ always @(posedge clk)
     // clear registers that automatically reset (e.g. one shots)  
     wvb_trig_run <= 0;
     dpram_done <= 0;
+    wvb_arm <= 0;
 
     if(y_wr) 
       case(y_adr)       

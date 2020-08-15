@@ -11,9 +11,9 @@ import sys
 
 def main():
     if len(sys.argv) != 4:
-        print('Usage: set_led_color <red> <green> <blue> (15 bit values)')
+        print("Usage: set_led_color <red> <green> <blue> (15 bit values)")
 
-    arty = artyS7(dev_path=read_dev_path('./conf/uart_path.txt'))
+    arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"))
 
     try:
         rgb_tuple = tuple(int(arg) for arg in sys.argv[1:])
@@ -25,5 +25,5 @@ def main():
     arty.set_rgb_led_color(rgb_tuple)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

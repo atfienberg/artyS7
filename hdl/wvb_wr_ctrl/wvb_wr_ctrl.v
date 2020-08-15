@@ -70,7 +70,7 @@ reg[31:0] cnt = 0;
 
 // minimum values for various length configs
 localparam PRE_CONF_MIN = 3,
-           POST_CONF_MIN = 1,
+           POST_CONF_MIN = 2,
            TEST_CONF_MIN = 3,
            CONST_CONF_MIN = 3;
 // update interal length conf values
@@ -161,7 +161,7 @@ always @(posedge clk) begin
       armed <= 1;
     end
 
-    else if (wvb_wren) begin
+    else if (hdr_wren) begin
       armed <= 0;
     end
   end
@@ -169,8 +169,29 @@ end
 
 // signal that this is the final write of a waveform
 reg final_write = 0;
-assign hdr_wren = wvb_wren && (final_write || overflow_in);
-always @(*) eoe = hdr_wren;
+reg final_cnt_check = 0;
+
+// quick test; register cnt comparisons to help
+// with timing of header_wren
+always @(posedge clk) begin
+  if (rst) begin
+    final_cnt_check <= 0;
+  end
+
+  else begin
+    // check against cnt_max - 1 so that final_cnt_check
+    // will be true on the cycle where cnt == i_<x>_cnt_max 
+    case (fsm) 
+      S_IDLE:  final_cnt_check <= 0;
+      S_PRE:   final_cnt_check <= 0;
+      S_SOT:   final_cnt_check <= 0;
+      S_POST:  final_cnt_check <= cnt == i_post_cnt_max - 1;
+      S_CONST: final_cnt_check <= cnt == i_const_cnt_max - 1;
+      S_TEST:  final_cnt_check <= cnt == i_test_cnt_max - 1;
+      default: final_cnt_check <= 0;
+  endcase
+  end
+end
 
 // "final write" logic
 always @(*) begin
@@ -178,12 +199,15 @@ always @(*) begin
     S_IDLE:  final_write = 0;
     S_PRE:   final_write = 0;
     S_SOT:   final_write = 0;
-    S_POST:  final_write = !trig && (cnt == i_post_cnt_max);
-    S_CONST: final_write = cnt == i_const_cnt_max;
-    S_TEST:  final_write = cnt == i_test_cnt_max;
+    S_POST:  final_write = !trig && final_cnt_check;
+    S_CONST: final_write = final_cnt_check;
+    S_TEST:  final_write = final_cnt_check;
     default: final_write = 0;
   endcase
 end
+
+assign hdr_wren = wvb_wren && (final_write || overflow_in);
+always @(*) eoe = hdr_wren;
 
 // wvb_wren logic
 wire write_condition = (trig && !overflow_in) || (fsm != S_IDLE);

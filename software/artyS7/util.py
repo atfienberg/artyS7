@@ -7,13 +7,13 @@ import sys
 
 
 def read_dev_path(filename):
-    '''reads the first line from "filename" and returns it'''
+    """reads the first line from "filename" and returns it"""
     with open(filename) as file:
         return file.readline().strip()
 
 
-def get_port(args, default_filename='conf/uart_path.txt'):
-    ''' Determine a uart port from command line arguments '''
+def get_port(args, default_filename="conf/uart_path.txt"):
+    """ Determine a uart port from command line arguments """
     if args.COM != None:
         port = "COM" + str(args.COM)
     elif args.ttyUSB != None:
@@ -30,5 +30,5 @@ def main():
     print(read_dev_path(sys.argv[1]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())

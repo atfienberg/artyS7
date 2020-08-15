@@ -69,6 +69,7 @@ wire lclk_rst = !lclk_mmcm_locked;
 //     12'hef9: waveform buffer reset 
 //     12'hef8: wvb_reader enable 
 //     12'hef7: wvb_reader dpram mode 
+//     12'hef6: wvb header full
 //     12'8ff: LED toggle
 //             [0] configurable RGB LED toggle
 //             [1] color cycling RGB LED toggle
@@ -97,6 +98,7 @@ wire wvb_armed;
 wire wvb_overflow;
 wire[15:0] wfms_in_buf;
 wire[15:0] buf_wds_used;
+wire wvb_hdr_full;
 
 // wvb reader
 wire[15:0] rdout_dpram_len;
@@ -131,6 +133,7 @@ xdom XDOM_0
   .wvb_overflow(wvb_overflow),
   .wfms_in_buf(wfms_in_buf),
   .buf_wds_used(buf_wds_used),
+  .wvb_hdr_full(wvb_hdr_full),
 
   // wvb reader
   .dpram_len_in(rdout_dpram_len),
@@ -169,7 +172,6 @@ end
 // this module generates a ramp pattern internally
 //
 wire wvb_hdr_empty;
-wire wvb_hdr_full;
 wire wvb_hdr_rdreq;
 wire wvb_wvb_rdreq;
 wire wvb_rddone;

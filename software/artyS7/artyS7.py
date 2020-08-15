@@ -10,22 +10,45 @@ import logging
 import time
 import numpy as np
 from .uartClass import uartClass
+from .unpack_wfm import unpack_wfm, wfm_n_words
 
 
-class artyS7():
-    ''' class for interfacing with the FPGA on the arty S7 board
+class artyS7:
+    """ class for interfacing with the FPGA on the arty S7 board
     via the USB UART interface
-    '''
+    """
 
     # address and data maps
     fpga_adrs = {
-        'fw_vnum': 0xfff,
-        'led_toggle': 0x8ff,
-        'rgb_red': 0x8fe,
-        'rgb_green': 0x8fd,
-        'rgb_blue': 0x8fc,
-        'rgb_cycle_speed_sel': 0x8fb,
-        'kr_speed_sel': 0x8fa
+        "fw_vnum": 0xFFF,
+        "trig_settings": 0xFFE,
+        "trig_threshold": 0xFFD,
+        "sw_trig": 0xFFC,
+        "trig_mode": 0xFFB,
+        "trig_arm": 0xFFA,
+        "trig_armed": 0xFF9,
+        "const_run": 0xFF8,
+        "const_conf": 0xFF7,
+        "test_conf": 0xFF6,
+        "post_conf": 0xFF5,
+        "pre_conf": 0xFF4,
+        "dpram_len": 0xEFF,
+        "dpram_done": 0xEFE,
+        "dpram_sel": 0xEFD,
+        "n_wfms_in_buf": 0xEFC,
+        "buf_wds_used": 0xEFB,
+        "buf_overflow": 0xEFA,
+        "buf_rst": 0xEF9,
+        "buf_reader_enable": 0xEF8,
+        "buf_reader_dpram_mode": 0xEF7,
+        "wvb_header_full": 0xEF6,
+        "led_toggle": 0x8FF,
+        "rgb_red": 0x8FE,
+        "rgb_green": 0x8FD,
+        "rgb_blue": 0x8FC,
+        "rgb_cycle_speed_sel": 0x8FB,
+        "kr_speed_sel": 0x8FA,
+        "event_data": 0x0,
     }
 
     fpga_data = {}
@@ -34,10 +57,15 @@ class artyS7():
     # Methods
     #
 
-    def __init__(self, uart=None, dev_path=None,
-                 uart_sleep=1, uart_timeout=0.25,
-                 n_read_tries=3):
-        ''' Initializes the artyS7 object
+    def __init__(
+        self,
+        uart=None,
+        dev_path=None,
+        uart_sleep=0.1,
+        uart_timeout=0.25,
+        n_read_tries=3,
+    ):
+        """ Initializes the artyS7 object
 
         can pass in either an instance of uartClass or a device path,
         e.g. artyS7(dev_path='/dev/ttys3')
@@ -48,12 +76,13 @@ class artyS7():
         uart_timeout is the timeout for the usb uart serial interface
 
         n_read_tries is how many times to attempt a read operation before throwing an error
-        '''
+        """
 
         if uart is not None and dev_path is not None:
             # must provide either a uart object or a dev path, not both
             raise RuntimeError(
-                'Both uart and dev_path are not None (only one should be use)')
+                "Both uart and dev_path are not None (only one should be use)"
+            )
 
         self.uart = uart
 
@@ -63,7 +92,7 @@ class artyS7():
             self.uart = uart
 
         if uart is None:
-            raise RuntimeError('uart is unitialized')
+            raise RuntimeError("uart is unitialized")
 
         self.uart_sleep = uart_sleep / 1000  # convert from ms to s
 
@@ -71,73 +100,104 @@ class artyS7():
 
     @property
     def fw_vnum(self):
-        return self.fpga_read('fw_vnum')
+        return self.fpga_read("fw_vnum")
+
+    def read_waveform(self):
+        """ read a waveform from the board"""
+        event_len = int(self.fpga_read("dpram_len"))
+
+        if event_len == 0:
+            return None
+
+        self.fpga_write("dpram_sel", 1)
+
+        dpram_mode = self.fpga_read("buf_reader_dpram_mode")
+
+        fragments = [self.fpga_read("event_data", read_len=event_len)]
+
+        if dpram_mode == 0:
+            self.fpga_write("dpram_done", 1)
+            return unpack_wfm(fragments[0])
+
+        expected_total_words = wfm_n_words(fragments[0])
+
+        n_read = event_len
+        while n_read < expected_total_words:
+            self.fpga_write("dpram_done", 1)
+
+            next_len = self.fpga_read("dpram_len")
+
+            if next_len == 0:
+                break
+
+            fragments.append(self.fpga_read("event_data", read_len=next_len))
+            n_read += next_len
+
+        wfm_payload = np.hstack(fragments)
+
+        self.fpga_write("dpram_done", 1)
+
+        return unpack_wfm(wfm_payload)
 
     def enable_led(self, led_num):
-        ''' enables an LED/LED group
+        """ enables an LED/LED group
         0 - configurable RGB
         1 - cycling RGB
-        2 - knight rider LEDS '''
+        2 - knight rider LEDS """
 
-        current = self.fpga_read('led_toggle')
+        current = self.fpga_read("led_toggle")
 
-        self.fpga_write('led_toggle', (1 << led_num) | current)
+        self.fpga_write("led_toggle", (1 << led_num) | current)
 
     def disable_led(self, led_num):
-        ''' disables an LED/LED group '''
-        current = self.fpga_read('led_toggle')
+        """ disables an LED/LED group """
+        current = self.fpga_read("led_toggle")
 
-        self.fpga_write('led_toggle', (~(1 << led_num)) & current)
+        self.fpga_write("led_toggle", (~(1 << led_num)) & current)
 
     def set_rgb_led_color(self, rgb_vals):
-        ''' takes a tuple of 15-bit rgb vals (red_val, green_val, blue_val)
+        """ takes a tuple of 15-bit rgb vals (red_val, green_val, blue_val)
 
         sets the configurable RGB LED intensities accordingly        
-        '''
+        """
 
         if len(rgb_vals) != 3:
-            raise ValueError('rgb_vals must be length 3!')
+            raise ValueError("rgb_vals must be length 3!")
 
-        h_data = ''.join(f'{val:04x}' for val in rgb_vals[::-1])
+        h_data = "".join(f"{val:04x}" for val in rgb_vals[::-1])
 
-        self.fpga_burst_write('rgb_blue', h_data)
+        self.fpga_burst_write("rgb_blue", h_data)
 
     def register_dump(self):
-        ''' read all the FPGA DPRAM addresses.
-        returns a list with one register value per entry, starting with address 0'''
+        """ read all the FPGA DPRAM addresses.
+        returns a list with one register value per entry, starting with address 0"""
         DPRAM_SIZE = 0x1000
         data = self.fpga_read(0, read_len=DPRAM_SIZE)
 
-        hex_chars = hex(data).rstrip('L')[2:].zfill(4*DPRAM_SIZE)
+        hex_chars = hex(data).rstrip("L")[2:].zfill(4 * DPRAM_SIZE)
 
-        return [hex_chars[4*i:4*i+4] for i in range(DPRAM_SIZE)]
+        return [hex_chars[4 * i : 4 * i + 4] for i in range(DPRAM_SIZE)]
 
     def fpga_write(self, adr, data):
-        ''' wrapper around uart write '''
+        """ wrapper around uart write """
         adr = self.parse_fpga_adr(adr)
 
         data = self.parse_fpga_data(data)
 
-        self.uart.exe_cmd(logging,
-                          s_act='swr',
-                          adr=adr,
-                          data=data)
+        self.uart.exe_cmd(logging, s_act="swr", adr=adr, data=data)
 
         time.sleep(self.uart_sleep)
 
     def fpga_burst_write(self, adr, h_data):
-        ''' wrapper around uart burst write '''
+        """ wrapper around uart burst write """
         adr = self.parse_fpga_adr(adr)
 
-        self.uart.exe_cmd(logging,
-                          s_act='bwr',
-                          adr=adr,
-                          h_data=h_data)
+        self.uart.exe_cmd(logging, s_act="bwr", adr=adr, h_data=h_data)
 
         time.sleep(self.uart_sleep)
 
     def fpga_read(self, adr, read_len=1):
-        ''' wrapper around uart read '''
+        """ wrapper around uart read """
         adr = self.parse_fpga_adr(adr)
 
         read_len = int(read_len)
@@ -148,22 +208,20 @@ class artyS7():
             data, ok = self._fpga_brd(adr, read_len)
 
         else:
-            raise ValueError(f'read_len ({read_len}) must be >= 1!')
+            raise ValueError(f"read_len ({read_len}) must be >= 1!")
 
         if not ok:
-            raise RuntimeError('Incorrect checksum from uart read!')
+            raise RuntimeError("Incorrect checksum from uart read!")
 
         time.sleep(self.uart_sleep)
 
         return data
 
     def _fpga_srd(self, adr):
-        ''' fpga single read '''
+        """ fpga single read """
         for i in range(self.n_read_tries):
             try:
-                data, ok = self.uart.exe_cmd(logging,
-                                             s_act='srd',
-                                             adr=adr)
+                data, ok = self.uart.exe_cmd(logging, s_act="srd", adr=adr)
                 break
             except IOError:
                 if i == self.n_read_tries - 1:
@@ -172,22 +230,19 @@ class artyS7():
         return data, ok
 
     def _fpga_brd(self, adr, read_len):
-        ''' fpga burst read '''
+        """ fpga burst read """
         for i in range(self.n_read_tries):
             try:
-                data, ok = self.uart.exe_cmd(logging,
-                                             s_act='brd',
-                                             adr=adr,
-                                             length=read_len)
+                data, ok = self.uart.exe_cmd(
+                    logging, s_act="brd", adr=adr, length=read_len
+                )
                 break
             except IOError:
                 if i == self.n_read_tries - 1:
                     raise
 
         # interpret data as array of uint16s, ignoring the crc
-        data_array = np.frombuffer(
-            self.uart.cc.cmd['raw_rsp'][:-2],
-            np.uint16)
+        data_array = np.frombuffer(self.uart.cc.cmd["raw_rsp"][:-2], np.uint16)
         data_array = data_array.byteswap()
 
         return data_array, ok
@@ -205,11 +260,11 @@ class artyS7():
 
     @staticmethod
     def parse_indexed_arg(arg, table):
-        start_ind = arg.index('[')
-        end_ind = arg.index(']')
+        start_ind = arg.index("[")
+        end_ind = arg.index("]")
 
         key = arg[:start_ind]
-        index = int(arg[start_ind+1:end_ind])
+        index = int(arg[start_ind + 1 : end_ind])
 
         return table[key][index]
 
@@ -229,10 +284,8 @@ class artyS7():
 
     @staticmethod
     def parse_fpga_adr(arg):
-        return artyS7.parse_arg(arg,
-                                table=artyS7.fpga_adrs)
+        return artyS7.parse_arg(arg, table=artyS7.fpga_adrs)
 
     @staticmethod
     def parse_fpga_data(arg):
-        return artyS7.parse_arg(arg,
-                                table=artyS7.fpga_data)
+        return artyS7.parse_arg(arg, table=artyS7.fpga_data)

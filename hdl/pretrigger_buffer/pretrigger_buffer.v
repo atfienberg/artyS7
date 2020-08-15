@@ -6,7 +6,7 @@
 // size_config must be >= 3. values < 3 will be interpreted as 3
 
 module pretrigger_buffer #(parameter P_PRE_CONF_WIDTH = 5, 
-	                   parameter P_DATA_WIDTH = 22)
+	                         parameter P_DATA_WIDTH = 22)
 (
   input clk,
   input rst,

@@ -6,16 +6,17 @@
 from artyS7 import artyS7, read_dev_path
 import sys
 
+
 def print_register_map():
-    print('FPGA register map:')
+    print("FPGA register map:")
 
     for key, value in artyS7.fpga_adrs.items():
         try:
             value = hex(value)
         except TypeError:
-            value = repr([hex(v) for v in value]).replace('\'', '')
+            value = repr([hex(v) for v in value]).replace("'", "")
 
-        print(f'{key} : {value}')
+        print(f"{key} : {value}")
 
 
 def main():
@@ -30,7 +31,7 @@ def main():
     else:
         data = None
 
-    arty = artyS7(dev_path=read_dev_path('./conf/uart_path.txt'))
+    arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"))
 
     if data is not None:
         arty.fpga_write(adr, data)
@@ -38,5 +39,5 @@ def main():
     print(hex(arty.fpga_read(adr)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

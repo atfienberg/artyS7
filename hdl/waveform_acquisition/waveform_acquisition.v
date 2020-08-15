@@ -147,7 +147,7 @@ mdom_trigger MDOM_TRIG
    // trigger outputs
    .trig_src(trig_src),
    .trig(wvb_trig),
-   .thresh_tot(thersh_tot),
+   .thresh_tot(thresh_tot),
    .discr_tot(discr_tot)
   );
 assign wvb_trig_out = wvb_trig;
