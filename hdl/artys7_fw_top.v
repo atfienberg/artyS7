@@ -14,7 +14,10 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'h3;
+localparam[15:0] FW_VNUM = 16'h5;
+
+// number of fake ADC channels
+localparam N_CHANNELS = 8;
 
 //
 // 125 MHz logic clock generation
@@ -45,13 +48,13 @@ wire lclk_rst = !lclk_mmcm_locked;
 //             [6] ext_trig_en
 //     12'hffd: trig threshold [11:0]
 //     12'hffc: 
-//             [0] sw_trig
+//             [i] sw_trig (channel i)
 //     12'hffb: 
 //             [0] trig_mode
 //     12'hffa: 
-//             [0] trig_arm
+//             [i] trig_arm (channel i)
 //     12'hff9: 
-//             [0] trig_armed
+//             [i] trig_armed (channel i)
 //     12'hff8:
 //             [0] cnst_run
 //     12'hff7: const config [11:0]
@@ -69,7 +72,9 @@ wire lclk_rst = !lclk_mmcm_locked;
 //     12'hef9: waveform buffer reset 
 //     12'hef8: wvb_reader enable 
 //     12'hef7: wvb_reader dpram mode 
-//     12'hef6: wvb header full
+//     12'hef6: wvb header full ([i] for channel i)
+//     12'hef5: chan select for waveform buffer n_words/n_wfms
+//              (efa and ef9)
 //     12'8ff: LED toggle
 //             [0] configurable RGB LED toggle
 //             [1] color cycling RGB LED toggle
@@ -91,14 +96,16 @@ wire[1:0]  kr_speed_sel_xdom;
 // trigger/wvb conf
 wire[L_WIDTH_MDOM_TRIG_BUNDLE-1:0] xdom_trig_bundle;
 wire[L_WIDTH_MDOM_WVB_CONF_BUNDLE-1:0] xdom_wvb_conf_bundle;
-wire xdom_wvb_rst;
+wire[15:0] xdom_wvb_rst;
+wire[15:0] xdom_arm;
+wire[15:0] xdom_trig_run;
 
 // waveform buffer status
-wire wvb_armed;
-wire wvb_overflow;
-wire[15:0] wfms_in_buf;
-wire[15:0] buf_wds_used;
-wire wvb_hdr_full;
+wire[15:0] wvb_armed;
+wire[15:0] wvb_overflow;
+wire[N_CHANNELS*16-1:0] wfms_in_buf;
+wire[N_CHANNELS*16-1:0] buf_wds_used;
+wire[15:0] wvb_hdr_full;
 
 // wvb reader
 wire[15:0] rdout_dpram_len;
@@ -110,7 +117,7 @@ wire[31:0] rdout_dpram_data;
 wire wvb_reader_enable;
 wire wvb_reader_dpram_mode;
 
-xdom XDOM_0
+xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
 (
   .clk(lclk),
   .rst(lclk_rst),
@@ -126,6 +133,8 @@ xdom XDOM_0
   // trigger/wvb conf
   .xdom_trig_bundle(xdom_trig_bundle),
   .xdom_wvb_conf_bundle(xdom_wvb_conf_bundle),
+  .xdom_wvb_arm(xdom_arm),
+  .xdom_trig_run(xdom_trig_run),
   .wvb_rst(xdom_wvb_rst),
 
   // waveform buffer status
@@ -167,52 +176,65 @@ always @(posedge lclk) begin
 end
 
 //
-// Waveform acquisition
-// for the Arty S7 test,
-// this module generates a ramp pattern internally
-//
-wire wvb_hdr_empty;
-wire wvb_hdr_rdreq;
-wire wvb_wvb_rdreq;
-wire wvb_rddone;
-wire[21:0] wvb_data_out;
-wire[79:0] wvb_hdr_data;
-waveform_acquisition #(.P_DISCR_RAMP_START(3)) WFM_ACQ_0
-(
-  .clk(lclk),
-  .rst(lclk_rst || xdom_wvb_rst),
-  
-  // WVB reader interface
-  .wvb_data_out(wvb_data_out),
-  .wvb_hdr_data_out(wvb_hdr_data),  
-  .wvb_hdr_full(wvb_hdr_full),
-  .wvb_hdr_empty(wvb_hdr_empty),
-  .wvb_n_wvf_in_buf(wfms_in_buf),
-  .wvb_wused(buf_wds_used), 
-  .wvb_hdr_rdreq(wvb_hdr_rdreq), 
-  .wvb_wvb_rdreq(wvb_wvb_rdreq), 
-  .wvb_wvb_rddone(wvb_rddone), 
-  
-  // Local time counter
-  .ltc_in(ltc), 
-  
-  // External
-  .ext_trig_in(1'b0),
-  .wvb_trig_out(),
-  .wvb_trig_test_out(),
+// Waveform acquisition modules
+// for the Arty S7 test, 
+// these module generate a ramp pattern internally
+// 
+// configuration currently shared between all channels
 
-  // XDOM interface
-  .xdom_wvb_trig_bundle(xdom_trig_bundle),
-  .xdom_wvb_config_bundle(xdom_wvb_conf_bundle),  
-  .xdom_wvb_armed(wvb_armed), 
-  .xdom_wvb_overflow(wvb_overflow)
-);
+wire[N_CHANNELS-1:0] wvb_hdr_empty;
+wire[N_CHANNELS-1:0] wvb_hdr_rdreq;
+wire[N_CHANNELS-1:0] wvb_wvb_rdreq;
+wire[N_CHANNELS-1:0] wvb_rddone;
+wire[N_CHANNELS*22-1:0] wvb_data_out;
+wire[N_CHANNELS*80-1:0] wvb_hdr_data;
+
+generate
+  genvar i;
+
+  for (i = 0; i < N_CHANNELS; i = i + 1) begin : waveform_acq_gen
+    // distinguish channels by discr-adc diff
+    waveform_acquisition #(.P_DISCR_RAMP_START(i)) WFM_ACQ
+    (
+      .clk(lclk),
+      .rst(lclk_rst || xdom_wvb_rst[i]),
+      
+      // WVB reader interface
+      .wvb_data_out(wvb_data_out[22*(i+1)-1:22*i]),
+      .wvb_hdr_data_out(wvb_hdr_data[80*(i+1)-1:80*i]),  
+      .wvb_hdr_full(wvb_hdr_full[i]),
+      .wvb_hdr_empty(wvb_hdr_empty[i]),
+      .wvb_n_wvf_in_buf(wfms_in_buf[16*(i+1)-1:16*i]),
+      .wvb_wused(buf_wds_used[16*(i+1)-1:16*i]), 
+      .wvb_hdr_rdreq(wvb_hdr_rdreq[i]), 
+      .wvb_wvb_rdreq(wvb_wvb_rdreq[i]), 
+      .wvb_wvb_rddone(wvb_rddone[i]), 
+      
+      // Local time counter
+      .ltc_in(ltc), 
+      
+      // External
+      .ext_trig_in(1'b0),
+      .wvb_trig_out(),
+      .wvb_trig_test_out(),
+    
+      // XDOM interface
+      .xdom_arm(xdom_arm[i]),
+      .xdom_trig_run(xdom_trig_run[i]),
+      .xdom_wvb_trig_bundle(xdom_trig_bundle),
+      .xdom_wvb_config_bundle(xdom_wvb_conf_bundle),  
+      .xdom_wvb_armed(wvb_armed[i]), 
+      .xdom_wvb_overflow(wvb_overflow[i])
+    );
+  end
+endgenerate
+
 
 //
 // Waveform buffer reader
 // 
 
-wvb_reader WVB_READER 
+wvb_reader #(.N_CHANNELS(N_CHANNELS)) WVB_READER 
 (
   .clk(lclk),
   .rst(lclk_rst),

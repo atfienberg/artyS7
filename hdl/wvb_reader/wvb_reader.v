@@ -3,14 +3,14 @@
 //
 // mDOM waveform buffer reader
 //
-// will start by reading a single buffer and then extend to handle 
-// multiple input channels
+// cycles between multiple input channels
 //
 // the WVB reader transfers data from the waveform buffers to DPRAMs
 // in 32-bit words
 //
 
 module wvb_reader #(parameter P_DATA_WIDTH = 22,
+                    parameter N_CHANNELS = 2,
                     parameter P_WVB_ADR_WIDTH = 12,
                     parameter P_DPRAM_ADR_WIDTH = 10,
                     parameter P_HDR_WIDTH = 80,
@@ -37,20 +37,65 @@ module wvb_reader #(parameter P_DATA_WIDTH = 22,
   // WVB interface
 
   // Outputs
-  output reg hdr_rdreq = 0,
-  output wvb_rdreq,
-  output wvb_rddone,
+  output[N_CHANNELS-1:0] hdr_rdreq,
+  output[N_CHANNELS-1:0] wvb_rdreq,
+  output[N_CHANNELS-1:0] wvb_rddone,
 
   // Inputs
-  input[P_DATA_WIDTH-1:0] wvb_data,
-  input[P_HDR_WIDTH-1:0] hdr_data,
-  input hdr_empty
+  input[N_CHANNELS*P_DATA_WIDTH-1:0] wvb_data,
+  input[N_CHANNELS*P_HDR_WIDTH-1:0] hdr_data,
+  input[N_CHANNELS-1:0] hdr_empty
 );
+
+// handle multiplexing/demultiplexing
+reg[4:0] chan_index = 0; 
+
+wire[P_DATA_WIDTH-1:0] wvb_data_mux_out;
+n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+                .INPUT_WIDTH(P_DATA_WIDTH)) WVB_DATA_MUX
+  (
+   .in(wvb_data),
+   .sel(chan_index),
+   .out(wvb_data_mux_out)  
+  );
+
+wire[P_HDR_WIDTH-1-1:0] hdr_data_mux_out;
+n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+                .INPUT_WIDTH(P_HDR_WIDTH)) HDR_DATA_MUX
+  (
+   .in(hdr_data),
+   .sel(chan_index),
+   .out(hdr_data_mux_out)  
+  );
+
+wire hdr_empty_mux_out;
+n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+                .INPUT_WIDTH(1)) HDR_EMPTY_MUX
+  (
+   .in(hdr_empty),
+   .sel(chan_index),
+   .out(hdr_empty_mux_out)  
+  );
+
+reg i_hdr_rdreq = 0;
+wire i_wvb_rdreq;
+wire i_wvb_rddone;
+generate
+  genvar i;
+  for (i = 0; i < N_CHANNELS; i = i + 1) begin : reader_demux
+    assign hdr_rdreq[i] = i_hdr_rdreq && (chan_index == i);
+    assign wvb_rdreq[i] = i_wvb_rdreq && (chan_index == i);
+    assign wvb_rddone[i] = i_wvb_rddone && (chan_index == i);
+  end
+endgenerate
+
+//
+// Read controller instantiation
+//
 
 reg rd_ctrl_req = 0;
 wire rd_ctrl_ack;
 wire rd_ctrl_more; // indicates that there is more data to write in the next DPRAM
-wire[7:0] index = 11; // placeholder 
 wire[15:0] rd_ctrl_dpram_len;
 
 // read controller
@@ -59,14 +104,14 @@ wvb_rd_ctrl_fmt_0 RD_CTRL
    .clk(clk),
    .rst(rst),
    .req(rd_ctrl_req),
-   .idx(index),
+   .idx(chan_index),
    .dpram_mode(dpram_mode),
    .ack(rd_ctrl_ack),
    .rd_ctrl_more(rd_ctrl_more),
-   .wvb_data(wvb_data),
-   .hdr_data(hdr_data),
-   .wvb_rdreq(wvb_rdreq),
-   .wvb_rddone(wvb_rddone),
+   .wvb_data(wvb_data_mux_out),
+   .hdr_data(hdr_data_mux_out),
+   .wvb_rdreq(i_wvb_rdreq),
+   .wvb_rddone(i_wvb_rddone),
    .dpram_a(dpram_addr),
    .dpram_data(dpram_data),
    .dpram_wren(dpram_wren),
@@ -93,13 +138,14 @@ always @(posedge clk) begin
 
     cnt <= 0;
     rd_ctrl_req <= 0;
-    hdr_rdreq <= 0;
+    i_hdr_rdreq <= 0;
     dpram_run <= 0;
     dpram_len <= 0;
+    chan_index <= 0;
   end
 
   else begin
-    hdr_rdreq <= 0;
+    i_hdr_rdreq <= 0;
     dpram_run <= 0;
 
     case (fsm) 
@@ -107,12 +153,16 @@ always @(posedge clk) begin
         rd_ctrl_req <= 0;
         cnt <= 0;
 
-        if (!hdr_empty && !dpram_busy && !rd_ctrl_ack) begin
-          hdr_rdreq <= 1;
+        if (!hdr_empty_mux_out && !dpram_busy && !rd_ctrl_ack) begin
+          i_hdr_rdreq <= 1;
           fsm <= S_HDR_WAIT;
         end
 
-        // continue to next buffer...
+        else begin
+          // cycle to the next channel
+          chan_index <= (chan_index + 1) % N_CHANNELS;
+          fsm <= S_IDLE;
+        end
       end
 
       S_HDR_WAIT: begin
@@ -159,7 +209,8 @@ always @(posedge clk) begin
           end
 
           else begin
-            // continue to next buffer ...
+            // cycle to the next channel
+            chan_index <= (chan_index + 1) % N_CHANNELS;
             fsm <= S_IDLE;
           end
         end

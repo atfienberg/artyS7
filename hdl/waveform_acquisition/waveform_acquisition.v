@@ -45,6 +45,10 @@ module waveform_acquisition #(parameter[11:0] P_ADC_RAMP_START = 0,
   // output[P_RATE_SCALER_STS_BUNDLE_WIDTH-1:0] rate_scaler_sts_bundle,
 
   // XDOM interface
+  // temporary send "arm" and "run" 
+  // separately from the trigger bundle
+  input xdom_arm,
+  input xdom_trig_run,
   input[P_WVB_TRIG_BUNDLE_WIDTH-1:0] xdom_wvb_trig_bundle,
   input[P_WVB_CONFIG_BUNDLE_WIDTH-1:0] xdom_wvb_config_bundle,  
   output          xdom_wvb_armed, 
@@ -55,7 +59,12 @@ module waveform_acquisition #(parameter[11:0] P_ADC_RAMP_START = 0,
 wire wvb_trig_et;
 wire wvb_trig_gt;    
 wire wvb_trig_lt;   
-wire wvb_trig_run;
+
+// temporarily unused
+wire wvb_bundle_trig_run;
+// used xdom trig_run instead
+wire wvb_trig_run = xdom_trig_run;
+
 wire wvb_trig_discr_trig_pol;
 wire [11:0] wvb_trig_thr;   
 wire wvb_trig_discr_trig_en;
@@ -67,7 +76,7 @@ mDOM_trig_bundle_fan_out TRIG_FAN_OUT
    .trig_et(wvb_trig_et),
    .trig_gt(wvb_trig_gt),
    .trig_lt(wvb_trig_lt),
-   .trig_run(wvb_trig_run),
+   .trig_run(wvb_bundle_trig_run),
    .discr_trig_pol(wvb_trig_discr_trig_pol),
    .trig_thresh(wvb_trig_thr),
    .disc_trig_en(wvb_trig_discr_trig_en),
@@ -80,7 +89,12 @@ wire[11:0] wvb_cnst_config;
 wire[7:0] wvb_post_config;
 wire[4:0] wvb_pre_config;
 wire[11:0] wvb_test_config;
-wire wvb_arm;
+
+// temporarily unused
+wire wvb_bundle_arm;
+// used "xdom_arm" input instead
+wire wvb_arm = xdom_arm;
+
 wire wvb_trig_mode;
 wire wvb_cnst_run;
 mDOM_wvb_conf_bundle_fan_out CONF_FAN_OUT
@@ -90,7 +104,7 @@ mDOM_wvb_conf_bundle_fan_out CONF_FAN_OUT
    .test_conf(wvb_test_config),
    .post_conf(wvb_post_config),
    .pre_conf(wvb_pre_config),
-   .arm(wvb_arm),
+   .arm(wvb_bundle_arm),
    .trig_mode(wvb_trig_mode),
    .cnst_run(wvb_cnst_run)
   );
