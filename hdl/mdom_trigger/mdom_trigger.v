@@ -40,11 +40,17 @@ module mdom_trigger
 );
 `include "trigger_src_inc.v"
 
+// register synchronous reset
+(* DONT_TOUCH = "true" *) reg i_rst = 0;
+always @(posedge clk) begin
+  i_rst <= rst;
+end
+
 // posedge detector on ext_run and run
 wire ext_run_p;
-posedge_detector PEDGE_EXTRUN(.clk(clk), .rst_n(!rst), .a(ext_run), .y(ext_run_p));
+posedge_detector PEDGE_EXTRUN(.clk(clk), .rst_n(!i_rst), .a(ext_run), .y(ext_run_p));
 wire run_p;
-posedge_detector PEDGE_RUN(.clk(clk), .rst_n(!rst), .a(run), .y(run_p));
+posedge_detector PEDGE_RUN(.clk(clk), .rst_n(!i_rst), .a(run), .y(run_p));
 
 // comparator for threshold triggering
 wire i_thresh_tot;
@@ -55,7 +61,7 @@ wire i_discr_tot = (discr_trig_pol == 0 && (&discr_stream_in == 1'b0)) ||
                    (discr_trig_pol == 1 && (|discr_stream_in == 1'b1));
 
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     adc_stream_out <= 0;
     discr_stream_out <= 0;
 

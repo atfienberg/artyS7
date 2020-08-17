@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
@@ -75,6 +76,7 @@ read_verilog -library xil_defaultlib {
   C:/Users/atfie/IceCube/artyS7/hdl/mdom_trigger/mdom_trigger.v
   C:/Users/atfie/IceCube/artyS7/hdl/cmp/cmp.v
   C:/Users/atfie/IceCube/artyS7/hdl/wvb_wr_ctrl/wvb_wr_ctrl.v
+  C:/Users/atfie/IceCube/artyS7/hdl/n_channel_mux/n_channel_mux.v
 }
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_ooc.xdc]

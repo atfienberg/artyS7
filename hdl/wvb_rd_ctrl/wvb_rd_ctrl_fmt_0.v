@@ -102,7 +102,8 @@ localparam L_FMT = 8'h80;
 localparam L_DPRAM_A_LAST_DATA=10'd1021;
 localparam L_DPRAM_A_LAST_DATA_CONTINUE=10'd1022;
 localparam L_DPRAM_A_LAST = 10'd1023;
-localparam L_DPRAM_A_STOP_STREAM = 10'd1019;
+localparam L_DPRAM_A_STOP_STREAM = 10'd1017;
+localparam L_RD_WAIT_CNT_MAX = 4;
 
 // FSM logic
 localparam 
@@ -114,7 +115,8 @@ localparam
   S_FTR = 5,
   S_ACK = 6,
   S_REQ_WAIT = 7,
-  S_RD_WAIT = 8;
+  S_RD_WAIT = 8,
+  S_START_STREAM = 9;
 
 reg[3:0] fsm = S_IDLE;
 reg loop_s_ftr = 0;
@@ -156,16 +158,23 @@ always @(posedge clk) begin
         wait_cnt <= 0;
         evt_len_reg <= 0;
 
-        if (req) begin
-          fsm <= S_CHAN_LEN;
+        if (req) begin          
+          // begin streaming the sample data
+          wvb_rdreq <= 1;     
           evt_len_reg <= evt_len;
+          
+          fsm <= S_START_STREAM;
         end
+      end
+
+      S_START_STREAM: begin
+        wvb_rdreq <= 1;
+        fsm <= S_CHAN_LEN;
       end
 
       S_CHAN_LEN: begin
         dpram_data <= {evt_len_reg, L_FMT, idx};
-        
-        // begin streaming the sample data
+                
         wvb_rdreq <= 1;        
         dpram_wren <= 1;        
         fsm <= S_HDR_0_LTC_2;
@@ -287,7 +296,7 @@ always @(posedge clk) begin
         wait_cnt <= wait_cnt + 1;
         wvb_rdreq <= 1;
         
-        if (wait_cnt == 2) begin
+        if (wait_cnt == L_RD_WAIT_CNT_MAX) begin
           fsm <= S_SAMPLE_WORD;  
         end
       end

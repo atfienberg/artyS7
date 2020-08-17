@@ -52,6 +52,12 @@ module waveform_buffer
   input trig_mode
 );
 
+// register synchronous reset
+(* DONT_TOUCH = "true"*) reg i_rst = 0;
+always @(posedge clk) begin
+  i_rst <= rst;
+end
+
 // pretrigger buffer
 wire [P_DATA_WIDTH-1:0] ptb_out;
 wire ptb_rdy;
@@ -60,7 +66,7 @@ pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH),
  PTB
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
    .adc_in(adc_in),
    .discr_in(discr_in),
    .tot_in(tot),
@@ -86,7 +92,7 @@ waveform_buffer_storage
  WBS
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
 
    // Outputs
    .wvb_data_out(wvb_data_out),
@@ -122,7 +128,7 @@ wvb_wr_ctrl
  WR_CTRL
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
 
    // Outputs
    .overflow_out(wvb_overflow),
@@ -156,7 +162,7 @@ wvb_rd_addr_ctrl
  RD_ADDR
   (
    .clk          (clk),
-   .rst          (rst),
+   .rst          (i_rst),
 
    .hdr_data     (hdr_data_out),
    .hdr_rdreq    (hdr_rdreq),
@@ -174,7 +180,7 @@ wvb_overflow_ctrl
  OVERFLOW_CTRL
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
 
    // Outputs
    .overflow(overflow_in),

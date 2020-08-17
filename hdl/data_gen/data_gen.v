@@ -19,8 +19,14 @@ module data_gen #(parameter[11:0] P_ADC_RAMP_START = 0,
   output reg[7:0] discr_stream = P_DISCR_RAMP_START
 );
 
+// register synchronous reset
+(* DONT_TOUCH = "true" *) reg i_rst = 0;
 always @(posedge clk) begin
-  if (rst) begin
+  i_rst <= rst;
+end
+
+always @(posedge clk) begin
+  if (i_rst) begin
     adc_stream <= P_ADC_RAMP_START;
     discr_stream <= P_DISCR_RAMP_START;
   end

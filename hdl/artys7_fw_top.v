@@ -14,10 +14,10 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'h5;
+localparam[15:0] FW_VNUM = 16'h7;
 
 // number of fake ADC channels
-localparam N_CHANNELS = 8;
+localparam N_CHANNELS = 14;
 
 //
 // 125 MHz logic clock generation
@@ -189,6 +189,14 @@ wire[N_CHANNELS-1:0] wvb_rddone;
 wire[N_CHANNELS*22-1:0] wvb_data_out;
 wire[N_CHANNELS*80-1:0] wvb_hdr_data;
 
+// register the xdom trigger/wvb configuration
+(* max_fanout = 20 *) reg[L_WIDTH_MDOM_TRIG_BUNDLE-1:0] xdom_trig_bundle_reg;
+(* max_fanout = 20 *) reg[L_WIDTH_MDOM_WVB_CONF_BUNDLE-1:0] xdom_wvb_conf_bundle_reg;
+always @(posedge lclk) begin
+  xdom_trig_bundle_reg <= xdom_trig_bundle;
+  xdom_wvb_conf_bundle_reg <= xdom_wvb_conf_bundle;
+end
+
 generate
   genvar i;
 
@@ -221,8 +229,8 @@ generate
       // XDOM interface
       .xdom_arm(xdom_arm[i]),
       .xdom_trig_run(xdom_trig_run[i]),
-      .xdom_wvb_trig_bundle(xdom_trig_bundle),
-      .xdom_wvb_config_bundle(xdom_wvb_conf_bundle),  
+      .xdom_wvb_trig_bundle(xdom_trig_bundle_reg),
+      .xdom_wvb_config_bundle(xdom_wvb_conf_bundle_reg),  
       .xdom_wvb_armed(wvb_armed[i]), 
       .xdom_wvb_overflow(wvb_overflow[i])
     );

@@ -40,6 +40,12 @@ module wvb_wr_ctrl #(parameter P_DATA_WIDTH = 22,
 );
 `include "trigger_src_inc.v"
 
+// register synchronous rst
+(* DONT_TOUCH = "true" *) reg i_rst = 0;
+always @(posedge clk) begin
+  i_rst <= rst;
+end
+
 // Internals
 reg[P_ADR_WIDTH-1:0] i_evt_len = 0;
 reg[P_LTC_WIDTH-1:0] i_evt_ltc = 0;
@@ -75,7 +81,7 @@ localparam PRE_CONF_MIN = 3,
            CONST_CONF_MIN = 3;
 // update interal length conf values
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     i_pre_conf <= 0;
     i_post_conf <= 0;
     i_test_conf <= 0;
@@ -102,7 +108,7 @@ end
 
 // latch header values when fsm is in the idle state
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     i_evt_ltc <= 0;
     i_start_addr <= 0;
     i_trig_src <= 0;
@@ -123,7 +129,7 @@ always @(*) i_stop_addr = wvb_wr_addr;
 // an overflow will stop all writes
 // until the write controller is reset
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     overflow_out <= 0;
   end
 
@@ -135,7 +141,7 @@ end
 // count the number of writes
 reg[P_ADR_WIDTH-1:0] n_writes = 0;
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     n_writes <= 0;
   end
   
@@ -152,7 +158,7 @@ always @(*) i_evt_len = n_writes + 2;
 
 // handle trigger arm logic
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     armed <= 0;
   end
 
@@ -174,7 +180,7 @@ reg final_cnt_check = 0;
 // quick test; register cnt comparisons to help
 // with timing of header_wren
 always @(posedge clk) begin
-  if (rst) begin
+  if (i_rst) begin
     final_cnt_check <= 0;
   end
 
@@ -233,7 +239,7 @@ mDOM_wvb_hdr_bundle_0_fan_in HDR_FAN_IN
 reg[P_ADR_WIDTH-1:0] sot_cnt = 0;
 
 always @(posedge clk) begin
-  if (rst || overflow_out) begin
+  if (i_rst || overflow_out) begin
     cnt <= 0;
     fsm <= S_IDLE;
     wvb_wr_addr <= 0;

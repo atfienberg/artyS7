@@ -196,6 +196,7 @@ mDOM_wvb_conf_bundle_fan_in WVB_CONF_FAN_IN
 reg[4:0] buf_status_sel;
 // buffer status mux
 wire[15:0] wds_used_mux_out;
+reg[15:0] wds_used_mux_out_reg = 0;
 n_channel_mux #(.N_INPUTS(N_CHANNELS), 
                 .INPUT_WIDTH(16)) BUF_WDS_USED_MUX
   (
@@ -205,6 +206,7 @@ n_channel_mux #(.N_INPUTS(N_CHANNELS),
   );
 
 wire[15:0] buf_n_wfms_mux_out;
+reg[15:0] buf_n_wfms_mux_out_reg = 0;
 n_channel_mux #(.N_INPUTS(N_CHANNELS), 
                 .INPUT_WIDTH(16)) BUF_N_WFMS_MUX
   (
@@ -212,6 +214,11 @@ n_channel_mux #(.N_INPUTS(N_CHANNELS),
    .sel(buf_status_sel),
    .out(buf_n_wfms_mux_out)  
   );
+// register mux outputs 
+always @(posedge clk) begin
+  wds_used_mux_out_reg <= wds_used_mux_out;
+  buf_n_wfms_mux_out_reg <= buf_n_wfms_mux_out;
+end 
 
 //////////////////////////////////////////////////////////////////////////////
 // Read registers
@@ -252,8 +259,8 @@ always @(*)
       12'heff: begin y_rd_data =       dpram_len;                                              end
       12'hefe: begin y_rd_data =       {15'b0, dpram_done};                                    end
       12'hefd: begin y_rd_data =       {15'b0, dpram_sel};                                     end
-      12'hefc: begin y_rd_data =       buf_n_wfms_mux_out;                                     end
-      12'hefb: begin y_rd_data =       wds_used_mux_out;                                       end
+      12'hefc: begin y_rd_data =       buf_n_wfms_mux_out_reg;                                 end
+      12'hefb: begin y_rd_data =       wds_used_mux_out_reg;                                   end
       12'hefa: begin y_rd_data =       {15'b0, wvb_overflow};                                  end
       12'hef9: begin y_rd_data =       wvb_rst;                                                end
       12'hef8: begin y_rd_data =       {15'b0, wvb_reader_enable};                             end

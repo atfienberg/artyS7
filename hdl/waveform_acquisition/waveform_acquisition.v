@@ -55,6 +55,16 @@ module waveform_acquisition #(parameter[11:0] P_ADC_RAMP_START = 0,
   output          xdom_wvb_overflow
 );
 
+// register synchronous reset & xdom bundles
+(* max_fanout = 20 *) reg i_rst = 0;
+(* DONT_TOUCH = "true" *) reg[P_WVB_TRIG_BUNDLE_WIDTH-1:0] i_xdom_wvb_trig_bundle = 0;
+(* DONT_TOUCH = "true" *) reg[P_WVB_CONFIG_BUNDLE_WIDTH-1:0] i_xdom_wvb_config_bundle= 0;
+always @(posedge clk) begin
+  i_rst <= rst;
+  i_xdom_wvb_trig_bundle <= xdom_wvb_trig_bundle;
+  i_xdom_wvb_config_bundle <= xdom_wvb_config_bundle;
+end
+
 // trig fan out
 wire wvb_trig_et;
 wire wvb_trig_gt;    
@@ -72,7 +82,7 @@ wire wvb_trig_thresh_trig_en;
 wire wvb_trig_ext_trig_en; 
 mDOM_trig_bundle_fan_out TRIG_FAN_OUT
   (
-   .bundle(xdom_wvb_trig_bundle),
+   .bundle(i_xdom_wvb_trig_bundle),
    .trig_et(wvb_trig_et),
    .trig_gt(wvb_trig_gt),
    .trig_lt(wvb_trig_lt),
@@ -99,7 +109,7 @@ wire wvb_trig_mode;
 wire wvb_cnst_run;
 mDOM_wvb_conf_bundle_fan_out CONF_FAN_OUT
   (
-   .bundle(xdom_wvb_config_bundle),
+   .bundle(i_xdom_wvb_config_bundle),
    .cnst_conf(wvb_cnst_config),
    .test_conf(wvb_test_config),
    .post_conf(wvb_post_config),
@@ -118,7 +128,7 @@ data_gen #(.P_ADC_RAMP_START(P_ADC_RAMP_START),
            .P_DISCR_RAMP_START(P_DISCR_RAMP_START)) DATA_GEN_0
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
    .adc_stream(adc_data_stream_0),
    .discr_stream(discr_data_stream_0)
   );
@@ -132,7 +142,7 @@ wire discr_tot;
 mdom_trigger MDOM_TRIG
   (
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
 
    // data stream in and out
    .adc_stream_in(adc_data_stream_0),
@@ -187,7 +197,7 @@ waveform_buffer
 
    // Inputs
    .clk(clk),
-   .rst(rst),
+   .rst(i_rst),
    .ltc_in(ltc_in),
    .adc_in(adc_data_stream_1),
    .discr_in(discr_data_stream_1),

@@ -48,27 +48,57 @@ module wvb_reader #(parameter P_DATA_WIDTH = 22,
 );
 
 // handle multiplexing/demultiplexing
-reg[4:0] chan_index = 0; 
-
+(* max_fanout = 20 *) reg[4:0] chan_index = 0; 
 wire[P_DATA_WIDTH-1:0] wvb_data_mux_out;
+wire[P_HDR_WIDTH-1-1:0] hdr_data_mux_out;
+wire hdr_empty_mux_out;
+
+// register signals going into muxes 
+// Note: currently not registering hdr_empty to simplify
+// state machine logic
+reg[N_CHANNELS*P_DATA_WIDTH-1:0] wvb_data_reg = 0;
+reg[N_CHANNELS*P_HDR_WIDTH-1:0] hdr_data_reg = 0;
+// reg[N_CHANNELS-1:0] hdr_empty_reg = 0;
+// also register data coming out of the mux
+reg[P_DATA_WIDTH-1:0] wvb_data_mux_out_reg = 0;
+reg[P_HDR_WIDTH-1:0] hdr_data_mux_out_reg = 0;
+// reg hdr_empty_mux_out_reg = 0;
+always @(posedge clk) begin
+  if (rst) begin
+    wvb_data_reg <= 0;
+    hdr_data_reg <= 0;
+    // hdr_empty_reg <= 0;
+    wvb_data_mux_out_reg <= 0;
+    hdr_data_mux_out_reg <= 0;
+    // hdr_empty_mux_out_reg <= 0;
+  end
+
+  else begin
+    wvb_data_reg <= wvb_data;
+    hdr_data_reg <= hdr_data;
+    // hdr_empty_reg <= hdr_empty;
+    wvb_data_mux_out_reg <= wvb_data_mux_out;
+    hdr_data_mux_out_reg <= hdr_data_mux_out;
+    // hdr_empty_mux_out_reg <= hdr_empty_mux_out;
+  end
+end
+
 n_channel_mux #(.N_INPUTS(N_CHANNELS), 
                 .INPUT_WIDTH(P_DATA_WIDTH)) WVB_DATA_MUX
   (
-   .in(wvb_data),
+   .in(wvb_data_reg),
    .sel(chan_index),
    .out(wvb_data_mux_out)  
   );
 
-wire[P_HDR_WIDTH-1-1:0] hdr_data_mux_out;
 n_channel_mux #(.N_INPUTS(N_CHANNELS), 
                 .INPUT_WIDTH(P_HDR_WIDTH)) HDR_DATA_MUX
   (
-   .in(hdr_data),
+   .in(hdr_data_reg),
    .sel(chan_index),
    .out(hdr_data_mux_out)  
   );
 
-wire hdr_empty_mux_out;
 n_channel_mux #(.N_INPUTS(N_CHANNELS), 
                 .INPUT_WIDTH(1)) HDR_EMPTY_MUX
   (
@@ -108,8 +138,8 @@ wvb_rd_ctrl_fmt_0 RD_CTRL
    .dpram_mode(dpram_mode),
    .ack(rd_ctrl_ack),
    .rd_ctrl_more(rd_ctrl_more),
-   .wvb_data(wvb_data_mux_out),
-   .hdr_data(hdr_data_mux_out),
+   .wvb_data(wvb_data_mux_out_reg),
+   .hdr_data(hdr_data_mux_out_reg),
    .wvb_rdreq(i_wvb_rdreq),
    .wvb_rddone(i_wvb_rddone),
    .dpram_a(dpram_addr),
@@ -130,7 +160,7 @@ localparam
 
 
 reg[31:0] cnt = 0;
-localparam HDR_WT_CNT = 1;
+localparam HDR_WT_CNT = 3;
 
 always @(posedge clk) begin
   if (rst || !en) begin

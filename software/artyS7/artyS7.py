@@ -42,6 +42,7 @@ class artyS7:
         "buf_reader_enable": 0xEF8,
         "buf_reader_dpram_mode": 0xEF7,
         "wvb_header_full": 0xEF6,
+        "buf_stat_chan_sel": 0xeF5,
         "led_toggle": 0x8FF,
         "rgb_red": 0x8FE,
         "rgb_green": 0x8FD,
