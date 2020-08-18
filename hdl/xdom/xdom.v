@@ -10,7 +10,7 @@
 //    1.) Debug UART
 //    2.) Command, response, status
 /////////////////////////////////////////////////////////////////////////////////
-module xdom #(parameter N_CHANNELS = 2)
+module xdom #(parameter N_CHANNELS = 24)
 (
  input             clk,
  input             rst,
@@ -29,15 +29,15 @@ module xdom #(parameter N_CHANNELS = 2)
  // trigger/wvb conf
  output[19:0] xdom_trig_bundle,
  output[39:0] xdom_wvb_conf_bundle,
- output reg[15:0] xdom_wvb_arm = 0,
- output reg[15:0] xdom_trig_run = 0,
- output reg[15:0] wvb_rst = 0,
+ output reg[N_CHANNELS-1:0] xdom_wvb_arm = 0,
+ output reg[N_CHANNELS-1:0] xdom_trig_run = 0,
+ output reg[N_CHANNELS-1:0] wvb_rst = 0,
 
 
  // waveform buffer status
- input[15:0] wvb_armed,
- input[15:0] wvb_overflow,
- input[15:0] wvb_hdr_full,
+ input[N_CHANNELS-1:0] wvb_armed,
+ input[N_CHANNELS-1:0] wvb_overflow,
+ input[N_CHANNELS-1:0] wvb_hdr_full,
  input[N_CHANNELS*16 - 1:0] wfms_in_buf,
  input[N_CHANNELS*16 - 1:0] buf_wds_used,
 
@@ -247,10 +247,10 @@ always @(*)
                                         wvb_trig_gt,
                                         wvb_trig_et};                                          end
       12'hffd: begin y_rd_data =       {4'b0, wvb_trig_thr};                                   end
-      12'hffc: begin y_rd_data =       xdom_trig_run;                                          end
+      12'hffc: begin y_rd_data =       xdom_trig_run[15:0];                                    end
       12'hffb: begin y_rd_data =       {15'b0, wvb_trig_mode};                                 end
-      12'hffa: begin y_rd_data =       xdom_wvb_arm;                                           end
-      12'hff9: begin y_rd_data =       wvb_armed;                                              end
+      12'hffa: begin y_rd_data =       xdom_wvb_arm[15:0];                                     end
+      12'hff9: begin y_rd_data =       wvb_armed[15:0];                                        end
       12'hff8: begin y_rd_data =       {15'b0, wvb_cnst_run};                                  end
       12'hff7: begin y_rd_data =       {4'b0, wvb_cnst_config};                                end
       12'hff6: begin y_rd_data =       {4'b0, wvb_test_config};                                end
@@ -261,12 +261,18 @@ always @(*)
       12'hefd: begin y_rd_data =       {15'b0, dpram_sel};                                     end
       12'hefc: begin y_rd_data =       buf_n_wfms_mux_out_reg;                                 end
       12'hefb: begin y_rd_data =       wds_used_mux_out_reg;                                   end
-      12'hefa: begin y_rd_data =       {15'b0, wvb_overflow};                                  end
-      12'hef9: begin y_rd_data =       wvb_rst;                                                end
+      12'hefa: begin y_rd_data =       wvb_overflow[15:0];                                     end
+      12'hef9: begin y_rd_data =       wvb_rst[15:0];                                          end
       12'hef8: begin y_rd_data =       {15'b0, wvb_reader_enable};                             end
       12'hef7: begin y_rd_data =       {15'b0, wvb_reader_dpram_mode};                         end
-      12'hef6: begin y_rd_data =       wvb_hdr_full;                                           end
+      12'hef6: begin y_rd_data =       wvb_hdr_full[15:0];                                     end
       12'hef5: begin y_rd_data =       {11'b0, buf_status_sel};                                end
+      12'hef4: begin y_rd_data =       {8'b0, xdom_trig_run[N_CHANNELS-1:16]};                 end
+      12'hef3: begin y_rd_data =       {8'b0, xdom_wvb_arm[N_CHANNELS-1:16]};                  end
+      12'hef2: begin y_rd_data =       {8'b0, wvb_armed[N_CHANNELS-1:16]};                     end
+      12'hef1: begin y_rd_data =       {8'b0, wvb_overflow[N_CHANNELS-1:16]};                  end
+      12'hef0: begin y_rd_data =       {8'b0, wvb_rst[N_CHANNELS-1:16]};                       end
+      12'heef: begin y_rd_data =       {8'b0, wvb_hdr_full[N_CHANNELS-1:16]};                  end
       12'h8ff: begin y_rd_data =       {13'h0, led_toggle};                                    end
       12'h8fe: begin y_rd_data =       {1'h0, red_led_lvl};                                    end
       12'h8fd: begin y_rd_data =       {1'h0, green_led_lvl};                                  end
@@ -302,9 +308,9 @@ always @(posedge clk)
            wvb_trig_ext_trig_en <= y_wr_data[6];
         end
         12'hffd: begin wvb_trig_thr <= y_wr_data[11:0];                                        end
-        12'hffc: begin xdom_trig_run <= y_wr_data;                                             end
+        12'hffc: begin xdom_trig_run[15:0] <= y_wr_data;                                       end
         12'hffb: begin wvb_trig_mode <= y_wr_data[0];                                          end
-        12'hffa: begin xdom_wvb_arm  <= y_wr_data;                                             end
+        12'hffa: begin xdom_wvb_arm[15:0]  <= y_wr_data;                                       end
         12'hff8: begin wvb_cnst_run <= y_wr_data[0];                                           end
         12'hff7: begin wvb_cnst_config <= y_wr_data[11:0];                                     end
         12'hff6: begin wvb_test_config <= y_wr_data[11:0];                                     end
@@ -312,10 +318,13 @@ always @(posedge clk)
         12'hff4: begin wvb_pre_config <= y_wr_data[4:0];                                       end
         12'hefe: begin dpram_done <= y_wr_data[0];                                             end
         12'hefd: begin dpram_sel <= y_wr_data[0];                                              end
-        12'hef9: begin wvb_rst <= y_wr_data;                                                   end
+        12'hef9: begin wvb_rst[15:0] <= y_wr_data;                                             end
         12'hef8: begin wvb_reader_enable <= y_wr_data[0];                                      end
         12'hef7: begin wvb_reader_dpram_mode <= y_wr_data[0];                                  end            
-        12'hef5: begin buf_status_sel <= y_wr_data[4:0];                                       end            
+        12'hef5: begin buf_status_sel <= y_wr_data[4:0];                                       end
+        12'hef4: begin xdom_trig_run[N_CHANNELS-1:16] <= y_wr_data[7:0];                       end
+        12'hef3: begin xdom_wvb_arm[N_CHANNELS-1:16] <= y_wr_data[7:0];                        end
+        12'hef0: begin wvb_rst[N_CHANNELS-1:16] <= y_wr_data[7:0];                             end
         12'h8ff: begin led_toggle <= y_wr_data[2:0];                                           end
         12'h8fe: begin red_led_lvl <= y_wr_data[14:0];                                         end
         12'h8fd: begin green_led_lvl <= y_wr_data[14:0];                                       end

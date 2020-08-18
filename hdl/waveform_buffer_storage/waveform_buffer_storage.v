@@ -30,31 +30,98 @@ module waveform_buffer_storage #(parameter P_DATA_WIDTH = 22,
 
 wire[P_DATA_WIDTH-1:0] buff_din = {wvb_data_in[P_DATA_WIDTH-1:1], eoe_in};
 
-BUFFER_4096_22 WAVEFORM_DISCR_BUFF 
-  ( 
-   .clka(clk),
-   .wea(wvb_wrreq),
-   .addra(wvb_wr_addr),
-   .dina(buff_din),
-   .clkb(clk),
-   .addrb(wvb_rd_addr),
-   .doutb(wvb_data_out)
-  );
-
 wire[7:0] hdr_data_cnt;
-FIFO_256_80 HDR_FIFO_FMT_0 
-  (
-   .clk(clk),
-   .srst(rst),
-   .din(hdr_data_in),
-   .wr_en(hdr_wrreq),
-   .rd_en(hdr_rdreq),
-   .dout(hdr_data_out),
-   .full(hdr_full),
-   .empty(hdr_empty),
-   .data_count(hdr_data_cnt)
-  );
+generate
 
-assign n_wvf_in_buf = hdr_full ? 10'd256 : hdr_data_cnt;
+  // link header fifo size to P_ADR_WIDTH for now
+  if (P_ADR_WIDTH == 12) begin
+    BUFFER_4096_22 WAVEFORM_DISCR_BUFF 
+      ( 
+       .clka(clk),
+       .wea(wvb_wrreq),
+       .addra(wvb_wr_addr),
+       .dina(buff_din),
+       .clkb(clk),
+       .addrb(wvb_rd_addr),
+       .doutb(wvb_data_out)
+      );
+    
+    FIFO_256_80 HDR_FIFO_FMT_0 
+    (
+     .clk(clk),
+     .srst(rst),
+     .din(hdr_data_in),
+     .wr_en(hdr_wrreq),
+     .rd_en(hdr_rdreq),
+     .dout(hdr_data_out),
+     .full(hdr_full),
+     .empty(hdr_empty),
+     .data_count(hdr_data_cnt)
+    );
+  
+  end
+
+  else if (P_ADR_WIDTH == 11) begin
+    BUFFER_2048_22 WAVEFORM_DISCR_BUFF 
+      ( 
+       .clka(clk),
+       .wea(wvb_wrreq),
+       .addra(wvb_wr_addr),
+       .dina(buff_din),
+       .clkb(clk),
+       .addrb(wvb_rd_addr),
+       .doutb(wvb_data_out)
+      );
+
+    FIFO_256_80 HDR_FIFO_FMT_0 
+    (
+     .clk(clk),
+     .srst(rst),
+     .din(hdr_data_in),
+     .wr_en(hdr_wrreq),
+     .rd_en(hdr_rdreq),
+     .dout(hdr_data_out),
+     .full(hdr_full),
+     .empty(hdr_empty),
+     .data_count(hdr_data_cnt)
+    );
+  
+  end
+
+  else if (P_ADR_WIDTH == 10) begin
+    BUFFER_1024_22 WAVEFORM_DISCR_BUFF 
+      ( 
+       .clka(clk),
+       .wea(wvb_wrreq),
+       .addra(wvb_wr_addr),
+       .dina(buff_din),
+       .clkb(clk),
+       .addrb(wvb_rd_addr),
+       .doutb(wvb_data_out)
+      );
+
+    wire[71:0] fifo_out;
+    FIFO_256_72 HDR_FIFO_FMT_0 
+      (
+       .clk(clk),
+       .srst(rst),
+       .din({1'b0, hdr_data_in}),
+       .wr_en(hdr_wrreq),
+       .rd_en(hdr_rdreq),
+       .dout(fifo_out),
+       .full(hdr_full),
+       .empty(hdr_empty),
+       .data_count(hdr_data_cnt)
+      );
+    assign hdr_data_out = fifo_out[70:0];
+  end
+
+  else begin
+    invalid_p_adr_width invalid_module_conf();
+  end
+
+  assign n_wvf_in_buf = hdr_full ? 10'd256 : hdr_data_cnt;
+
+endgenerate
 
 endmodule	                               

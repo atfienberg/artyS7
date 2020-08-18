@@ -18,9 +18,12 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 2
+set_param synth.incrementalSynthesisCache C:/Users/atfie/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-9176-LAPTOP-GBOUD091/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7s50csga324-2
 
 set_param project.singleFileAddWarning.threshold 0
@@ -39,6 +42,7 @@ set_property include_dirs {
   C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_hdr_bundle_0
   C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_trig_bundle
   C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_conf_bundle
+  C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_hdr_bundle_1
 } [current_fileset]
 read_verilog -library xil_defaultlib {
   C:/Users/atfie/IceCube/artyS7/hdl/crc16_8b_parallel/crc16_8b_parallel.v
@@ -77,6 +81,8 @@ read_verilog -library xil_defaultlib {
   C:/Users/atfie/IceCube/artyS7/hdl/cmp/cmp.v
   C:/Users/atfie/IceCube/artyS7/hdl/wvb_wr_ctrl/wvb_wr_ctrl.v
   C:/Users/atfie/IceCube/artyS7/hdl/n_channel_mux/n_channel_mux.v
+  C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_hdr_bundle_1/mDOM_wvb_hdr_bundle_1_fan_out.v
+  C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_hdr_bundle_1/mDOM_wvb_hdr_bundle_1_fan_in.v
 }
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16_ooc.xdc]
@@ -102,6 +108,16 @@ set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube
 
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM_ooc.xdc]
+
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_2048_22/BUFFER_2048_22.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_2048_22/BUFFER_2048_22_ooc.xdc]
+
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_1024_22/BUFFER_1024_22.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_1024_22/BUFFER_1024_22_ooc.xdc]
+
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/FIFO_256_72/FIFO_256_72.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/FIFO_256_72/FIFO_256_72.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/FIFO_256_72/FIFO_256_72_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

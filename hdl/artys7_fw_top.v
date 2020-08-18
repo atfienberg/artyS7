@@ -14,10 +14,19 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'h7;
+localparam[15:0] FW_VNUM = 16'h9;
 
 // number of fake ADC channels
-localparam N_CHANNELS = 14;
+localparam N_CHANNELS = 24;
+
+// determines waveform buffer depths
+// can get to 16 channels with adr widths of 11 or 12, 
+// but need to decrease width to 10 to reach 24 channels
+// on the xc7s50 
+// deeper buffers will be possible on the xc7s100
+localparam P_WVB_ADR_WIDTH = 10;
+
+localparam P_HDR_WIDTH = P_WVB_ADR_WIDTH == 10 ? 71 : 80;
 
 //
 // 125 MHz logic clock generation
@@ -48,7 +57,7 @@ wire lclk_rst = !lclk_mmcm_locked;
 //             [6] ext_trig_en
 //     12'hffd: trig threshold [11:0]
 //     12'hffc: 
-//             [i] sw_trig (channel i)
+//             [i] sw_trig (channel i, up to 15)
 //     12'hffb: 
 //             [0] trig_mode
 //     12'hffa: 
@@ -68,13 +77,19 @@ wire lclk_rst = !lclk_mmcm_locked;
 //             [0] dpram_sel (0: scratch dpram, 1: direct rdout (rd only))       
 //     12'hefc: n_waveforms in waveform buffer
 //     12'hefb: words used in waveform buffer
-//     12'hefa: waveform buffer overflow
-//     12'hef9: waveform buffer reset 
+//     12'hefa: waveform buffer overflow [15:0]
+//     12'hef9: waveform buffer reset [15:0]
 //     12'hef8: wvb_reader enable 
 //     12'hef7: wvb_reader dpram mode 
-//     12'hef6: wvb header full ([i] for channel i)
+//     12'hef6: wvb header full ([i] for channel i, up to 15)
 //     12'hef5: chan select for waveform buffer n_words/n_wfms
 //              (efa and ef9)
+//     12'hef4: sw_trig[23:16]
+//     12'hef3: trig_arm[23:16]
+//     12'hef2: trig_armed[23:16]
+//     12'hef1: waveform buffer overflow [23:16]
+//     12'hef0: waveform buffer reset [23:16]
+//     12'heef: wvb header full [23:16]
 //     12'8ff: LED toggle
 //             [0] configurable RGB LED toggle
 //             [1] color cycling RGB LED toggle
@@ -96,16 +111,16 @@ wire[1:0]  kr_speed_sel_xdom;
 // trigger/wvb conf
 wire[L_WIDTH_MDOM_TRIG_BUNDLE-1:0] xdom_trig_bundle;
 wire[L_WIDTH_MDOM_WVB_CONF_BUNDLE-1:0] xdom_wvb_conf_bundle;
-wire[15:0] xdom_wvb_rst;
-wire[15:0] xdom_arm;
-wire[15:0] xdom_trig_run;
+wire[N_CHANNELS-1:0] xdom_wvb_rst;
+wire[N_CHANNELS-1:0] xdom_arm;
+wire[N_CHANNELS-1:0] xdom_trig_run;
 
 // waveform buffer status
-wire[15:0] wvb_armed;
-wire[15:0] wvb_overflow;
+wire[N_CHANNELS-1:0] wvb_armed;
+wire[N_CHANNELS-1:0] wvb_overflow;
 wire[N_CHANNELS*16-1:0] wfms_in_buf;
 wire[N_CHANNELS*16-1:0] buf_wds_used;
-wire[15:0] wvb_hdr_full;
+wire[N_CHANNELS-1:0] wvb_hdr_full;
 
 // wvb reader
 wire[15:0] rdout_dpram_len;
@@ -187,11 +202,11 @@ wire[N_CHANNELS-1:0] wvb_hdr_rdreq;
 wire[N_CHANNELS-1:0] wvb_wvb_rdreq;
 wire[N_CHANNELS-1:0] wvb_rddone;
 wire[N_CHANNELS*22-1:0] wvb_data_out;
-wire[N_CHANNELS*80-1:0] wvb_hdr_data;
+wire[N_CHANNELS*P_HDR_WIDTH-1:0] wvb_hdr_data;
 
 // register the xdom trigger/wvb configuration
-(* max_fanout = 20 *) reg[L_WIDTH_MDOM_TRIG_BUNDLE-1:0] xdom_trig_bundle_reg;
-(* max_fanout = 20 *) reg[L_WIDTH_MDOM_WVB_CONF_BUNDLE-1:0] xdom_wvb_conf_bundle_reg;
+(* max_fanout = 5 *) reg[L_WIDTH_MDOM_TRIG_BUNDLE-1:0] xdom_trig_bundle_reg;
+(* max_fanout = 5 *) reg[L_WIDTH_MDOM_WVB_CONF_BUNDLE-1:0] xdom_wvb_conf_bundle_reg;
 always @(posedge lclk) begin
   xdom_trig_bundle_reg <= xdom_trig_bundle;
   xdom_wvb_conf_bundle_reg <= xdom_wvb_conf_bundle;
@@ -202,14 +217,17 @@ generate
 
   for (i = 0; i < N_CHANNELS; i = i + 1) begin : waveform_acq_gen
     // distinguish channels by discr-adc diff
-    waveform_acquisition #(.P_DISCR_RAMP_START(i)) WFM_ACQ
+    waveform_acquisition #(.P_DISCR_RAMP_START(i),
+                           .P_ADR_WIDTH(P_WVB_ADR_WIDTH),
+                           .P_HDR_WIDTH(P_HDR_WIDTH)) 
+    WFM_ACQ
     (
       .clk(lclk),
       .rst(lclk_rst || xdom_wvb_rst[i]),
       
       // WVB reader interface
       .wvb_data_out(wvb_data_out[22*(i+1)-1:22*i]),
-      .wvb_hdr_data_out(wvb_hdr_data[80*(i+1)-1:80*i]),  
+      .wvb_hdr_data_out(wvb_hdr_data[P_HDR_WIDTH*(i+1)-1:P_HDR_WIDTH*i]),  
       .wvb_hdr_full(wvb_hdr_full[i]),
       .wvb_hdr_empty(wvb_hdr_empty[i]),
       .wvb_n_wvf_in_buf(wfms_in_buf[16*(i+1)-1:16*i]),
@@ -242,7 +260,10 @@ endgenerate
 // Waveform buffer reader
 // 
 
-wvb_reader #(.N_CHANNELS(N_CHANNELS)) WVB_READER 
+wvb_reader #(.N_CHANNELS(N_CHANNELS),
+             .P_WVB_ADR_WIDTH(P_WVB_ADR_WIDTH),
+             .P_HDR_WIDTH(P_HDR_WIDTH))
+WVB_READER 
 (
   .clk(lclk),
   .rst(lclk_rst),

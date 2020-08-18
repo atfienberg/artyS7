@@ -20,7 +20,7 @@ module wvb_wr_ctrl #(parameter P_DATA_WIDTH = 22,
   output reg overflow_out = 0,
   output reg armed = 0,
   output reg eoe = 0,
-  output reg[P_ADR_WIDTH-1:0] wvb_wr_addr = 0,
+  (*max_fanout=5*) output reg[P_ADR_WIDTH-1:0] wvb_wr_addr = 0,
   output wvb_wren,
   output[P_HDR_WIDTH-1:0] hdr_data,
   output hdr_wren,
@@ -222,16 +222,29 @@ wire mode_1_condition = (trig_mode == 1) && armed;
 assign wvb_wren = !overflow_out && write_condition && (mode_0_condition || mode_1_condition);
 
 // header bundle fan_in
-mDOM_wvb_hdr_bundle_0_fan_in HDR_FAN_IN
-(
-  .bundle(hdr_data),
-  .evt_ltc(i_evt_ltc),
-  .start_addr(i_start_addr),
-  .stop_addr(i_stop_addr),
-  .trig_src(i_trig_src),
-  .cnst_run(i_cnst_run),
-  .pre_conf(i_pre_conf)
-);
+generate
+if (P_HDR_WIDTH == 80)
+  mDOM_wvb_hdr_bundle_0_fan_in HDR_FAN_IN
+  (
+    .bundle(hdr_data),
+    .evt_ltc(i_evt_ltc),
+    .start_addr(i_start_addr),
+    .stop_addr(i_stop_addr),
+    .trig_src(i_trig_src),
+    .cnst_run(i_cnst_run),
+    .pre_conf(i_pre_conf)
+  );
+else 
+  mDOM_wvb_hdr_bundle_1_fan_in HDR_FAN_IN
+  (
+    .bundle(hdr_data),
+    .evt_ltc(i_evt_ltc),
+    .start_addr(i_start_addr),
+    .stop_addr(i_stop_addr),
+    .trig_src(i_trig_src),
+    .cnst_run(i_cnst_run)   
+  );
+endgenerate
 
 // FSM logic
 

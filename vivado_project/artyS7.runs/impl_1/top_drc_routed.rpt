@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Aug 17 19:17:17 2020
+| Date         : Tue Aug 18 03:01:02 2020
 | Host         : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -49,7 +49,7 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-73 net(s) have no routable loads. The problem bus(es) and/or net(s) are waveform_acq_gen[10].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[9].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[0].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[1].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[2].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[5].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[11].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[12].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[8].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[13].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[6].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[3].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[7].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[4].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[12].WFM_ACQ/i_xdom_wvb_trig_bundle[3] (the first 15 of 73 listed).
+123 net(s) have no routable loads. The problem bus(es) and/or net(s) are waveform_acq_gen[1].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[16].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[21].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[6].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[0].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[3].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[2].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[22].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[4].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[18].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[12].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[19].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[11].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[5].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[23].WFM_ACQ/i_xdom_wvb_config_bundle[37] (the first 15 of 123 listed).
 Related violations: <none>
 
 

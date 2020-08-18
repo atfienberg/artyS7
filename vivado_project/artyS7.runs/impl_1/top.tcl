@@ -62,12 +62,15 @@ proc step_failed { step } {
 
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param synth.incrementalSynthesisCache C:/Users/atfie/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-9176-LAPTOP-GBOUD091/incrSyn
   set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7s50csga324-2
   set_property design_mode GateLvl [current_fileset]
@@ -85,6 +88,9 @@ set rc [catch {
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/FIFO_256_80/FIFO_256_80.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_4096_22/BUFFER_4096_22.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_2048_22/BUFFER_2048_22.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_1024_22/BUFFER_1024_22.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/FIFO_256_72/FIFO_256_72.xci
   read_xdc C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc
   link_design -top top -part xc7s50csga324-2
   close_msg_db -file init_design.pb
@@ -136,6 +142,23 @@ if {$rc} {
   unset ACTIVE_STEP 
 }
 
+start_step phys_opt_design
+set ACTIVE_STEP phys_opt_design
+set rc [catch {
+  create_msg_db phys_opt_design.pb
+  phys_opt_design 
+  write_checkpoint -force top_physopt.dcp
+  close_msg_db -file phys_opt_design.pb
+} RESULT]
+if {$rc} {
+  step_failed phys_opt_design
+  return -code error $RESULT
+} else {
+  end_step phys_opt_design
+  unset ACTIVE_STEP 
+}
+
+  set_msg_config -source 4 -id {Route 35-39} -severity "critical warning" -new_severity warning
 start_step route_design
 set ACTIVE_STEP route_design
 set rc [catch {
@@ -146,7 +169,7 @@ set rc [catch {
   create_report "impl_1_route_report_methodology_0" "report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx"
   create_report "impl_1_route_report_power_0" "report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx"
   create_report "impl_1_route_report_route_status_0" "report_route_status -file top_route_status.rpt -pb top_route_status.pb"
-  create_report "impl_1_route_report_timing_summary_0" "report_timing_summary -max_paths 10 -file top_timing_summary_routed.rpt -pb top_timing_summary_routed.pb -rpx top_timing_summary_routed.rpx -warn_on_violation "
+  create_report "impl_1_route_report_timing_summary_0" "report_timing_summary -max_paths 10 -file top_timing_summary_routed.rpt -pb top_timing_summary_routed.pb -rpx top_timing_summary_routed.rpx"
   create_report "impl_1_route_report_incremental_reuse_0" "report_incremental_reuse -file top_incremental_reuse_routed.rpt"
   create_report "impl_1_route_report_clock_utilization_0" "report_clock_utilization -file top_clock_utilization_routed.rpt"
   create_report "impl_1_route_report_bus_skew_0" "report_bus_skew -warn_on_violation -file top_bus_skew_routed.rpt -pb top_bus_skew_routed.pb -rpx top_bus_skew_routed.rpx"
@@ -158,6 +181,28 @@ if {$rc} {
   return -code error $RESULT
 } else {
   end_step route_design
+  unset ACTIVE_STEP 
+}
+
+start_step post_route_phys_opt_design
+set ACTIVE_STEP post_route_phys_opt_design
+set rc [catch {
+  set tool_flow [get_property -quiet TOOL_FLOW [current_project -quiet]]
+  if {$tool_flow eq {SDx}} {send_msg_id {101-1} {status} {Starting optional post-route physical design optimization.} }
+  create_msg_db post_route_phys_opt_design.pb
+  phys_opt_design 
+  write_checkpoint -force top_postroute_physopt.dcp
+  create_report "impl_1_post_route_phys_opt_report_timing_summary_0" "report_timing_summary -max_paths 10 -warn_on_violation -file top_timing_summary_postroute_physopted.rpt -pb top_timing_summary_postroute_physopted.pb -rpx top_timing_summary_postroute_physopted.rpx"
+  create_report "impl_1_post_route_phys_opt_report_bus_skew_0" "report_bus_skew -warn_on_violation -file top_bus_skew_postroute_physopted.rpt -pb top_bus_skew_postroute_physopted.pb -rpx top_bus_skew_postroute_physopted.rpx"
+  close_msg_db -file post_route_phys_opt_design.pb
+  set tool_flow [get_property TOOL_FLOW [current_project]]
+  if {$tool_flow eq {SDx}} {send_msg_id {101-1} {status} {Finished optional post-route physical design optimization.} }
+} RESULT]
+if {$rc} {
+  step_failed post_route_phys_opt_design
+  return -code error $RESULT
+} else {
+  end_step post_route_phys_opt_design
   unset ACTIVE_STEP 
 }
 

@@ -22,16 +22,31 @@ module wvb_overflow_ctrl #(parameter P_ADR_WIDTH = 12,
 
 // header fan out
 wire[P_ADR_WIDTH-1:0] stop_addr;
-mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT 
-(
-	.bundle(hdr_data),
-	.evt_ltc(),
-	.start_addr(),
-	.stop_addr(stop_addr),
-	.trig_src(),
-	.cnst_run(),
-	.pre_conf()
-);
+
+generate
+if (P_HDR_WIDTH == 80)	
+  mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT 
+   (
+  	.bundle(hdr_data),
+  	.evt_ltc(),
+  	.start_addr(),
+  	.stop_addr(stop_addr),
+  	.trig_src(),
+  	.cnst_run(),
+  	.pre_conf()
+  );
+
+else
+  mDOM_wvb_hdr_bundle_1_fan_out HDR_FAN_OUT 
+   (
+  	.bundle(hdr_data),
+  	.evt_ltc(),
+  	.start_addr(),
+  	.stop_addr(stop_addr),
+  	.trig_src(),
+  	.cnst_run()  	
+  );
+endgenerate
 
 reg[P_ADR_WIDTH-1:0] last_rd_addr = -1;
 always @(posedge clk) begin

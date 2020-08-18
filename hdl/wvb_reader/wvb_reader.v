@@ -50,7 +50,7 @@ module wvb_reader #(parameter P_DATA_WIDTH = 22,
 // handle multiplexing/demultiplexing
 (* max_fanout = 20 *) reg[4:0] chan_index = 0; 
 wire[P_DATA_WIDTH-1:0] wvb_data_mux_out;
-wire[P_HDR_WIDTH-1-1:0] hdr_data_mux_out;
+wire[P_HDR_WIDTH-1:0] hdr_data_mux_out;
 wire hdr_empty_mux_out;
 
 // register signals going into muxes 
@@ -129,7 +129,9 @@ wire rd_ctrl_more; // indicates that there is more data to write in the next DPR
 wire[15:0] rd_ctrl_dpram_len;
 
 // read controller
-wvb_rd_ctrl_fmt_0 RD_CTRL
+wvb_rd_ctrl_fmt_0 #(.P_WVB_ADR_WIDTH(P_WVB_ADR_WIDTH),
+                    .P_HDR_WIDTH(P_HDR_WIDTH)) 
+RD_CTRL
   (
    .clk(clk),
    .rst(rst),

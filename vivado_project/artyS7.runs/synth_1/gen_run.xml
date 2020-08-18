@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1597705935">
+<GenRun Id="synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1597733619">
   <File Type="PA-TCL" Name="top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_reports.tcl"/>
@@ -270,6 +270,20 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../hdl/bundles/mDOM_wvb_hdr_bundle_1/mDOM_wvb_hdr_bundle_1_fan_out.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../hdl/bundles/mDOM_wvb_hdr_bundle_1/mDOM_wvb_hdr_bundle_1_fan_in.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="top"/>
@@ -303,6 +317,9 @@
   <BlockFileSet Type="BlockSrcs" Name="DIRECT_RDOUT_DPRAM"/>
   <BlockFileSet Type="BlockSrcs" Name="BUFFER_32_22"/>
   <BlockFileSet Type="BlockSrcs" Name="FIFO_2048_32"/>
+  <BlockFileSet Type="BlockSrcs" Name="BUFFER_1024_22"/>
   <BlockFileSet Type="BlockSrcs" Name="BUFFER_4096_22"/>
   <BlockFileSet Type="BlockSrcs" Name="FIFO_256_80"/>
+  <BlockFileSet Type="BlockSrcs" Name="BUFFER_2048_22"/>
+  <BlockFileSet Type="BlockSrcs" Name="FIFO_256_72"/>
 </GenRun>

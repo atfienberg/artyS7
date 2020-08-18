@@ -19,7 +19,7 @@
 //                [14:8] Waveform Format
 //                [7:0]  Channel Number
 // EVT_LEN      - Number of samples in the waveform
-// HDR_0        - [15:11] - preconf
+// HDR_0        - [15:11] - preconf (will be 0 for hdr fmt 1)
 //                   [10] - cnst run mode
 //                  [9:2] - 0
 //                  [1:0] - trigger type (sw, thresh, disc, ext)
@@ -72,16 +72,33 @@ wire[47:0] evt_ltc;
 wire[1:0] trig_src;
 wire cnst_run;
 wire[4:0] pre_conf;
-mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT 
-(
-  .bundle(hdr_data),
-  .evt_ltc(evt_ltc),
-  .start_addr(start_addr),
-  .stop_addr(stop_addr),
-  .trig_src(trig_src),
-  .cnst_run(cnst_run),
-  .pre_conf(pre_conf)
-);
+
+generate
+if (P_HDR_WIDTH == 80)  
+  mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT 
+   (
+    .bundle(hdr_data),
+    .evt_ltc(evt_ltc),
+    .start_addr(start_addr),
+    .stop_addr(stop_addr),
+    .trig_src(trig_src),
+    .cnst_run(cnst_run),
+    .pre_conf(pre_conf)
+  );
+
+else
+  mDOM_wvb_hdr_bundle_1_fan_out HDR_FAN_OUT 
+   (
+    .bundle(hdr_data),
+    .evt_ltc(evt_ltc),
+    .start_addr(start_addr),
+    .stop_addr(stop_addr),
+    .trig_src(trig_src),
+    .cnst_run(cnst_run)
+  );
+  assign pre_conf = 5'h1a;
+endgenerate
+
 // calculate evt_len 
 wire[P_WVB_ADR_WIDTH-1:0] addr_diff = stop_addr - start_addr;
 wire[15:0] evt_len = addr_diff + 16'd1;
