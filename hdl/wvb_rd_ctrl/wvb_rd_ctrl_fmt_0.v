@@ -74,7 +74,7 @@ wire cnst_run;
 wire[4:0] pre_conf;
 
 generate
-if (P_HDR_WIDTH == 80)  
+if (P_HDR_WIDTH == 80) begin
   mDOM_wvb_hdr_bundle_0_fan_out HDR_FAN_OUT 
    (
     .bundle(hdr_data),
@@ -85,8 +85,9 @@ if (P_HDR_WIDTH == 80)
     .cnst_run(cnst_run),
     .pre_conf(pre_conf)
   );
+end
 
-else
+else begin
   mDOM_wvb_hdr_bundle_1_fan_out HDR_FAN_OUT 
    (
     .bundle(hdr_data),
@@ -97,6 +98,7 @@ else
     .cnst_run(cnst_run)
   );
   assign pre_conf = 5'h1a;
+end
 endgenerate
 
 // calculate evt_len 

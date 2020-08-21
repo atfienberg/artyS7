@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="63697750000fs"></ZoomStartTime>
-      <ZoomEndTime time="63868450001fs"></ZoomEndTime>
-      <Cursor1Time time="63695000000fs"></Cursor1Time>
+      <ZoomStartTime time="1068416666fs"></ZoomStartTime>
+      <ZoomEndTime time="1106316667fs"></ZoomEndTime>
+      <Cursor1Time time="1085000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="362"></NameColumnWidth>
-      <ValueColumnWidth column_width="219"></ValueColumnWidth>
+      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <ValueColumnWidth column_width="102"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="28" />
+   <WVObjectSize size="30" />
    <wvobject fp_name="/reader_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -141,5 +141,13 @@
       <obj_property name="ElementShortName">dpram_len[15:0]</obj_property>
       <obj_property name="ObjectShortName">dpram_len[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_tb/WVB_READER/RD_CTRL/idx" type="array">
+      <obj_property name="ElementShortName">idx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">idx[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reader_tb/WVB_READER/RD_CTRL/hdr_0" type="array">
+      <obj_property name="ElementShortName">hdr_0[15:0]</obj_property>
+      <obj_property name="ObjectShortName">hdr_0[15:0]</obj_property>
    </wvobject>
 </wave_config>

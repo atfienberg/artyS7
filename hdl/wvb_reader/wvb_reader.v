@@ -136,7 +136,7 @@ RD_CTRL
    .clk(clk),
    .rst(rst),
    .req(rd_ctrl_req),
-   .idx(chan_index),
+   .idx({3'b0, chan_index}),
    .dpram_mode(dpram_mode),
    .ack(rd_ctrl_ack),
    .rd_ctrl_more(rd_ctrl_more),

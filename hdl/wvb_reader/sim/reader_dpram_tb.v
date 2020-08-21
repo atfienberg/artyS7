@@ -96,7 +96,7 @@ reg dpram_busy = 0;
 reg dpram_done = 0;
 
 reg reader_enable = 0;
-wvb_reader WVB_READER 
+wvb_reader #(.N_CHANNELS(1)) WVB_READER 
 (
   .clk(clk),
   .rst(rst),
