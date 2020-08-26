@@ -32,10 +32,10 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'hb;
+localparam[15:0] FW_VNUM = 16'hc;
 
 // number of fake ADC channels
-localparam N_CHANNELS = 16;
+localparam N_CHANNELS = 24;
 
 // determines waveform buffer depths
 // can get to 16 channels with adr widths of 11 or 12, 

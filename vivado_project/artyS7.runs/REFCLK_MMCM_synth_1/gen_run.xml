@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="REFCLK_MMCM_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1598464540">
   <File Type="PA-TCL" Name="REFCLK_MMCM.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="REFCLK_MMCM_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="REFCLK_MMCM_reports.tcl"/>
   <File Type="RDS-RDS" Name="REFCLK_MMCM.vds"/>
   <File Type="RDS-UTIL" Name="REFCLK_MMCM_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="REFCLK_MMCM_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="REFCLK_MMCM.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="REFCLK_MMCM_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="REFCLK_MMCM_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/REFCLK_MMCM">
     <File Path="$PSRCDIR/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM.xci">
       <FileInfo>
@@ -42,9 +39,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
