@@ -48,18 +48,26 @@ def main():
 
     print(f"cal complete: {cal_done}")
 
-    # first: test ramp to first few pages of memory
+    print(f"selecting ddr3 page transfer dpram...")
+    arty.fpga_write("dpram_sel", 0)
+
+    pages = []
+
+    # test writing random patterns to the memory chip
     for pg in range(START_PG, START_PG + PGS_TO_TEST):
         print(f"writing to page {pg}")
 
         range_start = pg % START_PG
 
-        data = np.arange(2048 * range_start, 2048 * (range_start + 1))
+        data = np.random.randint(0, 0x10000, size=2048)
+
         hdata = "".join(f"{val:04x}" for val in data)
 
         arty.fpga_burst_write(0, hdata)
 
         assert np.array_equal(data, arty.fpga_read(0, 2048))
+
+        pages.append(data)
 
         # ship to DDR3 memory
         send_DPRAM_to_pg(arty, pg)
@@ -70,15 +78,13 @@ def main():
 
     print("Reading pages back")
     all_good = True
-    for pg in range(START_PG, START_PG + PGS_TO_TEST):
+    for i, pg in enumerate(range(START_PG, START_PG + PGS_TO_TEST)):
         print(f"checking page {pg}")
 
         range_start = pg % START_PG
 
         pg_data = read_DDR3_pg(arty, pg)
-        if np.array_equal(
-            pg_data, np.arange(2048 * range_start, 2048 * (range_start + 1))
-        ):
+        if np.array_equal(pg_data, pages[i]):
             print("Match!")
         else:
             print("Mismatch!")
