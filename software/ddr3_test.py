@@ -6,10 +6,11 @@
 #
 
 from artyS7 import artyS7, read_dev_path
+import time
 import sys
 import numpy as np
 
-PGS_TO_TEST = 16
+PGS_TO_TEST = 500
 START_PG = np.random.randint(0, 65536)
 
 
@@ -57,15 +58,19 @@ def main():
     for pg in range(START_PG, START_PG + PGS_TO_TEST):
         print(f"writing to page {pg}")
 
-        range_start = pg % START_PG
-
         data = np.random.randint(0, 0x10000, size=2048)
 
         hdata = "".join(f"{val:04x}" for val in data)
-
         arty.fpga_burst_write(0, hdata)
 
-        assert np.array_equal(data, arty.fpga_read(0, 2048))
+        time.sleep(0.05)
+
+        readback = arty.fpga_read(0, 2048)
+
+        if not np.array_equal(data, readback):
+            raise RuntimeError(
+                "Could not successfully read data back from page transfer DPRAM"
+            )
 
         pages.append(data)
 
@@ -80,8 +85,6 @@ def main():
     all_good = True
     for i, pg in enumerate(range(START_PG, START_PG + PGS_TO_TEST)):
         print(f"checking page {pg}")
-
-        range_start = pg % START_PG
 
         pg_data = read_DDR3_pg(arty, pg)
         if np.array_equal(pg_data, pages[i]):
