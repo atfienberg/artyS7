@@ -42,7 +42,15 @@ class artyS7:
         "buf_reader_enable": 0xEF8,
         "buf_reader_dpram_mode": 0xEF7,
         "wvb_header_full": 0xEF6,
-        "buf_stat_chan_sel": 0xeF5,
+        "buf_stat_chan_sel": 0xEF5,
+        "ddr3_pg_addr_high": 0xDFF,
+        "ddr3_pg_addr_low": 0xDFE,
+        "ddr3_pg_optype": 0xDFD,
+        "ddr3_pg_req": 0xDFC,
+        "ddr3_enable": 0xDFB,
+        "ddr3_cal_complete": 0xDFA,
+        "ddr3_device_temp": 0xDF9,
+        "ddr3_ui_sync_rst": 0xDF8,
         "led_toggle": 0x8FF,
         "rgb_red": 0x8FE,
         "rgb_green": 0x8FD,
@@ -59,12 +67,7 @@ class artyS7:
     #
 
     def __init__(
-        self,
-        uart=None,
-        dev_path=None,
-        uart_sleep=0.1,
-        uart_timeout=0.25,
-        n_read_tries=3,
+        self, uart=None, dev_path=None, uart_sleep=0, uart_timeout=0.25, n_read_tries=3,
     ):
         """ Initializes the artyS7 object
 

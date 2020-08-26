@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="BUFFER_4096_22_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1597354566">
+<GenRun Id="BUFFER_4096_22_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1598396083">
   <File Type="PA-TCL" Name="BUFFER_4096_22.tcl"/>
   <File Type="REPORTS-TCL" Name="BUFFER_4096_22_reports.tcl"/>
   <File Type="RDS-RDS" Name="BUFFER_4096_22.vds"/>

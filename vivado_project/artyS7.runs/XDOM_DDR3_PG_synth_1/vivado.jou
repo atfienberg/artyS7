@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Aug 25 19:00:18 2020
+# Process ID: 12692
+# Current directory: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/XDOM_DDR3_PG_synth_1
+# Command line: vivado.exe -log XDOM_DDR3_PG.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source XDOM_DDR3_PG.tcl
+# Log file: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/XDOM_DDR3_PG_synth_1/XDOM_DDR3_PG.vds
+# Journal file: C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/XDOM_DDR3_PG_synth_1\vivado.jou
+#-----------------------------------------------------------
+source XDOM_DDR3_PG.tcl -notrace

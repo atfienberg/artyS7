@@ -25,3 +25,13 @@ set_property IOSTANDARD LVCMOS33 [get_ports UART_RXD]
 set_property IOSTANDARD LVCMOS33 [get_ports UART_TXD]
 set_property PACKAGE_PIN R12 [get_ports UART_RXD]
 set_property PACKAGE_PIN V12 [get_ports UART_TXD]
+
+create_clock -period 83.333 -name OSC_12MHZ -waveform {0.000 41.667} [get_ports OSC_12MHZ]
+
+set_false_path -from [get_clocks -of_objects [get_pins lclk_mmcm_0/inst/mmcm_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3]]
+
+set_false_path -from [get_clocks -of_objects [get_pins DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3]] -to [get_clocks -of_objects [get_pins lclk_mmcm_0/inst/mmcm_adv_inst/CLKOUT0]]
+
+set_false_path -from [get_clocks -of_objects [get_pins lclk_mmcm_0/inst/mmcm_adv_inst/CLKOUT0]] -to [get_clocks -of_objects [get_pins DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT]]
+
+set_false_path -from [get_clocks -of_objects [get_pins DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/gen_mmcm.mmcm_i/CLKFBOUT]] -to [get_clocks -of_objects [get_pins lclk_mmcm_0/inst/mmcm_adv_inst/CLKOUT0]]

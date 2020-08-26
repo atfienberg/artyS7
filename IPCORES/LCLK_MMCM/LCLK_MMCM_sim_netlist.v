@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Sat Aug 15 15:54:50 2020
+// Date        : Wed Aug 26 14:28:46 2020
 // Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim C:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_sim_netlist.v
 // Design      : LCLK_MMCM
@@ -23,7 +23,7 @@ module LCLK_MMCM
   input clk_in1;
 
   wire clk_125MHZ;
-  (* IBUF_LOW_PWR *) wire clk_in1;
+  wire clk_in1;
   wire locked;
   wire reset;
 
@@ -70,12 +70,7 @@ module LCLK_MMCM_LCLK_MMCM_clk_wiz
   wire [15:0]NLW_mmcm_adv_inst_DO_UNCONNECTED;
 
   (* BOX_TYPE = "PRIMITIVE" *) 
-  (* CAPACITANCE = "DONT_CARE" *) 
-  (* IBUF_DELAY_VALUE = "0" *) 
-  (* IFD_DELAY_VALUE = "AUTO" *) 
-  IBUF #(
-    .IOSTANDARD("DEFAULT")) 
-    clkin1_ibufg
+  BUFG clkin1_bufg
        (.I(clk_in1),
         .O(clk_in1_LCLK_MMCM));
   (* BOX_TYPE = "PRIMITIVE" *) 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="DIRECT_RDOUT_DPRAM_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1597418892">
+<GenRun Id="DIRECT_RDOUT_DPRAM_synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1598396083">
   <File Type="PA-TCL" Name="DIRECT_RDOUT_DPRAM.tcl"/>
   <File Type="REPORTS-TCL" Name="DIRECT_RDOUT_DPRAM_reports.tcl"/>
   <File Type="RDS-RDS" Name="DIRECT_RDOUT_DPRAM.vds"/>

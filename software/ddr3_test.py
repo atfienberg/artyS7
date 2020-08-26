@@ -1,0 +1,94 @@
+###################################################
+# Aaron Fienberg
+#
+#
+# Test DDR3 page transfer
+#
+
+from artyS7 import artyS7, read_dev_path
+import sys
+import numpy as np
+
+PGS_TO_TEST = 16
+START_PG = np.random.randint(0, 65536)
+
+
+def set_pg_num(arty, pg):
+    # only test low addresses for now
+    byte_addr = pg * 4096
+    addr_low = byte_addr & 0xFFFF
+    addr_high = (byte_addr >> 16) & 0xFFFF
+    arty.fpga_write("ddr3_pg_addr_low", addr_low)
+    arty.fpga_write("ddr3_pg_addr_high", addr_high)
+
+
+def send_DPRAM_to_pg(arty, pg):
+    set_pg_num(arty, pg)
+    arty.fpga_write("dpram_sel", 0)
+    arty.fpga_write("ddr3_pg_optype", 1)
+    arty.fpga_write("ddr3_pg_req", 1)
+
+
+def read_DDR3_pg(arty, pg):
+    set_pg_num(arty, pg)
+    arty.fpga_write("dpram_sel", 0)
+    arty.fpga_write("ddr3_pg_optype", 0)
+    arty.fpga_write("ddr3_pg_req", 1)
+
+    return arty.fpga_read(0, 2048)
+
+
+def main():
+    arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"))
+
+    print("Enable DDR3 interface")
+    arty.fpga_write("ddr3_enable", 1)
+
+    cal_done = arty.fpga_read("ddr3_cal_complete")
+
+    print(f"cal complete: {cal_done}")
+
+    # first: test ramp to first few pages of memory
+    for pg in range(START_PG, START_PG + PGS_TO_TEST):
+        print(f"writing to page {pg}")
+
+        range_start = pg % START_PG
+
+        data = np.arange(2048 * range_start, 2048 * (range_start + 1))
+        hdata = "".join(f"{val:04x}" for val in data)
+
+        arty.fpga_burst_write(0, hdata)
+
+        assert np.array_equal(data, arty.fpga_read(0, 2048))
+
+        # ship to DDR3 memory
+        send_DPRAM_to_pg(arty, pg)
+
+    print("clearing dpram...")
+    arty.fpga_burst_write(0, "0" * 8192)
+    assert np.array_equal(np.zeros(2048, dtype=np.int16), arty.fpga_read(0, 2048))
+
+    print("Reading pages back")
+    all_good = True
+    for pg in range(START_PG, START_PG + PGS_TO_TEST):
+        print(f"checking page {pg}")
+
+        range_start = pg % START_PG
+
+        pg_data = read_DDR3_pg(arty, pg)
+        if np.array_equal(
+            pg_data, np.arange(2048 * range_start, 2048 * (range_start + 1))
+        ):
+            print("Match!")
+        else:
+            print("Mismatch!")
+            all_good = False
+
+    if all_good:
+        print("Success!")
+    else:
+        print("Failure!")
+
+
+if __name__ == "__main__":
+    main()

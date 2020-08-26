@@ -79,7 +79,7 @@ module LCLK_MMCM_clk_wiz
   //------------------------------------
 wire clk_in1_LCLK_MMCM;
 wire clk_in2_LCLK_MMCM;
-  IBUF clkin1_ibufg
+  BUFG clkin1_bufg
    (.O (clk_in1_LCLK_MMCM),
     .I (clk_in1));
 

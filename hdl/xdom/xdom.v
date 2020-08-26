@@ -33,7 +33,6 @@ module xdom #(parameter N_CHANNELS = 24)
  output reg[N_CHANNELS-1:0] xdom_trig_run = 0,
  output reg[N_CHANNELS-1:0] wvb_rst = 0,
 
-
  // waveform buffer status
  input[N_CHANNELS-1:0] wvb_armed,
  input[N_CHANNELS-1:0] wvb_overflow,
@@ -41,7 +40,7 @@ module xdom #(parameter N_CHANNELS = 24)
  input[N_CHANNELS*16 - 1:0] wfms_in_buf,
  input[N_CHANNELS*16 - 1:0] buf_wds_used,
 
- // wvb reader (put inside xdom for initial test)
+ // wvb reader
  input[15:0] dpram_len_in,
  input rdout_dpram_run,
  output reg dpram_busy = 0,
@@ -50,6 +49,21 @@ module xdom #(parameter N_CHANNELS = 24)
  input[31:0] rdout_dpram_data,
  output reg wvb_reader_enable = 0,
  output reg wvb_reader_dpram_mode = 0,
+
+ // DDR3 interface
+ input ddr3_ui_clk,
+ output reg[27:0] pg_req_addr = 0,
+ output reg pg_optype = 0,
+ output reg pg_req = 0,
+ input pg_ack,
+ output reg ddr3_sys_rst = 0,
+ input ddr3_cal_complete,
+ input ddr3_ui_sync_rst,
+ input[11:0] ddr3_device_temp,
+ input[7:0] ddr3_dpram_addr,
+ input ddr3_dpram_wren,
+ input[127:0] ddr3_dpram_din,
+ output[127:0] ddr3_dpram_dout,
 
  // Debug FT232R I/O
  input             debug_txd,
@@ -234,6 +248,27 @@ reg dpram_sel = 0;
 reg[15:0] test_ctrl_reg = 16'b0;
 reg dpram_done = 0;
 
+// pg op task reg
+reg pg_req_start = 0;
+// synchronize ack
+wire pg_ack_s;
+sync PGACKSYNC(.clk(clk), .rst_n(!rst), .a(pg_ack), .y(pg_ack_s));
+always @(posedge clk) begin
+  pg_req <= pg_req;
+
+  // also drop req if memory interface is reset
+  // (rst is active low, so it's really an enable)
+  if (pg_ack_s || !ddr3_sys_rst) begin
+    pg_req <= 0;
+  end
+
+  else if (pg_req_start) begin
+    pg_req <= 1;
+  end
+
+end
+wire pg_task_val = pg_ack_s || pg_req;
+
 always @(*)
  begin
     case(y_adr)
@@ -267,12 +302,20 @@ always @(*)
       12'hef7: begin y_rd_data =       {15'b0, wvb_reader_dpram_mode};                         end
       12'hef6: begin y_rd_data =       wvb_hdr_full[15:0];                                     end
       12'hef5: begin y_rd_data =       {11'b0, buf_status_sel};                                end
-      12'hef4: begin y_rd_data =       {8'b0, xdom_trig_run[N_CHANNELS-1:16]};                 end
-      12'hef3: begin y_rd_data =       {8'b0, xdom_wvb_arm[N_CHANNELS-1:16]};                  end
-      12'hef2: begin y_rd_data =       {8'b0, wvb_armed[N_CHANNELS-1:16]};                     end
-      12'hef1: begin y_rd_data =       {8'b0, wvb_overflow[N_CHANNELS-1:16]};                  end
-      12'hef0: begin y_rd_data =       {8'b0, wvb_rst[N_CHANNELS-1:16]};                       end
-      12'heef: begin y_rd_data =       {8'b0, wvb_hdr_full[N_CHANNELS-1:16]};                  end
+      // 12'hef4: begin y_rd_data =       {8'b0, xdom_trig_run[N_CHANNELS-1:16]};                 end
+      // 12'hef3: begin y_rd_data =       {8'b0, xdom_wvb_arm[N_CHANNELS-1:16]};                  end
+      // 12'hef2: begin y_rd_data =       {8'b0, wvb_armed[N_CHANNELS-1:16]};                     end
+      // 12'hef1: begin y_rd_data =       {8'b0, wvb_overflow[N_CHANNELS-1:16]};                  end
+      // 12'hef0: begin y_rd_data =       {8'b0, wvb_rst[N_CHANNELS-1:16]};                       end
+      // 12'heef: begin y_rd_data =       {8'b0, wvb_hdr_full[N_CHANNELS-1:16]};                  end
+      12'hdff: begin y_rd_data =       pg_req_addr[27:16];                                     end
+      12'hdfe: begin y_rd_data =       pg_req_addr[15:0];                                      end
+      12'hdfd: begin y_rd_data =       {15'b0, pg_optype};                                     end
+      12'hdfc: begin y_rd_data =       {15'b0, pg_task_val};                                   end
+      12'hdfb: begin y_rd_data =       {15'b0, ddr3_sys_rst};                                  end
+      12'hdfa: begin y_rd_data =       {15'b0, ddr3_cal_complete};                             end
+      12'hdf9: begin y_rd_data =       {5'b0, ddr3_device_temp};                               end
+      12'hdf8: begin y_rd_data =       {15'b0, ddr3_ui_sync_rst};                              end
       12'h8ff: begin y_rd_data =       {13'h0, led_toggle};                                    end
       12'h8fe: begin y_rd_data =       {1'h0, red_led_lvl};                                    end
       12'h8fd: begin y_rd_data =       {1'h0, green_led_lvl};                                  end
@@ -295,6 +338,8 @@ always @(posedge clk)
     xdom_trig_run <= 0;
     dpram_done <= 0;
     xdom_wvb_arm <= 0;
+
+    pg_req_start <= 0;
 
     if(y_wr) 
       case(y_adr)       
@@ -322,9 +367,14 @@ always @(posedge clk)
         12'hef8: begin wvb_reader_enable <= y_wr_data[0];                                      end
         12'hef7: begin wvb_reader_dpram_mode <= y_wr_data[0];                                  end            
         12'hef5: begin buf_status_sel <= y_wr_data[4:0];                                       end
-        12'hef4: begin xdom_trig_run[N_CHANNELS-1:16] <= y_wr_data[7:0];                       end
-        12'hef3: begin xdom_wvb_arm[N_CHANNELS-1:16] <= y_wr_data[7:0];                        end
-        12'hef0: begin wvb_rst[N_CHANNELS-1:16] <= y_wr_data[7:0];                             end
+        // 12'hef4: begin xdom_trig_run[N_CHANNELS-1:16] <= y_wr_data[7:0];                       end
+        // 12'hef3: begin xdom_wvb_arm[N_CHANNELS-1:16] <= y_wr_data[7:0];                        end
+        // 12'hef0: begin wvb_rst[N_CHANNELS-1:16] <= y_wr_data[7:0];                             end
+        12'hdff: begin pg_req_addr[27:16] <= y_wr_data[11:0];                                  end
+        12'hdfe: begin pg_req_addr[15:0] <= y_wr_data[15:0];                                   end
+        12'hdfd: begin pg_optype <= y_wr_data[0];                                              end
+        12'hdfc: begin pg_req_start <= y_wr_data[0];                                           end
+        12'hdfb: begin ddr3_sys_rst <= y_wr_data[0];                                           end        
         12'h8ff: begin led_toggle <= y_wr_data[2:0];                                           end
         12'h8fe: begin red_led_lvl <= y_wr_data[14:0];                                         end
         12'h8fd: begin green_led_lvl <= y_wr_data[14:0];                                       end
@@ -335,28 +385,44 @@ always @(posedge clk)
       endcase
  end // always @ (posedge clk)
 
-wire [15:0] dpram_wr_data_a = 16'b0;
-wire        dpram_wr_a = 1'b0;
-wire [11:0] dpram_addr_a = 12'b0;
+// wire [15:0] dpram_wr_data_a = 16'b0;
+// wire        dpram_wr_a = 1'b0;
+// wire [11:0] dpram_addr_a = 12'b0;
 
-// scratch DPRAM
-DPRAM_2048_16 DPRAM_2048_16_0
- (
-   // Outputs
-   .douta(dpram_rd_data_a),
-   .doutb(dpram_rd_data_b),
-   // Inputs
-   .ena(1'b1),
-   .enb(1'b1),
-   .addra(dpram_addr_a),
-   .addrb(y_adr[10:0]),
-   .clka(clk),
-   .clkb(clk),
-   .dina(dpram_wr_data_a),
-   .dinb(y_wr_data),
-   .wea(dpram_wr_a),
-   .web(y_wr && (y_adr[11]==0) && (dpram_sel == 0))
-  ); 
+// // scratch DPRAM
+// DPRAM_2048_16 DPRAM_2048_16_0
+//  (
+//    // Outputs
+//    .douta(dpram_rd_data_a),
+//    .doutb(dpram_rd_data_b),
+//    // Inputs
+//    .ena(1'b1),
+//    .enb(1'b1),
+//    .addra(dpram_addr_a),
+//    .addrb(y_adr[10:0]),
+//    .clka(clk),
+//    .clkb(clk),
+//    .dina(dpram_wr_data_a),
+//    .dinb(y_wr_data),
+//    .wea(dpram_wr_a),
+//    .web(y_wr && (y_adr[11]==0) && (dpram_sel == 0))
+//   ); 
+
+// DDR3 transfer dpram
+wire[15:0] ddr3_dpram_xdom_out;
+XDOM_DDR3_PG PG_DPRAM
+(
+  .clka(clk),
+  .wea(y_wr && (y_adr[11]==0) && (dpram_sel == 0)),
+  .addra(y_adr[10:0]),
+  .dina(y_wr_data),
+  .douta(ddr3_dpram_xdom_out),
+  .clkb(ddr3_ui_clk),
+  .web(ddr3_dpram_wren),
+  .addrb(ddr3_dpram_addr),
+  .dinb(ddr3_dpram_din),
+  .doutb(ddr3_dpram_dout)
+);
 
 // direct readout DPRAM (rd only from xdom)
 DIRECT_RDOUT_DPRAM RDOUT_DPRAM
@@ -397,7 +463,8 @@ end
 //
 always @(*) begin
   case (dpram_sel) 
-    0: xdom_dpram_rd_data = dpram_rd_data_b;
+    // 0: xdom_dpram_rd_data = dpram_rd_data_b;
+    0: xdom_dpram_rd_data = ddr3_dpram_xdom_out;
     1: xdom_dpram_rd_data = direct_rdout_dpram_data;
     default: xdom_dpram_rd_data = dpram_rd_data_b;
   endcase

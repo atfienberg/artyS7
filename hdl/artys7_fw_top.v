@@ -9,15 +9,33 @@ module top(
 	output[5:0] TRICOLOR_LED,
 	// USB UART signals
 	output UART_RXD,
-	input UART_TXD
+	input UART_TXD,
+
+  // signals for the DDR3 memory interface
+  inout[15:0] ddr3_dq,
+  inout[1:0] ddr3_dqs_n,
+  inout[1:0] ddr3_dqs_p,
+  output[13:0] ddr3_addr,
+  output[2:0] ddr3_ba,
+  output ddr3_ras_n,
+  output ddr3_cas_n,
+  output ddr3_we_n,
+  output ddr3_reset_n,
+  output[0:0] ddr3_ck_p,
+  output[0:0] ddr3_ck_n,
+  output[0:0] ddr3_cke,
+  output[0:0] ddr3_cs_n,
+  output[1:0] ddr3_dm,
+  output[0:0] ddr3_odt,
+  input sys_clk_i
 	);
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'h9;
+localparam[15:0] FW_VNUM = 16'hb;
 
 // number of fake ADC channels
-localparam N_CHANNELS = 24;
+localparam N_CHANNELS = 16;
 
 // determines waveform buffer depths
 // can get to 16 channels with adr widths of 11 or 12, 
@@ -42,6 +60,20 @@ LCLK_MMCM lclk_mmcm_0
   .clk_in1(OSC_12MHZ)
 );
 wire lclk_rst = !lclk_mmcm_locked;
+
+//
+// 200 MHz ref clock generation
+//
+
+wire ref_clk;
+wire ref_clk_mmcm_locked;
+REFCLK_MMCM refclk_mmcm_0
+(
+  .clk_200MHZ(ref_clk),
+  .reset(1'b0),
+  .locked(ref_clk_mmcm_locked),
+  .clk_in1(OSC_12MHZ)
+);
 
 /////////////////////////////////////////////////////////////////////////
 // xDOM interface
@@ -74,7 +106,7 @@ wire lclk_rst = !lclk_mmcm_locked;
 //     12'hefe: 
 //             [0] dpram_done  
 //     12'hefd: 
-//             [0] dpram_sel (0: scratch dpram, 1: direct rdout (rd only))       
+//             [0] dpram_sel (0: ddr3 transfer dpram, 1: direct rdout (rd only))       
 //     12'hefc: n_waveforms in waveform buffer
 //     12'hefb: words used in waveform buffer
 //     12'hefa: waveform buffer overflow [15:0]
@@ -90,6 +122,17 @@ wire lclk_rst = !lclk_mmcm_locked;
 //     12'hef1: waveform buffer overflow [23:16]
 //     12'hef0: waveform buffer reset [23:16]
 //     12'heef: wvb header full [23:16]
+//      
+//     DDR3 test signals
+//     12'dff: page transfer addr[27:16]
+//     12'dfe: page transger addr[15:0]
+//     12'dfd: [0] pg transfer optype (0 read, 1 write)
+//     12'dfc: [0] pg transfer task reg 
+//     12'dfb: DDR3 sys rst (active low)
+//     12'dfa: DDR3 cal complete
+//     12'df9: [11:0] mem interface device temp
+//     12'df8: [0] ddr3 ui sync rst
+//
 //     12'8ff: LED toggle
 //             [0] configurable RGB LED toggle
 //             [1] color cycling RGB LED toggle
@@ -132,6 +175,21 @@ wire[31:0] rdout_dpram_data;
 wire wvb_reader_enable;
 wire wvb_reader_dpram_mode;
 
+// DDR3 interface
+wire ddr3_ui_clk;
+wire[27:0] pg_req_addr;
+wire pg_optype;
+wire pg_req;
+wire pg_ack;
+wire ddr3_sys_rst;
+wire ddr3_cal_complete;
+wire ddr3_ui_sync_rst;
+wire[11:0] ddr3_device_temp;
+wire[7:0] ddr3_dpram_addr;
+wire ddr3_dpram_wren;
+wire[127:0] ddr3_dpram_din;
+wire[127:0] ddr3_dpram_dout;
+
 xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
 (
   .clk(lclk),
@@ -168,6 +226,22 @@ xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
   .rdout_dpram_data(rdout_dpram_data),
   .wvb_reader_enable(wvb_reader_enable),
   .wvb_reader_dpram_mode(wvb_reader_dpram_mode),
+
+  // DDR3 interface
+  .ddr3_ui_clk(ddr3_ui_clk),
+  .pg_req_addr(pg_req_addr),
+  .pg_optype(pg_optype),
+
+  .pg_req(pg_req),
+  .pg_ack(pg_ack),
+  .ddr3_sys_rst(ddr3_sys_rst),
+  .ddr3_cal_complete(ddr3_cal_complete),
+  .ddr3_ui_sync_rst(ddr3_ui_sync_rst),
+  .ddr3_device_temp(ddr3_device_temp),
+  .ddr3_dpram_addr(ddr3_dpram_addr),
+  .ddr3_dpram_wren(ddr3_dpram_wren),
+  .ddr3_dpram_din(ddr3_dpram_din),
+  .ddr3_dpram_dout(ddr3_dpram_dout),
 
   // debug UART
   .debug_txd(UART_TXD),
@@ -286,6 +360,50 @@ WVB_READER
   .hdr_data(wvb_hdr_data),
   .hdr_empty(wvb_hdr_empty)
 );
+
+//
+// DDR3 page transter
+//
+
+DDR3_DPRAM_transfer DDR3_TRANSFER_0 
+(
+ .ddr3_dq(ddr3_dq),
+ .ddr3_dqs_n(ddr3_dqs_n),
+ .ddr3_dqs_p(ddr3_dqs_p),
+ .ddr3_addr(ddr3_addr),
+ .ddr3_ba(ddr3_ba),
+ .ddr3_ras_n(ddr3_ras_n),
+ .ddr3_cas_n(ddr3_cas_n),
+ .ddr3_we_n(ddr3_we_n),
+ .ddr3_reset_n(ddr3_reset_n),
+ .ddr3_ck_p(ddr3_ck_p),
+ .ddr3_ck_n(ddr3_ck_n),
+ .ddr3_cke(ddr3_cke),
+ .ddr3_cs_n(ddr3_cs_n),
+ .ddr3_dm(ddr3_dm),
+ .ddr3_odt(ddr3_odt),
+ .sys_clk_i(sys_clk_i),
+ .clk_ref_i(ref_clk),
+
+ .ui_clk(ddr3_ui_clk),
+
+ .sys_rst(ddr3_sys_rst),
+ .pg_req(pg_req),
+ .pg_optype(pg_optype),
+ .pg_req_addr(pg_req_addr),
+
+ .pg_ack(pg_ack),
+ .init_calib_complete(ddr3_cal_complete),
+ .ui_clk_sync_rst(ddr3_ui_sync_rst),
+ .device_temp(ddr3_device_temp),
+
+ .dpram_dout(ddr3_dpram_dout),
+
+ .dpram_din(ddr3_dpram_din),
+ .dpram_addr(ddr3_dpram_addr),
+ .dpram_wren(ddr3_dpram_wren)
+);
+
 
 //
 // LED controls
