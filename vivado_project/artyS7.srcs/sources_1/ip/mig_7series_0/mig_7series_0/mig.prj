@@ -64,7 +64,7 @@
     <ColAddress>10</ColAddress>
     <BankAddress>3</BankAddress>
     <MemoryVoltage>1.35V</MemoryVoltage>
-    <UserMemoryAddressMap>BANK_ROW_COLUMN</UserMemoryAddressMap>
+    <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
     <PinSelection>
       <Pin IN_TERM="" IOSTANDARD="SSTL135" PADName="U2" SLEW="" VCCAUX_IO="" name="ddr3_addr[0]"/>
       <Pin IN_TERM="" IOSTANDARD="SSTL135" PADName="P6" SLEW="" VCCAUX_IO="" name="ddr3_addr[10]"/>

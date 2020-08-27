@@ -62,7 +62,8 @@ end
 wire [P_DATA_WIDTH-1:0] ptb_out;
 wire ptb_rdy;
 pretrigger_buffer #(.P_PRE_CONF_WIDTH(P_PRE_CONF_WIDTH), 
-              .P_DATA_WIDTH(P_DATA_WIDTH))
+                    .P_DATA_WIDTH(P_DATA_WIDTH),
+                    .P_USE_DISTRIBUTED_RAM(1))
  PTB
   (
    .clk(clk),

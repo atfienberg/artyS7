@@ -92,7 +92,7 @@ Memory Options:
 
    Rtt_WR - Dynamic ODT (MR2[10:9]) : Dynamic ODT off
 
-   Memory Address Mapping           : BANK_ROW_COLUMN
+   Memory Address Mapping           : ROW_BANK_COLUMN
 
 
 

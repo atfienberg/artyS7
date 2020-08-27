@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Wed Aug 26 14:28:30 2020
+// Date        : Thu Aug 27 09:48:47 2020
 // Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0_sim_netlist.v
@@ -87874,9 +87874,9 @@ module mig_7series_0_mig_7series_v4_2_memc_ui_top_std
         .S(u_ui_top_n_149),
         .accept_ns(accept_ns),
         .app_addr(app_addr),
-        .\app_addr_r1_reg[22] (u_ui_top_n_168),
-        .\app_addr_r1_reg[22]_0 (u_ui_top_n_169),
-        .\app_addr_r1_reg[26] (bank),
+        .\app_addr_r1_reg[12] (bank),
+        .\app_addr_r1_reg[25] (u_ui_top_n_168),
+        .\app_addr_r1_reg[25]_0 (u_ui_top_n_169),
         .\app_addr_r1_reg[9] (col),
         .app_cmd(app_cmd),
         .\app_cmd_r2_reg[0] (u_ui_top_n_140),
@@ -93710,19 +93710,19 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
     p_28_out,
     p_106_out,
     S,
-    \app_addr_r1_reg[23]_0 ,
+    \app_addr_r1_reg[26]_0 ,
     \req_row_r_lcl_reg[9] ,
     row,
-    \app_addr_r1_reg[22]_0 ,
-    \app_addr_r1_reg[22]_1 ,
-    was_wr0,
     \app_addr_r1_reg[25]_0 ,
+    \app_addr_r1_reg[25]_1 ,
+    was_wr0,
+    \app_addr_r1_reg[11]_0 ,
     req_wr_r_lcl0,
     \wr_req_counter.wr_req_cnt_r_reg[0] ,
     wr_accepted,
     \not_strict_mode.occ_cnt_r_reg[1] ,
     rd_accepted,
-    \app_addr_r1_reg[26]_0 ,
+    \app_addr_r1_reg[12]_0 ,
     \app_addr_r1_reg[9]_0 ,
     app_rdy_ns,
     CLK,
@@ -93751,19 +93751,19 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   output p_28_out;
   output p_106_out;
   output [0:0]S;
-  output \app_addr_r1_reg[23]_0 ;
+  output \app_addr_r1_reg[26]_0 ;
   output [3:0]\req_row_r_lcl_reg[9] ;
   output [12:0]row;
-  output [0:0]\app_addr_r1_reg[22]_0 ;
-  output [0:0]\app_addr_r1_reg[22]_1 ;
+  output [0:0]\app_addr_r1_reg[25]_0 ;
+  output [0:0]\app_addr_r1_reg[25]_1 ;
   output was_wr0;
-  output \app_addr_r1_reg[25]_0 ;
+  output \app_addr_r1_reg[11]_0 ;
   output req_wr_r_lcl0;
   output \wr_req_counter.wr_req_cnt_r_reg[0] ;
   output wr_accepted;
   output \not_strict_mode.occ_cnt_r_reg[1] ;
   output rd_accepted;
-  output [1:0]\app_addr_r1_reg[26]_0 ;
+  output [1:0]\app_addr_r1_reg[12]_0 ;
   output [9:0]\app_addr_r1_reg[9]_0 ;
   input app_rdy_ns;
   input CLK;
@@ -93791,16 +93791,13 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   wire [0:0]S;
   wire [26:0]app_addr;
   wire app_addr_r10;
-  wire [0:0]\app_addr_r1_reg[22]_0 ;
-  wire [0:0]\app_addr_r1_reg[22]_1 ;
-  wire \app_addr_r1_reg[23]_0 ;
-  wire \app_addr_r1_reg[25]_0 ;
-  wire [1:0]\app_addr_r1_reg[26]_0 ;
+  wire \app_addr_r1_reg[11]_0 ;
+  wire [1:0]\app_addr_r1_reg[12]_0 ;
+  wire [0:0]\app_addr_r1_reg[25]_0 ;
+  wire [0:0]\app_addr_r1_reg[25]_1 ;
+  wire \app_addr_r1_reg[26]_0 ;
   wire [9:0]\app_addr_r1_reg[9]_0 ;
   wire \app_addr_r1_reg_n_0_[0] ;
-  wire \app_addr_r1_reg_n_0_[10] ;
-  wire \app_addr_r1_reg_n_0_[11] ;
-  wire \app_addr_r1_reg_n_0_[12] ;
   wire \app_addr_r1_reg_n_0_[13] ;
   wire \app_addr_r1_reg_n_0_[14] ;
   wire \app_addr_r1_reg_n_0_[15] ;
@@ -93813,6 +93810,9 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   wire \app_addr_r1_reg_n_0_[21] ;
   wire \app_addr_r1_reg_n_0_[22] ;
   wire \app_addr_r1_reg_n_0_[23] ;
+  wire \app_addr_r1_reg_n_0_[24] ;
+  wire \app_addr_r1_reg_n_0_[25] ;
+  wire \app_addr_r1_reg_n_0_[26] ;
   wire \app_addr_r1_reg_n_0_[2] ;
   wire \app_addr_r1_reg_n_0_[3] ;
   wire \app_addr_r1_reg_n_0_[4] ;
@@ -93822,9 +93822,6 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   wire \app_addr_r1_reg_n_0_[8] ;
   wire \app_addr_r1_reg_n_0_[9] ;
   wire \app_addr_r2_reg_n_0_[0] ;
-  wire \app_addr_r2_reg_n_0_[10] ;
-  wire \app_addr_r2_reg_n_0_[11] ;
-  wire \app_addr_r2_reg_n_0_[12] ;
   wire \app_addr_r2_reg_n_0_[13] ;
   wire \app_addr_r2_reg_n_0_[14] ;
   wire \app_addr_r2_reg_n_0_[15] ;
@@ -93837,6 +93834,9 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   wire \app_addr_r2_reg_n_0_[21] ;
   wire \app_addr_r2_reg_n_0_[22] ;
   wire \app_addr_r2_reg_n_0_[23] ;
+  wire \app_addr_r2_reg_n_0_[24] ;
+  wire \app_addr_r2_reg_n_0_[25] ;
+  wire \app_addr_r2_reg_n_0_[26] ;
   wire \app_addr_r2_reg_n_0_[2] ;
   wire \app_addr_r2_reg_n_0_[3] ;
   wire \app_addr_r2_reg_n_0_[4] ;
@@ -93905,7 +93905,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[10]),
-        .Q(\app_addr_r1_reg_n_0_[10] ),
+        .Q(p_1_in[0]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -93913,7 +93913,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[11]),
-        .Q(\app_addr_r1_reg_n_0_[11] ),
+        .Q(p_1_in[1]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -93921,7 +93921,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[12]),
-        .Q(\app_addr_r1_reg_n_0_[12] ),
+        .Q(p_1_in[2]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94025,7 +94025,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[24]),
-        .Q(p_1_in[0]),
+        .Q(\app_addr_r1_reg_n_0_[24] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94033,7 +94033,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[25]),
-        .Q(p_1_in[1]),
+        .Q(\app_addr_r1_reg_n_0_[25] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94041,7 +94041,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.C(CLK),
         .CE(app_addr_r10),
         .D(app_addr[26]),
-        .Q(p_1_in[2]),
+        .Q(\app_addr_r1_reg_n_0_[26] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94120,24 +94120,24 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
     \app_addr_r2_reg[10] 
        (.C(CLK),
         .CE(E),
-        .D(\app_addr_r1_reg_n_0_[10] ),
-        .Q(\app_addr_r2_reg_n_0_[10] ),
+        .D(p_1_in[0]),
+        .Q(p_0_in_0[0]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
     \app_addr_r2_reg[11] 
        (.C(CLK),
         .CE(E),
-        .D(\app_addr_r1_reg_n_0_[11] ),
-        .Q(\app_addr_r2_reg_n_0_[11] ),
+        .D(p_1_in[1]),
+        .Q(p_0_in_0[1]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
     \app_addr_r2_reg[12] 
        (.C(CLK),
         .CE(E),
-        .D(\app_addr_r1_reg_n_0_[12] ),
-        .Q(\app_addr_r2_reg_n_0_[12] ),
+        .D(p_1_in[2]),
+        .Q(p_0_in_0[2]),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94240,24 +94240,24 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
     \app_addr_r2_reg[24] 
        (.C(CLK),
         .CE(E),
-        .D(p_1_in[0]),
-        .Q(p_0_in_0[0]),
+        .D(\app_addr_r1_reg_n_0_[24] ),
+        .Q(\app_addr_r2_reg_n_0_[24] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
     \app_addr_r2_reg[25] 
        (.C(CLK),
         .CE(E),
-        .D(p_1_in[1]),
-        .Q(p_0_in_0[1]),
+        .D(\app_addr_r1_reg_n_0_[25] ),
+        .Q(\app_addr_r2_reg_n_0_[25] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
     \app_addr_r2_reg[26] 
        (.C(CLK),
         .CE(E),
-        .D(p_1_in[2]),
-        .Q(p_0_in_0[2]),
+        .D(\app_addr_r1_reg_n_0_[26] ),
+        .Q(\app_addr_r2_reg_n_0_[26] ),
         .R(app_en_r2_reg_1));
   FDRE #(
     .INIT(1'b0)) 
@@ -94433,7 +94433,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
         .I1(E),
         .I2(p_0_in_0[0]),
         .I3(req_bank_r[3]),
-        .I4(\app_addr_r1_reg[25]_0 ),
+        .I4(\app_addr_r1_reg[11]_0 ),
         .I5(req_bank_r[4]),
         .O(rb_hit_busy_r_i_2_n_0));
   LUT6 #(
@@ -94443,7 +94443,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
         .I1(E),
         .I2(p_0_in_0[0]),
         .I3(req_bank_r[0]),
-        .I4(\app_addr_r1_reg[25]_0 ),
+        .I4(\app_addr_r1_reg[11]_0 ),
         .I5(req_bank_r[1]),
         .O(rb_hit_busy_r_i_2__0_n_0));
   LUT6 #(
@@ -94453,7 +94453,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
         .I1(E),
         .I2(p_0_in_0[2]),
         .I3(req_bank_r[8]),
-        .I4(\app_addr_r1_reg[25]_0 ),
+        .I4(\app_addr_r1_reg[11]_0 ),
         .I5(req_bank_r[7]),
         .O(rb_hit_busy_r_i_2__1_n_0));
   LUT6 #(
@@ -94473,7 +94473,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.I0(p_1_in[0]),
         .I1(E),
         .I2(p_0_in_0[0]),
-        .O(\app_addr_r1_reg[26]_0 [0]));
+        .O(\app_addr_r1_reg[12]_0 [0]));
   (* SOFT_HLUTNM = "soft_lutpair597" *) 
   LUT3 #(
     .INIT(8'hB8)) 
@@ -94481,7 +94481,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.I0(p_1_in[1]),
         .I1(E),
         .I2(p_0_in_0[1]),
-        .O(\app_addr_r1_reg[25]_0 ));
+        .O(\app_addr_r1_reg[11]_0 ));
   (* SOFT_HLUTNM = "soft_lutpair599" *) 
   LUT3 #(
     .INIT(8'hB8)) 
@@ -94489,7 +94489,7 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
        (.I0(p_1_in[2]),
         .I1(E),
         .I2(p_0_in_0[2]),
-        .O(\app_addr_r1_reg[26]_0 [1]));
+        .O(\app_addr_r1_reg[12]_0 [1]));
   (* SOFT_HLUTNM = "soft_lutpair600" *) 
   LUT3 #(
     .INIT(8'hAC)) 
@@ -94614,113 +94614,113 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[0]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[10] ),
+       (.I0(\app_addr_r1_reg_n_0_[13] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[10] ),
+        .I2(\app_addr_r2_reg_n_0_[13] ),
         .O(row[0]));
   (* SOFT_HLUTNM = "soft_lutpair593" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[10]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[20] ),
+       (.I0(\app_addr_r1_reg_n_0_[23] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[20] ),
+        .I2(\app_addr_r2_reg_n_0_[23] ),
         .O(row[10]));
   (* SOFT_HLUTNM = "soft_lutpair591" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[11]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[21] ),
+       (.I0(\app_addr_r1_reg_n_0_[24] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[21] ),
+        .I2(\app_addr_r2_reg_n_0_[24] ),
         .O(row[11]));
   (* SOFT_HLUTNM = "soft_lutpair599" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[12]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[22] ),
+       (.I0(\app_addr_r1_reg_n_0_[25] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[22] ),
+        .I2(\app_addr_r2_reg_n_0_[25] ),
         .O(row[12]));
   (* SOFT_HLUTNM = "soft_lutpair597" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[13]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[23] ),
+       (.I0(\app_addr_r1_reg_n_0_[26] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[23] ),
-        .O(\app_addr_r1_reg[23]_0 ));
+        .I2(\app_addr_r2_reg_n_0_[26] ),
+        .O(\app_addr_r1_reg[26]_0 ));
   (* SOFT_HLUTNM = "soft_lutpair595" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[1]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[11] ),
+       (.I0(\app_addr_r1_reg_n_0_[14] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[11] ),
+        .I2(\app_addr_r2_reg_n_0_[14] ),
         .O(row[1]));
   (* SOFT_HLUTNM = "soft_lutpair596" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[2]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[12] ),
+       (.I0(\app_addr_r1_reg_n_0_[15] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[12] ),
+        .I2(\app_addr_r2_reg_n_0_[15] ),
         .O(row[2]));
   (* SOFT_HLUTNM = "soft_lutpair591" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[3]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[13] ),
+       (.I0(\app_addr_r1_reg_n_0_[16] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[13] ),
+        .I2(\app_addr_r2_reg_n_0_[16] ),
         .O(row[3]));
   (* SOFT_HLUTNM = "soft_lutpair592" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[4]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[14] ),
+       (.I0(\app_addr_r1_reg_n_0_[17] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[14] ),
+        .I2(\app_addr_r2_reg_n_0_[17] ),
         .O(row[4]));
   (* SOFT_HLUTNM = "soft_lutpair593" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[5]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[15] ),
+       (.I0(\app_addr_r1_reg_n_0_[18] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[15] ),
+        .I2(\app_addr_r2_reg_n_0_[18] ),
         .O(row[5]));
   (* SOFT_HLUTNM = "soft_lutpair594" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[6]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[16] ),
+       (.I0(\app_addr_r1_reg_n_0_[19] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[16] ),
+        .I2(\app_addr_r2_reg_n_0_[19] ),
         .O(row[6]));
   (* SOFT_HLUTNM = "soft_lutpair592" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[7]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[17] ),
+       (.I0(\app_addr_r1_reg_n_0_[20] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[17] ),
+        .I2(\app_addr_r2_reg_n_0_[20] ),
         .O(row[7]));
   (* SOFT_HLUTNM = "soft_lutpair596" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[8]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[18] ),
+       (.I0(\app_addr_r1_reg_n_0_[21] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[18] ),
+        .I2(\app_addr_r2_reg_n_0_[21] ),
         .O(row[8]));
   (* SOFT_HLUTNM = "soft_lutpair595" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \req_row_r_lcl[9]_i_1 
-       (.I0(\app_addr_r1_reg_n_0_[19] ),
+       (.I0(\app_addr_r1_reg_n_0_[22] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[19] ),
+        .I2(\app_addr_r2_reg_n_0_[22] ),
         .O(row[9]));
   LUT2 #(
     .INIT(4'hB)) 
@@ -94741,33 +94741,33 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
   LUT6 #(
     .INIT(64'hB84700000000B847)) 
     row_hit_ns_carry__0_i_1
-       (.I0(\app_addr_r1_reg_n_0_[22] ),
+       (.I0(\app_addr_r1_reg_n_0_[25] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[22] ),
+        .I2(\app_addr_r2_reg_n_0_[25] ),
         .I3(row_hit_r_reg[0]),
-        .I4(\app_addr_r1_reg[23]_0 ),
+        .I4(\app_addr_r1_reg[26]_0 ),
         .I5(row_hit_r_reg[1]),
         .O(S));
   LUT6 #(
     .INIT(64'hB84700000000B847)) 
     row_hit_ns_carry__0_i_1__0
-       (.I0(\app_addr_r1_reg_n_0_[22] ),
+       (.I0(\app_addr_r1_reg_n_0_[25] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[22] ),
+        .I2(\app_addr_r2_reg_n_0_[25] ),
         .I3(row_hit_r_reg[14]),
-        .I4(\app_addr_r1_reg[23]_0 ),
+        .I4(\app_addr_r1_reg[26]_0 ),
         .I5(row_hit_r_reg[15]),
-        .O(\app_addr_r1_reg[22]_0 ));
+        .O(\app_addr_r1_reg[25]_0 ));
   LUT6 #(
     .INIT(64'hB84700000000B847)) 
     row_hit_ns_carry__0_i_1__1
-       (.I0(\app_addr_r1_reg_n_0_[22] ),
+       (.I0(\app_addr_r1_reg_n_0_[25] ),
         .I1(E),
-        .I2(\app_addr_r2_reg_n_0_[22] ),
+        .I2(\app_addr_r2_reg_n_0_[25] ),
         .I3(row_hit_r_reg[16]),
-        .I4(\app_addr_r1_reg[23]_0 ),
+        .I4(\app_addr_r1_reg[26]_0 ),
         .I5(row_hit_r_reg[17]),
-        .O(\app_addr_r1_reg[22]_1 ));
+        .O(\app_addr_r1_reg[25]_1 ));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     row_hit_ns_carry_i_1__0
@@ -97231,10 +97231,10 @@ module mig_7series_0_mig_7series_v4_2_ui_top
     S,
     row,
     \req_row_r_lcl_reg[9] ,
-    \app_addr_r1_reg[22] ,
-    \app_addr_r1_reg[22]_0 ,
+    \app_addr_r1_reg[25] ,
+    \app_addr_r1_reg[25]_0 ,
     was_wr0,
-    \app_addr_r1_reg[26] ,
+    \app_addr_r1_reg[12] ,
     req_wr_r_lcl0,
     \app_addr_r1_reg[9] ,
     \write_buffer.wr_buf_out_data_reg[66] ,
@@ -97415,10 +97415,10 @@ module mig_7series_0_mig_7series_v4_2_ui_top
   output [0:0]S;
   output [13:0]row;
   output [3:0]\req_row_r_lcl_reg[9] ;
-  output [0:0]\app_addr_r1_reg[22] ;
-  output [0:0]\app_addr_r1_reg[22]_0 ;
+  output [0:0]\app_addr_r1_reg[25] ;
+  output [0:0]\app_addr_r1_reg[25]_0 ;
   output was_wr0;
-  output [2:0]\app_addr_r1_reg[26] ;
+  output [2:0]\app_addr_r1_reg[12] ;
   output req_wr_r_lcl0;
   output [9:0]\app_addr_r1_reg[9] ;
   output [11:0]\write_buffer.wr_buf_out_data_reg[66] ;
@@ -97532,9 +97532,9 @@ module mig_7series_0_mig_7series_v4_2_ui_top
   wire [0:0]S;
   wire accept_ns;
   wire [26:0]app_addr;
-  wire [0:0]\app_addr_r1_reg[22] ;
-  wire [0:0]\app_addr_r1_reg[22]_0 ;
-  wire [2:0]\app_addr_r1_reg[26] ;
+  wire [2:0]\app_addr_r1_reg[12] ;
+  wire [0:0]\app_addr_r1_reg[25] ;
+  wire [0:0]\app_addr_r1_reg[25]_0 ;
   wire [9:0]\app_addr_r1_reg[9] ;
   wire [1:0]app_cmd;
   wire \app_cmd_r2_reg[0] ;
@@ -97724,11 +97724,11 @@ module mig_7series_0_mig_7series_v4_2_ui_top
         .Q(rd_data_buf_addr_r),
         .S(S),
         .app_addr(app_addr),
-        .\app_addr_r1_reg[22]_0 (\app_addr_r1_reg[22] ),
-        .\app_addr_r1_reg[22]_1 (\app_addr_r1_reg[22]_0 ),
-        .\app_addr_r1_reg[23]_0 (row[13]),
-        .\app_addr_r1_reg[25]_0 (\app_addr_r1_reg[26] [1]),
-        .\app_addr_r1_reg[26]_0 ({\app_addr_r1_reg[26] [2],\app_addr_r1_reg[26] [0]}),
+        .\app_addr_r1_reg[11]_0 (\app_addr_r1_reg[12] [1]),
+        .\app_addr_r1_reg[12]_0 ({\app_addr_r1_reg[12] [2],\app_addr_r1_reg[12] [0]}),
+        .\app_addr_r1_reg[25]_0 (\app_addr_r1_reg[25] ),
+        .\app_addr_r1_reg[25]_1 (\app_addr_r1_reg[25]_0 ),
+        .\app_addr_r1_reg[26]_0 (row[13]),
         .\app_addr_r1_reg[9]_0 (\app_addr_r1_reg[9] ),
         .app_cmd(app_cmd),
         .\app_cmd_r2_reg[0]_0 (\app_cmd_r2_reg[0] ),

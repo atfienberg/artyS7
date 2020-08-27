@@ -10,8 +10,8 @@ import time
 import sys
 import numpy as np
 
-PGS_TO_TEST = 500
-START_PG = np.random.randint(0, 65536)
+PGS_TO_TEST = 1000
+START_PG = np.random.randint(0, (65536-PGS_TO_TEST))
 
 
 def set_pg_num(arty, pg):
@@ -45,6 +45,7 @@ def main():
     print("Enable DDR3 interface")
     arty.fpga_write("ddr3_enable", 1)
 
+    time.sleep(0.1)
     cal_done = arty.fpga_read("ddr3_cal_complete")
 
     print(f"cal complete: {cal_done}")

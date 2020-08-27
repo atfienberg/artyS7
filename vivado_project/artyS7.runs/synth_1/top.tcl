@@ -19,6 +19,7 @@ proc create_report { reportName command } {
 }
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 create_project -in_memory -part xc7s50csga324-2
@@ -129,6 +130,9 @@ read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM_ooc.xdc]
+
+read_ip -quiet c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

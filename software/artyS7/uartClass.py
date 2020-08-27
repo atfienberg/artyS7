@@ -30,7 +30,7 @@ class uartClass:
         if not self.dryrun:
             self.rs232 = serial.Serial(
                 port=port,
-                baudrate=1000000,
+                baudrate=3000000,
                 parity=serial.PARITY_NONE,
                 stopbits=serial.STOPBITS_ONE,
                 timeout=timeout,

@@ -15,9 +15,9 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Device 21-403] Loading part xc7s50csga324-2
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 12480 
+INFO: Helper process launched with PID 15504 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 729.961 ; gain = 178.027
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 728.742 ; gain = 177.051
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:6]
 	Parameter L_WIDTH_MDOM_TRIG_BUNDLE_TRIG_ET bound to: 1 - type: integer 
@@ -72,7 +72,7 @@ INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/atfie/IceCube/artyS7/hd
 	Parameter L_STOP_POS_MDOM_WVB_CONF_BUNDLE_CNST_RUN bound to: 39 - type: integer 
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE_ZERO_PAD bound to: 0 - type: integer 
 	Parameter L_WIDTH_MDOM_WVB_CONF_BUNDLE bound to: 40 - type: integer 
-	Parameter FW_VNUM bound to: 16'b0000000000001100 
+	Parameter FW_VNUM bound to: 16'b0000000000001110 
 	Parameter N_CHANNELS bound to: 24 - type: integer 
 	Parameter P_WVB_ADR_WIDTH bound to: 10 - type: integer 
 	Parameter P_HDR_WIDTH bound to: 71 - type: integer 
@@ -176,20 +176,21 @@ INFO: [Synth 8-5534] Detected attribute (* DONT_TOUCH = "true" *) [C:/Users/atfi
 INFO: [Synth 8-6157] synthesizing module 'pretrigger_buffer' [C:/Users/atfie/IceCube/artyS7/hdl/pretrigger_buffer/pretrigger_buffer.v:8]
 	Parameter P_PRE_CONF_WIDTH bound to: 5 - type: integer 
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
+	Parameter P_USE_DISTRIBUTED_RAM bound to: 1 - type: integer 
 	Parameter RDY_CNT bound to: 32'b00000000000000000000000000100000 
 	Parameter RD_ADDR_OFFSET bound to: 32'b00000000000000000000000000000010 
-INFO: [Synth 8-6157] synthesizing module 'BUFFER_32_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'BUFFER_32_22' (7#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/BUFFER_32_22_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'DIST_BUFFER_32_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/DIST_BUFFER_32_22_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'DIST_BUFFER_32_22' (7#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/DIST_BUFFER_32_22_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'pretrigger_buffer' (8#1) [C:/Users/atfie/IceCube/artyS7/hdl/pretrigger_buffer/pretrigger_buffer.v:8]
 INFO: [Synth 8-6157] synthesizing module 'waveform_buffer_storage' [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer_storage/waveform_buffer_storage.v:7]
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
 	Parameter P_ADR_WIDTH bound to: 10 - type: integer 
 	Parameter P_HDR_WIDTH bound to: 71 - type: integer 
 	Parameter P_N_WVF_IN_BUF_WIDTH bound to: 10 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'BUFFER_1024_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/BUFFER_1024_22_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'BUFFER_1024_22' (9#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/BUFFER_1024_22_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'FIFO_256_72' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/FIFO_256_72_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'FIFO_256_72' (10#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/FIFO_256_72_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'BUFFER_1024_22' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/BUFFER_1024_22_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'BUFFER_1024_22' (9#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/BUFFER_1024_22_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_256_72' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/FIFO_256_72_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_256_72' (10#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/FIFO_256_72_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'waveform_buffer_storage' (11#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer_storage/waveform_buffer_storage.v:7]
 INFO: [Synth 8-6157] synthesizing module 'wvb_wr_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/wvb_wr_ctrl/wvb_wr_ctrl.v:7]
 	Parameter P_DATA_WIDTH bound to: 22 - type: integer 
@@ -264,7 +265,7 @@ INFO: [Synth 8-6157] synthesizing module 'wvb_overflow_ctrl' [C:/Users/atfie/Ice
 	Parameter P_ADR_WIDTH bound to: 10 - type: integer 
 	Parameter P_HDR_WIDTH bound to: 71 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'wvb_overflow_ctrl' (16#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer/wvb_overflow_ctrl.v:7]
-WARNING: [Synth 8-689] width (12) of port connection 'wvb_wused' does not match port width (11) of module 'wvb_overflow_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer/waveform_buffer.v:187]
+WARNING: [Synth 8-689] width (12) of port connection 'wvb_wused' does not match port width (11) of module 'wvb_overflow_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer/waveform_buffer.v:188]
 INFO: [Synth 8-6155] done synthesizing module 'waveform_buffer' (17#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_buffer/waveform_buffer.v:7]
 WARNING: [Synth 8-3848] Net wvb_trig_test_out in module/entity waveform_acquisition does not have driver. [C:/Users/atfie/IceCube/artyS7/hdl/waveform_acquisition/waveform_acquisition.v:41]
 INFO: [Synth 8-6155] done synthesizing module 'waveform_acquisition' (18#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_acquisition/waveform_acquisition.v:9]
@@ -730,41 +731,41 @@ WARNING: [Synth 8-3848] Net wvb_trig_test_out in module/entity waveform_acquisit
 INFO: [Synth 8-6155] done synthesizing module 'waveform_acquisition__parameterized22' (18#1) [C:/Users/atfie/IceCube/artyS7/hdl/waveform_acquisition/waveform_acquisition.v:9]
 WARNING: [Synth 8-689] width (16) of port connection 'wvb_n_wvf_in_buf' does not match port width (10) of module 'waveform_acquisition__parameterized22' [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:307]
 WARNING: [Synth 8-689] width (16) of port connection 'wvb_wused' does not match port width (12) of module 'waveform_acquisition__parameterized22' [C:/Users/atfie/IceCube/artyS7/hdl/artys7_fw_top.v:308]
-INFO: [Synth 8-6157] synthesizing module 'LCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'LCLK_MMCM' (19#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'REFCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/REFCLK_MMCM_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'REFCLK_MMCM' (20#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/REFCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'LCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'LCLK_MMCM' (19#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/LCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'REFCLK_MMCM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/REFCLK_MMCM_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'REFCLK_MMCM' (20#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/REFCLK_MMCM_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'xdom' [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
 	Parameter N_CHANNELS bound to: 24 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'ft232r_proc_buffered' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
 INFO: [Synth 8-6157] synthesizing module 'ft232r_hs' [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_hs/ft232r_hs.v:17]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 1000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
 	Parameter S0 bound to: 0 - type: integer 
 	Parameter S1 bound to: 1 - type: integer 
 	Parameter S2 bound to: 2 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'rs232_ser' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 1000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
 	Parameter S_IDLE bound to: 2'b00 
 	Parameter S_START bound to: 2'b01 
 	Parameter S_SHIFT bound to: 2'b10 
 	Parameter S_STOP bound to: 2'b11 
-	Parameter LAUNCH_CNT_MAX bound to: 125 - type: integer 
-	Parameter NBITS_LAUNCH_CNT bound to: 7 - type: integer 
+	Parameter LAUNCH_CNT_MAX bound to: 41 - type: integer 
+	Parameter NBITS_LAUNCH_CNT bound to: 6 - type: integer 
 INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:78]
 INFO: [Synth 8-6155] done synthesizing module 'rs232_ser' (21#1) [C:/Users/atfie/IceCube/artyS7/hdl/rs232_ser/rs232_ser.v:17]
 INFO: [Synth 8-6157] synthesizing module 'rs232_des' [C:/Users/atfie/IceCube/artyS7/hdl/rs232_des/rs232_des.v:16]
 	Parameter P_CLK_FREQ_HZ bound to: 125000000 - type: integer 
-	Parameter P_BAUD_RATE bound to: 1000000 - type: integer 
+	Parameter P_BAUD_RATE bound to: 3000000 - type: integer 
 	Parameter S_IDLE bound to: 2'b00 
 	Parameter S_START bound to: 2'b01 
 	Parameter S_SHIFT bound to: 2'b10 
 	Parameter S_STOP bound to: 2'b11 
-	Parameter START_LATCH_CNT_MAX bound to: 62 - type: integer 
-	Parameter SHIFT_LATCH_CNT_MAX bound to: 125 - type: integer 
-	Parameter STOP_LATCH_CNT_MAX bound to: 125 - type: integer 
-	Parameter NBITS_LATCH_CNT bound to: 7 - type: integer 
+	Parameter START_LATCH_CNT_MAX bound to: 20 - type: integer 
+	Parameter SHIFT_LATCH_CNT_MAX bound to: 41 - type: integer 
+	Parameter STOP_LATCH_CNT_MAX bound to: 41 - type: integer 
+	Parameter NBITS_LATCH_CNT bound to: 6 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'sync' [C:/Users/atfie/IceCube/artyS7/hdl/sync/sync.v:5]
 	Parameter P_DEFVAL bound to: 1'b0 
 	Parameter P_NFF bound to: 2 - type: integer 
@@ -819,8 +820,8 @@ INFO: [Synth 8-6155] done synthesizing module 'err_mngr' (27#1) [C:/Users/atfie/
 WARNING: [Synth 8-6014] Unused sequential element n_burst_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:222]
 WARNING: [Synth 8-6014] Unused sequential element err_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:223]
 INFO: [Synth 8-6155] done synthesizing module 'uart_proc_hs' (28#1) [C:/Users/atfie/IceCube/artyS7/hdl/uart_proc_hs/uart_proc_hs.v:16]
-INFO: [Synth 8-6157] synthesizing module 'FIFO_2048_32' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'FIFO_2048_32' (29#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_2048_32' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_2048_32' (29#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/FIFO_2048_32_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'ft232r_proc_buffered' (30#1) [C:/Users/atfie/IceCube/artyS7/hdl/ft232r_proc_buffered/ft232r_proc_buffered.v:9]
 INFO: [Synth 8-6157] synthesizing module 'crs_master' [C:/Users/atfie/IceCube/artyS7/hdl/crs_master/crs_master.v:12]
 	Parameter S_IDLE bound to: 0 - type: integer 
@@ -893,10 +894,10 @@ INFO: [Synth 8-6157] synthesizing module 'n_channel_mux' [C:/Users/atfie/IceCube
 	Parameter INPUT_WIDTH bound to: 16 - type: integer 
 	Parameter SEL_WIDTH bound to: 5 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'n_channel_mux' (34#1) [C:/Users/atfie/IceCube/artyS7/hdl/n_channel_mux/n_channel_mux.v:13]
-INFO: [Synth 8-6157] synthesizing module 'XDOM_DDR3_PG' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/XDOM_DDR3_PG_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'XDOM_DDR3_PG' (35#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/XDOM_DDR3_PG_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'DIRECT_RDOUT_DPRAM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'DIRECT_RDOUT_DPRAM' (36#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'XDOM_DDR3_PG' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/XDOM_DDR3_PG_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'XDOM_DDR3_PG' (35#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/XDOM_DDR3_PG_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'DIRECT_RDOUT_DPRAM' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'DIRECT_RDOUT_DPRAM' (36#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/DIRECT_RDOUT_DPRAM_stub.v:6]
 INFO: [Synth 8-226] default block is never used [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:465]
 WARNING: [Synth 8-3848] Net debug_err_ack in module/entity xdom does not have driver. [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:85]
 INFO: [Synth 8-6155] done synthesizing module 'xdom' (37#1) [C:/Users/atfie/IceCube/artyS7/hdl/xdom/xdom.v:13]
@@ -975,8 +976,8 @@ INFO: [Synth 8-6157] synthesizing module 'DDR3_pg_transfer_ctrl' [C:/Users/atfie
 INFO: [Synth 8-4471] merging register 'app_wdf_end_reg' into 'app_wdf_wren_reg' [C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_pg_transfer_ctrl.v:217]
 WARNING: [Synth 8-6014] Unused sequential element app_wdf_end_reg was removed.  [C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_pg_transfer_ctrl.v:217]
 INFO: [Synth 8-6155] done synthesizing module 'DDR3_pg_transfer_ctrl' (40#1) [C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_pg_transfer_ctrl.v:7]
-INFO: [Synth 8-6157] synthesizing module 'mig_7series_0' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/mig_7series_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mig_7series_0' (41#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-1180-LAPTOP-GBOUD091/realtime/mig_7series_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mig_7series_0' [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/mig_7series_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mig_7series_0' (41#1) [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/.Xil/Vivado-2772-LAPTOP-GBOUD091/realtime/mig_7series_0_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'DDR3_DPRAM_transfer' (42#1) [C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_DPRAM_transfer.v:6]
 INFO: [Synth 8-6157] synthesizing module 'rgb_led_ctrl' [C:/Users/atfie/IceCube/artyS7/hdl/rgb_led_ctrl/rgb_led_ctrl.v:9]
 INFO: [Synth 8-6157] synthesizing module 'pwm' [C:/Users/atfie/IceCube/artyS7/hdl/pwm/pwm.v:11]
@@ -1043,7 +1044,7 @@ WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[30
 WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[29]
 WARNING: [Synth 8-3331] design crs_master has unconnected port a3_buf_wr_data[28]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 820.070 ; gain = 268.137
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 819.605 ; gain = 267.914
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1056,10 +1057,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 820.070 ; gain = 268.137
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 819.605 ; gain = 267.914
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 820.070 ; gain = 268.137
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 819.605 ; gain = 267.914
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -1069,54 +1070,6 @@ Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK
 Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM/LCLK_MMCM_in_context.xdc] for cell 'lclk_mmcm_0'
 Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32/FIFO_2048_32_in_context.xdc] for cell 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0'
 Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/IPCORES/FIFO_2048_32/FIFO_2048_32/FIFO_2048_32_in_context.xdc] for cell 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/PTB'
-Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/PTB'
-Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_32_22/BUFFER_32_22/BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/PTB'
 Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM_in_context.xdc] for cell 'XDOM_0/RDOUT_DPRAM'
 Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM/DIRECT_RDOUT_DPRAM_in_context.xdc] for cell 'XDOM_0/RDOUT_DPRAM'
 Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/BUFFER_1024_22/BUFFER_1024_22/BUFFER_1024_22_in_context.xdc] for cell 'waveform_acq_gen[0].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF'
@@ -1221,6 +1174,54 @@ Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sourc
 Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0/mig_7series_0_in_context.xdc] for cell 'DDR3_TRANSFER_0/MIG_7_SERIES'
 Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM/REFCLK_MMCM_in_context.xdc] for cell 'refclk_mmcm_0'
 Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM/REFCLK_MMCM_in_context.xdc] for cell 'refclk_mmcm_0'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/DIST_PTB'
+Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/DIST_PTB'
+Finished Parsing XDC File [c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22/DIST_BUFFER_32_22_in_context.xdc] for cell 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/DIST_PTB'
 Parsing XDC File [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc]
 WARNING: [Vivado 12-508] No pins matched 'lclk_mmcm_0/inst/mmcm_adv_inst/CLKOUT0'. [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc:31]
 WARNING: [Vivado 12-508] No pins matched 'DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3'. [C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc:33]
@@ -1232,95 +1233,95 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1022.582 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1019.328 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.312 . Memory (MB): peak = 1022.582 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.158 . Memory (MB): peak = 1019.328 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'XDOM_0/PG_DPRAM' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'XDOM_0/RDOUT_DPRAM' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'XDOM_0/UART_DEBUG_0/FIFO_2048_32_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[0].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[0].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[0].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[10].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[10].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[10].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[11].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[11].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[11].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[12].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[12].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[12].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[13].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[13].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[13].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[14].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[14].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[14].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[15].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[15].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[15].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[16].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[16].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[16].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[17].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[17].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[17].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[18].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[18].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[18].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[19].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[19].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[19].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[1].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[1].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[1].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[20].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[20].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[20].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[21].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[21].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[21].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[22].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[22].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[22].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[23].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[23].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[23].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[2].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[2].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[2].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[3].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[3].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[3].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[4].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[4].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[4].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[5].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[5].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[5].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[6].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[6].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[6].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[7].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[7].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[7].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[8].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[8].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[8].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/PTB' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[9].WFM_ACQ/WVB/PTB/DIST_PTB' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[9].WFM_ACQ/WVB/WBS/HDR_FIFO_FMT_0' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'waveform_acq_gen[9].WFM_ACQ/WVB/WBS/WAVEFORM_DISCR_BUFF' at clock pin 'clka' is different from the actual clock period '8.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1425,30 +1426,6 @@ Applied set_property IO_BUFFER_TYPE = NONE for sys_clk_i. (constraint file  c:/U
 Applied set_property CLOCK_BUFFER_TYPE = NONE for sys_clk_i. (constraint file  c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0/mig_7series_0_in_context.xdc, line 100).
 Applied set_property DONT_TOUCH = true for lclk_mmcm_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for XDOM_0/UART_DEBUG_0/FIFO_2048_32_0. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[0].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[1].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[2].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[3].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[4].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[5].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[6].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[7].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[8].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[9].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[10].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[11].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[12].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[13].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[14].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[15].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[16].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[17].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[18].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[19].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[20].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[21].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[22].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for \waveform_acq_gen[23].WFM_ACQ /WVB/PTB/PTB. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for XDOM_0/RDOUT_DPRAM. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for \waveform_acq_gen[0].WFM_ACQ /WVB/WBS/WAVEFORM_DISCR_BUFF. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for \waveform_acq_gen[1].WFM_ACQ /WVB/WBS/WAVEFORM_DISCR_BUFF. (constraint file  auto generated constraint, line ).
@@ -1501,8 +1478,32 @@ Applied set_property DONT_TOUCH = true for \waveform_acq_gen[23].WFM_ACQ /WVB/WB
 Applied set_property DONT_TOUCH = true for XDOM_0/PG_DPRAM. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for DDR3_TRANSFER_0/MIG_7_SERIES. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for refclk_mmcm_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[0].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[1].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[2].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[3].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[4].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[5].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[6].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[7].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[8].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[9].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[10].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[11].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[12].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[13].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[14].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[15].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[16].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[17].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[18].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[19].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[20].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[21].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[22].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \waveform_acq_gen[23].WFM_ACQ /WVB/PTB/DIST_PTB. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:39 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_ser'
 INFO: [Synth 8-802] inferred FSM for state register 'fsm_reg' in module 'rs232_des'
@@ -1695,7 +1696,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 's
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'fsm_reg' using encoding 'sequential' in module 'wvb_wr_ctrl'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:48 ; elapsed = 00:00:48 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1703,7 +1704,7 @@ Report RTL Partitions:
 |      |RTL Partition |Replication |Instances |
 +------+--------------+------------+----------+
 |1     |top__GB0      |           1|     29036|
-|2     |top__GB1      |           1|     25375|
+|2     |top__GB1      |           1|     25317|
 |3     |top__GB2      |           1|     15126|
 |4     |top__GB3      |           1|     16253|
 +------+--------------+------------+----------+
@@ -1725,8 +1726,7 @@ Detailed RTL Component Info :
 	   3 Input     10 Bit       Adders := 1     
 	   2 Input      9 Bit       Adders := 1     
 	   2 Input      8 Bit       Adders := 50    
-	   2 Input      7 Bit       Adders := 2     
-	   2 Input      6 Bit       Adders := 25    
+	   2 Input      6 Bit       Adders := 27    
 	   2 Input      5 Bit       Adders := 48    
 	   3 Input      5 Bit       Adders := 24    
 	   2 Input      4 Bit       Adders := 1     
@@ -1757,8 +1757,7 @@ Detailed RTL Component Info :
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 121   
 	                8 Bit    Registers := 103   
-	                7 Bit    Registers := 2     
-	                6 Bit    Registers := 24    
+	                6 Bit    Registers := 26    
 	                5 Bit    Registers := 76    
 	                4 Bit    Registers := 2     
 	                3 Bit    Registers := 28    
@@ -1800,8 +1799,8 @@ Detailed RTL Component Info :
 	   5 Input      8 Bit        Muxes := 3     
 	   4 Input      8 Bit        Muxes := 1     
 	  24 Input      8 Bit        Muxes := 2     
-	   2 Input      7 Bit        Muxes := 2     
-	   4 Input      7 Bit        Muxes := 2     
+	   2 Input      6 Bit        Muxes := 5     
+	   4 Input      6 Bit        Muxes := 2     
 	  44 Input      6 Bit        Muxes := 1     
 	   2 Input      5 Bit        Muxes := 60    
 	   6 Input      5 Bit        Muxes := 1     
@@ -2709,17 +2708,17 @@ Detailed RTL Component Info :
 Module rs232_ser 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	                8 Bit    Registers := 1     
-	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 2     
 +---Muxes : 
 	   4 Input      8 Bit        Muxes := 1     
-	   2 Input      7 Bit        Muxes := 1     
-	   4 Input      7 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 2     
+	   4 Input      6 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
 	   4 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
@@ -2741,16 +2740,16 @@ Detailed RTL Component Info :
 Module rs232_des 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	                8 Bit    Registers := 1     
-	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input      7 Bit        Muxes := 1     
-	   4 Input      7 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   4 Input      6 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
 	   4 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
@@ -4612,7 +4611,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/XDOM_
 INFO: [Synth 8-3886] merging instance 'i_2/xdom_wvb_conf_bundle_reg_reg[37]' (FD) to 'i_2/xdom_trig_bundle_reg_reg[3]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_2/\xdom_trig_bundle_reg_reg[3] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:45 ; elapsed = 00:01:48 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -4634,7 +4633,7 @@ Report RTL Partitions:
 |      |RTL Partition |Replication |Instances |
 +------+--------------+------------+----------+
 |1     |top__GB0      |           1|     18942|
-|2     |top__GB1      |           1|     15289|
+|2     |top__GB1      |           1|     15382|
 |3     |top__GB2      |           1|      9302|
 |4     |top__GB3      |           1|      9834|
 +------+--------------+------------+----------+
@@ -4646,13 +4645,13 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'DDR3_TRANSFER_0/MIG_7_SER
 INFO: [Synth 8-5578] Moved timing constraint from pin 'refclk_mmcm_0/clk_200MHZ' to pin 'refclk_mmcm_0/bbstub_clk_200MHZ/O'
 INFO: [Synth 8-5819] Moved 3 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:57 ; elapsed = 00:01:59 . Memory (MB): peak = 1029.559 ; gain = 477.625
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1026.508 ; gain = 474.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:03 ; elapsed = 00:02:06 . Memory (MB): peak = 1047.434 ; gain = 495.500
+Finished Timing Optimization : Time (s): cpu = 00:01:20 ; elapsed = 00:01:21 . Memory (MB): peak = 1041.723 ; gain = 490.031
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4660,7 +4659,7 @@ Report RTL Partitions:
 |      |RTL Partition |Replication |Instances |
 +------+--------------+------------+----------+
 |1     |top__GB0      |           1|     18942|
-|2     |top__GB1      |           1|     15077|
+|2     |top__GB1      |           1|     15170|
 |3     |top__GB2      |           1|      9302|
 |4     |top__GB3      |           1|      9834|
 +------+--------------+------------+----------+
@@ -4692,7 +4691,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (\waveform
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\waveform_acq_gen[18].WFM_ACQ/WVB/RD_ADDR/hdr_rd_cnt_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\waveform_acq_gen[19].WFM_ACQ/WVB/RD_ADDR/hdr_rd_cnt_reg[2] )
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:19 ; elapsed = 00:02:22 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Technology Mapping : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4865,7 +4864,7 @@ INFO: [Common 17-14] Message 'Synth 8-4618' appears 100 times and further instan
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:24 ; elapsed = 00:02:26 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished IO Insertion : Time (s): cpu = 00:01:35 ; elapsed = 00:01:37 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -4878,7 +4877,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:24 ; elapsed = 00:02:27 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:36 ; elapsed = 00:01:37 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -4890,25 +4889,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:28 ; elapsed = 00:02:31 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:39 ; elapsed = 00:01:40 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:28 ; elapsed = 00:02:31 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:29 ; elapsed = 00:02:32 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:29 ; elapsed = 00:02:32 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -4924,136 +4923,135 @@ Report BlackBoxes:
 |4     |XDOM_DDR3_PG       |         1|
 |5     |DIRECT_RDOUT_DPRAM |         1|
 |6     |FIFO_2048_32       |         1|
-|7     |BUFFER_32_22       |        24|
+|7     |DIST_BUFFER_32_22  |        24|
 |8     |BUFFER_1024_22     |        24|
 |9     |FIFO_256_72        |        24|
 +------+-------------------+----------+
 
 Report Cell Usage: 
-+------+-------------------+------+
-|      |Cell               |Count |
-+------+-------------------+------+
-|1     |BUFFER_1024_22     |     1|
-|2     |BUFFER_1024_22__24 |     1|
-|3     |BUFFER_1024_22__25 |     1|
-|4     |BUFFER_1024_22__26 |     1|
-|5     |BUFFER_1024_22__27 |     1|
-|6     |BUFFER_1024_22__28 |     1|
-|7     |BUFFER_1024_22__29 |     1|
-|8     |BUFFER_1024_22__30 |     1|
-|9     |BUFFER_1024_22__31 |     1|
-|10    |BUFFER_1024_22__32 |     1|
-|11    |BUFFER_1024_22__33 |     1|
-|12    |BUFFER_1024_22__34 |     1|
-|13    |BUFFER_1024_22__35 |     1|
-|14    |BUFFER_1024_22__36 |     1|
-|15    |BUFFER_1024_22__37 |     1|
-|16    |BUFFER_1024_22__38 |     1|
-|17    |BUFFER_1024_22__39 |     1|
-|18    |BUFFER_1024_22__40 |     1|
-|19    |BUFFER_1024_22__41 |     1|
-|20    |BUFFER_1024_22__42 |     1|
-|21    |BUFFER_1024_22__43 |     1|
-|22    |BUFFER_1024_22__44 |     1|
-|23    |BUFFER_1024_22__45 |     1|
-|24    |BUFFER_1024_22__46 |     1|
-|25    |BUFFER_32_22       |     1|
-|26    |BUFFER_32_22__24   |     1|
-|27    |BUFFER_32_22__25   |     1|
-|28    |BUFFER_32_22__26   |     1|
-|29    |BUFFER_32_22__27   |     1|
-|30    |BUFFER_32_22__28   |     1|
-|31    |BUFFER_32_22__29   |     1|
-|32    |BUFFER_32_22__30   |     1|
-|33    |BUFFER_32_22__31   |     1|
-|34    |BUFFER_32_22__32   |     1|
-|35    |BUFFER_32_22__33   |     1|
-|36    |BUFFER_32_22__34   |     1|
-|37    |BUFFER_32_22__35   |     1|
-|38    |BUFFER_32_22__36   |     1|
-|39    |BUFFER_32_22__37   |     1|
-|40    |BUFFER_32_22__38   |     1|
-|41    |BUFFER_32_22__39   |     1|
-|42    |BUFFER_32_22__40   |     1|
-|43    |BUFFER_32_22__41   |     1|
-|44    |BUFFER_32_22__42   |     1|
-|45    |BUFFER_32_22__43   |     1|
-|46    |BUFFER_32_22__44   |     1|
-|47    |BUFFER_32_22__45   |     1|
-|48    |BUFFER_32_22__46   |     1|
-|49    |DIRECT_RDOUT_DPRAM |     1|
-|50    |FIFO_2048_32       |     1|
-|51    |FIFO_256_72        |     1|
-|52    |FIFO_256_72__24    |     1|
-|53    |FIFO_256_72__25    |     1|
-|54    |FIFO_256_72__26    |     1|
-|55    |FIFO_256_72__27    |     1|
-|56    |FIFO_256_72__28    |     1|
-|57    |FIFO_256_72__29    |     1|
-|58    |FIFO_256_72__30    |     1|
-|59    |FIFO_256_72__31    |     1|
-|60    |FIFO_256_72__32    |     1|
-|61    |FIFO_256_72__33    |     1|
-|62    |FIFO_256_72__34    |     1|
-|63    |FIFO_256_72__35    |     1|
-|64    |FIFO_256_72__36    |     1|
-|65    |FIFO_256_72__37    |     1|
-|66    |FIFO_256_72__38    |     1|
-|67    |FIFO_256_72__39    |     1|
-|68    |FIFO_256_72__40    |     1|
-|69    |FIFO_256_72__41    |     1|
-|70    |FIFO_256_72__42    |     1|
-|71    |FIFO_256_72__43    |     1|
-|72    |FIFO_256_72__44    |     1|
-|73    |FIFO_256_72__45    |     1|
-|74    |FIFO_256_72__46    |     1|
-|75    |LCLK_MMCM          |     1|
-|76    |REFCLK_MMCM        |     1|
-|77    |XDOM_DDR3_PG       |     1|
-|78    |mig_7series_0      |     1|
-|79    |CARRY4             |  1558|
-|80    |LUT1               |  1338|
-|81    |LUT2               |  1020|
-|82    |LUT3               |  1569|
-|83    |LUT4               |  2966|
-|84    |LUT5               |  1406|
-|85    |LUT6               |  3658|
-|86    |MUXF7              |   376|
-|87    |MUXF8              |    13|
-|88    |FDCE               |    11|
-|89    |FDPE               |    16|
-|90    |FDRE               | 12140|
-|91    |FDSE               |   587|
-|92    |IBUF               |     2|
-|93    |OBUF               |    11|
-+------+-------------------+------+
++------+----------------------+------+
+|      |Cell                  |Count |
++------+----------------------+------+
+|1     |BUFFER_1024_22        |     1|
+|2     |BUFFER_1024_22__24    |     1|
+|3     |BUFFER_1024_22__25    |     1|
+|4     |BUFFER_1024_22__26    |     1|
+|5     |BUFFER_1024_22__27    |     1|
+|6     |BUFFER_1024_22__28    |     1|
+|7     |BUFFER_1024_22__29    |     1|
+|8     |BUFFER_1024_22__30    |     1|
+|9     |BUFFER_1024_22__31    |     1|
+|10    |BUFFER_1024_22__32    |     1|
+|11    |BUFFER_1024_22__33    |     1|
+|12    |BUFFER_1024_22__34    |     1|
+|13    |BUFFER_1024_22__35    |     1|
+|14    |BUFFER_1024_22__36    |     1|
+|15    |BUFFER_1024_22__37    |     1|
+|16    |BUFFER_1024_22__38    |     1|
+|17    |BUFFER_1024_22__39    |     1|
+|18    |BUFFER_1024_22__40    |     1|
+|19    |BUFFER_1024_22__41    |     1|
+|20    |BUFFER_1024_22__42    |     1|
+|21    |BUFFER_1024_22__43    |     1|
+|22    |BUFFER_1024_22__44    |     1|
+|23    |BUFFER_1024_22__45    |     1|
+|24    |BUFFER_1024_22__46    |     1|
+|25    |DIRECT_RDOUT_DPRAM    |     1|
+|26    |DIST_BUFFER_32_22     |     1|
+|27    |DIST_BUFFER_32_22__24 |     1|
+|28    |DIST_BUFFER_32_22__25 |     1|
+|29    |DIST_BUFFER_32_22__26 |     1|
+|30    |DIST_BUFFER_32_22__27 |     1|
+|31    |DIST_BUFFER_32_22__28 |     1|
+|32    |DIST_BUFFER_32_22__29 |     1|
+|33    |DIST_BUFFER_32_22__30 |     1|
+|34    |DIST_BUFFER_32_22__31 |     1|
+|35    |DIST_BUFFER_32_22__32 |     1|
+|36    |DIST_BUFFER_32_22__33 |     1|
+|37    |DIST_BUFFER_32_22__34 |     1|
+|38    |DIST_BUFFER_32_22__35 |     1|
+|39    |DIST_BUFFER_32_22__36 |     1|
+|40    |DIST_BUFFER_32_22__37 |     1|
+|41    |DIST_BUFFER_32_22__38 |     1|
+|42    |DIST_BUFFER_32_22__39 |     1|
+|43    |DIST_BUFFER_32_22__40 |     1|
+|44    |DIST_BUFFER_32_22__41 |     1|
+|45    |DIST_BUFFER_32_22__42 |     1|
+|46    |DIST_BUFFER_32_22__43 |     1|
+|47    |DIST_BUFFER_32_22__44 |     1|
+|48    |DIST_BUFFER_32_22__45 |     1|
+|49    |DIST_BUFFER_32_22__46 |     1|
+|50    |FIFO_2048_32          |     1|
+|51    |FIFO_256_72           |     1|
+|52    |FIFO_256_72__24       |     1|
+|53    |FIFO_256_72__25       |     1|
+|54    |FIFO_256_72__26       |     1|
+|55    |FIFO_256_72__27       |     1|
+|56    |FIFO_256_72__28       |     1|
+|57    |FIFO_256_72__29       |     1|
+|58    |FIFO_256_72__30       |     1|
+|59    |FIFO_256_72__31       |     1|
+|60    |FIFO_256_72__32       |     1|
+|61    |FIFO_256_72__33       |     1|
+|62    |FIFO_256_72__34       |     1|
+|63    |FIFO_256_72__35       |     1|
+|64    |FIFO_256_72__36       |     1|
+|65    |FIFO_256_72__37       |     1|
+|66    |FIFO_256_72__38       |     1|
+|67    |FIFO_256_72__39       |     1|
+|68    |FIFO_256_72__40       |     1|
+|69    |FIFO_256_72__41       |     1|
+|70    |FIFO_256_72__42       |     1|
+|71    |FIFO_256_72__43       |     1|
+|72    |FIFO_256_72__44       |     1|
+|73    |FIFO_256_72__45       |     1|
+|74    |FIFO_256_72__46       |     1|
+|75    |LCLK_MMCM             |     1|
+|76    |REFCLK_MMCM           |     1|
+|77    |XDOM_DDR3_PG          |     1|
+|78    |mig_7series_0         |     1|
+|79    |CARRY4                |  1558|
+|80    |LUT1                  |  1338|
+|81    |LUT2                  |  1018|
+|82    |LUT3                  |  1568|
+|83    |LUT4                  |  2967|
+|84    |LUT5                  |  1407|
+|85    |LUT6                  |  3646|
+|86    |MUXF7                 |   379|
+|87    |MUXF8                 |    13|
+|88    |FDCE                  |    11|
+|89    |FDRE                  | 12138|
+|90    |FDSE                  |   603|
+|91    |IBUF                  |     2|
+|92    |OBUF                  |    11|
++------+----------------------+------+
 
 Report Instance Areas: 
 +------+---------------------------------+--------------------------------------+------+
 |      |Instance                         |Module                                |Cells |
 +------+---------------------------------+--------------------------------------+------+
-|1     |top                              |                                      | 30071|
+|1     |top                              |                                      | 30059|
 |2     |  DDR3_TRANSFER_0                |DDR3_DPRAM_transfer                   |   911|
 |3     |    PG_TRANS_CTRL                |DDR3_pg_transfer_ctrl                 |   731|
 |4     |    REQSYNC                      |sync_150                              |     2|
 |5     |  WVB_READER                     |wvb_reader                            |  3924|
 |6     |    RD_CTRL                      |wvb_rd_ctrl_fmt_0                     |   406|
-|7     |  XDOM_0                         |xdom                                  |  1786|
-|8     |    CRSM_0                       |crs_master                            |   582|
-|9     |      NEDGE_0                    |negedge_detector_149                  |     6|
+|7     |  XDOM_0                         |xdom                                  |  1774|
+|8     |    CRSM_0                       |crs_master                            |   584|
+|9     |      NEDGE_0                    |negedge_detector_149                  |     7|
 |10    |    PGACKSYNC                    |sync                                  |     4|
-|11    |    UART_DEBUG_0                 |ft232r_proc_buffered                  |   558|
-|12    |      FT232R_HS_0                |ft232r_hs                             |   144|
+|11    |    UART_DEBUG_0                 |ft232r_proc_buffered                  |   544|
+|12    |      FT232R_HS_0                |ft232r_hs                             |   125|
 |13    |        NEDGE_0                  |negedge_detector_145                  |     3|
 |14    |        PEDGE_0                  |posedge_detector_146                  |     1|
-|15    |        RS232_DES_0              |rs232_des                             |    80|
+|15    |        RS232_DES_0              |rs232_des                             |    67|
 |16    |          NEDGE0                 |negedge_detector_147                  |     1|
 |17    |          SYNC0                  |sync_148                              |     7|
-|18    |        RS232_SER_0              |rs232_ser                             |    57|
-|19    |      UART_PROC_HS_0             |uart_proc_hs                          |   380|
-|20    |        CRC16_8B_P_0             |crc                                   |    71|
+|18    |        RS232_SER_0              |rs232_ser                             |    51|
+|19    |      UART_PROC_HS_0             |uart_proc_hs                          |   385|
+|20    |        CRC16_8B_P_0             |crc                                   |    63|
 |21    |        NEDGE_0                  |negedge_detector                      |     1|
-|22    |        NEDGE_1                  |negedge_detector_144                  |     4|
+|22    |        NEDGE_1                  |negedge_detector_144                  |     2|
 |23    |  led_kr                         |knight_rider                          |    90|
 |24    |  rgb_0                          |rgb_led_ctrl                          |   243|
 |25    |    blue_0                       |pwm_141                               |    81|
@@ -5330,28 +5328,27 @@ Report Instance Areas:
 |296   |      WR_CTRL                    |wvb_wr_ctrl                           |   525|
 +------+---------------------------------+--------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:29 ; elapsed = 00:02:32 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 1100.828 ; gain = 549.137
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:00 ; elapsed = 00:02:16 . Memory (MB): peak = 1102.426 ; gain = 341.004
-Synthesis Optimization Complete : Time (s): cpu = 00:02:30 ; elapsed = 00:02:32 . Memory (MB): peak = 1102.426 ; gain = 550.492
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:25 ; elapsed = 00:01:33 . Memory (MB): peak = 1100.828 ; gain = 342.234
+Synthesis Optimization Complete : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 1100.828 ; gain = 549.137
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 1947 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Netlist 29-17] Analyzing 1950 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1114.703 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1100.828 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 529 Infos, 201 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:47 ; elapsed = 00:02:51 . Memory (MB): peak = 1114.703 ; gain = 797.715
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1114.703 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:52 ; elapsed = 00:01:54 . Memory (MB): peak = 1100.828 ; gain = 784.199
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1100.828 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.runs/synth_1/top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 1114.703 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Aug 26 18:23:21 2020...
+INFO: [Common 17-206] Exiting Vivado at Thu Aug 27 12:09:21 2020...

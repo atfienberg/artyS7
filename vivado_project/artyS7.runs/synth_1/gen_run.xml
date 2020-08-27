@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1598480399">
+<GenRun Id="synth_1" LaunchPart="xc7s50csga324-2" LaunchTime="1598544431">
   <File Type="PA-TCL" Name="top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_reports.tcl"/>
@@ -329,7 +329,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="LCLK_MMCM"/>
@@ -340,6 +342,7 @@
   <BlockFileSet Type="BlockSrcs" Name="BUFFER_4096_22"/>
   <BlockFileSet Type="BlockSrcs" Name="FIFO_256_80"/>
   <BlockFileSet Type="BlockSrcs" Name="BUFFER_2048_22"/>
+  <BlockFileSet Type="BlockSrcs" Name="DIST_BUFFER_32_22"/>
   <BlockFileSet Type="BlockSrcs" Name="REFCLK_MMCM"/>
   <BlockFileSet Type="BlockSrcs" Name="FIFO_256_72"/>
   <BlockFileSet Type="BlockSrcs" Name="XDOM_DDR3_PG"/>

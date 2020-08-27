@@ -32,7 +32,8 @@ module ptb_tb();
    wire tot_out = ptb_out[1];
    wire ptb_rdy;
    pretrigger_buffer #(.P_PRE_CONF_WIDTH(5), 
-                 .P_DATA_WIDTH(22))
+                       .P_DATA_WIDTH(22),
+                       .P_USE_DISTRIBUTED_RAM(1))
     PTB
      (
       .clk(clk),

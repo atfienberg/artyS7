@@ -60,6 +60,7 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 
@@ -91,6 +92,7 @@ set rc [catch {
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM.xci
+  read_ip -quiet c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
   read_xdc C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc
   link_design -top top -part xc7s50csga324-2
   close_msg_db -file init_design.pb

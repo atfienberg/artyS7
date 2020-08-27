@@ -32,7 +32,7 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'hc;
+localparam[15:0] FW_VNUM = 16'he;
 
 // number of fake ADC channels
 localparam N_CHANNELS = 24;

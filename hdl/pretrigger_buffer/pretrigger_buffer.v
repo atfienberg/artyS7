@@ -6,7 +6,8 @@
 // size_config must be >= 3. values < 3 will be interpreted as 3
 
 module pretrigger_buffer #(parameter P_PRE_CONF_WIDTH = 5, 
-	                         parameter P_DATA_WIDTH = 22)
+                           parameter P_DATA_WIDTH = 22,
+                           parameter P_USE_DISTRIBUTED_RAM = 0)
 (
   input clk,
   input rst,
@@ -36,16 +37,33 @@ wire[P_PRE_CONF_WIDTH-1:0] adj_size_conf =
 reg[P_PRE_CONF_WIDTH-1:0] wr_addr = 0;
 wire[P_PRE_CONF_WIDTH-1:0] rd_addr = wr_addr - (adj_size_conf - RD_ADDR_OFFSET);
 
-BUFFER_32_22 PTB
-  (
-   .clka(clk),
-   .wea(1'b1),
-   .addra(wr_addr),
-   .dina(ptb_in),
-   .clkb(clk),
-   .addrb(rd_addr),
-   .doutb(ptb_out)
-  );
+generate
+  if (P_USE_DISTRIBUTED_RAM == 0) begin
+    // use block RAM
+    BUFFER_32_22 PTB
+      (
+       .clka(clk),
+       .wea(1'b1),
+       .addra(wr_addr),
+       .dina(ptb_in),
+       .clkb(clk),
+       .addrb(rd_addr),
+       .doutb(ptb_out)  
+      );  
+  end
+  else begin
+    // Use LUT distributed RAM 
+    DIST_BUFFER_32_22 DIST_PTB
+      (
+       .clk(clk),
+       .a(wr_addr),
+       .d(ptb_in),       
+       .we(1'b1),
+       .dpra(rd_addr),
+       .qdpo(ptb_out)  
+      ); 
+  end
+endgenerate
 
 reg[31:0] cnt = 0;
 always @(posedge clk) begin
