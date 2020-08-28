@@ -11,7 +11,7 @@ import sys
 import numpy as np
 
 PGS_TO_TEST = 500
-START_PG = np.random.randint(0, (65536-PGS_TO_TEST))
+START_PG = np.random.randint(0, (65536 - PGS_TO_TEST))
 
 
 def set_pg_num(arty, pg):
@@ -20,7 +20,7 @@ def set_pg_num(arty, pg):
     set_DDR3_addr(arty, byte_addr)
 
 
-def set_DDR3_addr(arty, byte_addr):    
+def set_DDR3_addr(arty, byte_addr):
     addr_low = byte_addr & 0xFFFF
     addr_high = (byte_addr >> 16) & 0xFFFF
     arty.fpga_write("ddr3_pg_addr_low", addr_low)
@@ -92,14 +92,14 @@ def main():
         print("Mismatch!")
 
     # ship to addr 2
-    print('shipping page to DDR3 addr 16...')
+    print("shipping page to DDR3 addr 16...")
     set_DDR3_addr(arty, 16)
     arty.fpga_write("dpram_sel", 0)
     arty.fpga_write("ddr3_pg_optype", 1)
     arty.fpga_write("ddr3_pg_req", 1)
 
     # read back page 0
-    print('reading back page 0')
+    print("reading back page 0")
     set_DDR3_addr(arty, 0)
     arty.fpga_write("ddr3_pg_optype", 0)
     arty.fpga_write("ddr3_pg_req", 1)

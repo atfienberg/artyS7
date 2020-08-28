@@ -32,7 +32,7 @@ module top(
 `include "mDOM_trig_bundle_inc.v"
 `include "mDOM_wvb_conf_bundle_inc.v"
 
-localparam[15:0] FW_VNUM = 16'he;
+localparam[15:0] FW_VNUM = 16'hf;
 
 // number of fake ADC channels
 localparam N_CHANNELS = 24;
@@ -124,14 +124,30 @@ REFCLK_MMCM refclk_mmcm_0
 //     12'heef: wvb header full [23:16]
 //      
 //     DDR3 test signals
-//     12'dff: page transfer addr[27:16]
-//     12'dfe: page transger addr[15:0]
-//     12'dfd: [0] pg transfer optype (0 read, 1 write)
-//     12'dfc: [0] pg transfer task reg 
-//     12'dfb: DDR3 sys rst (active low)
-//     12'dfa: DDR3 cal complete
-//     12'df9: [11:0] mem interface device temp
-//     12'df8: [0] ddr3 ui sync rst
+//     12'hdff: page transfer addr[27:16]
+//     12'hdfe: page transger addr[15:0]
+//     12'hdfd: [0] pg transfer optype (0 read, 1 write)
+//     12'hdfc: [0] pg transfer task reg 
+//     12'hdfb: DDR3 sys rst (active low)
+//     12'hdfa: DDR3 cal complete
+//     12'hdf9: [11:0] mem interface device temp
+//     12'hdf8: [0] ddr3 ui sync rst
+//
+//     hit buffer controller
+//     12'hcff: [0] enable
+//     12'hcfe: [15:0] start_pg
+//     12'hcfd: [15:0] stop_pg
+//     12'hcfc: [15:0] first_pg (readback)
+//     12'hcfb: [15:0] last_pg (readback)
+//     12'hcfa: [15:0] pg_clr_count
+//     12'hcf9: [0] flush_task
+//              [1] pg_clr_task
+//     12'hcf8: [15:0] rd_pg_num
+//     12'hcf7: [15:0] wr_pg_num
+//     12'hcf6: [15:0] n_used_pgs
+//     12'hcf5: [0] empty
+//              [1] full
+//              [2] buffered_data
 //
 //     12'8ff: LED toggle
 //             [0] configurable RGB LED toggle
@@ -168,7 +184,7 @@ wire[N_CHANNELS-1:0] wvb_hdr_full;
 // wvb reader
 wire[15:0] rdout_dpram_len;
 wire rdout_dpram_run;
-wire rdout_dpram_busy;
+wire xdom_rdout_dpram_busy;
 wire rdout_dpram_wren;
 wire[9:0] rdout_dpram_wr_addr;
 wire[31:0] rdout_dpram_data;
@@ -177,18 +193,36 @@ wire wvb_reader_dpram_mode;
 
 // DDR3 interface
 wire ddr3_ui_clk;
-wire[27:0] pg_req_addr;
-wire pg_optype;
-wire pg_req;
-wire pg_ack;
+wire[27:0] xdom_pg_req_addr;
+wire xdom_pg_optype;
+wire xdom_pg_req;
+wire xdom_pg_ack;
 wire ddr3_sys_rst;
 wire ddr3_cal_complete;
 wire ddr3_ui_sync_rst;
 wire[11:0] ddr3_device_temp;
 wire[7:0] ddr3_dpram_addr;
-wire ddr3_dpram_wren;
+wire xdom_ddr3_dpram_wren;
 wire[127:0] ddr3_dpram_din;
-wire[127:0] ddr3_dpram_dout;
+wire[127:0] xdom_ddr3_dpram_dout;
+
+// hit buffer controller
+wire hbuf_enable;
+wire[15:0] hbuf_start_pg;
+wire[15:0] hbuf_stop_pg;
+wire[15:0] hbuf_first_pg;
+wire[15:0] hbuf_last_pg;
+wire[15:0] hbuf_pg_clr_count;
+wire hbuf_pg_clr_req;
+wire hbuf_pg_clr_ack;
+wire hbuf_flush_req;
+wire hbuf_flush_ack;
+wire[15:0] hbuf_rd_pg_num;
+wire[15:0] hbuf_wr_pg_num;
+wire[15:0] hbuf_n_used_pgs;
+wire hbuf_empty;
+wire hbuf_full;
+wire hbuf_buffered_data;
 
 xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
 (
@@ -219,9 +253,9 @@ xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
 
   // wvb reader
   .dpram_len_in(rdout_dpram_len),
-  .rdout_dpram_run(rdout_dpram_run),
-  .dpram_busy(rdout_dpram_busy),
-  .rdout_dpram_wren(rdout_dpram_wren),
+  .rdout_dpram_run(rdout_dpram_run && !hbuf_enable),
+  .dpram_busy(xdom_rdout_dpram_busy),
+  .rdout_dpram_wren(rdout_dpram_wren && !hbuf_enable),
   .rdout_dpram_wr_addr(rdout_dpram_wr_addr),
   .rdout_dpram_data(rdout_dpram_data),
   .wvb_reader_enable(wvb_reader_enable),
@@ -229,19 +263,36 @@ xdom #(.N_CHANNELS(N_CHANNELS)) XDOM_0
 
   // DDR3 interface
   .ddr3_ui_clk(ddr3_ui_clk),
-  .pg_req_addr(pg_req_addr),
-  .pg_optype(pg_optype),
-
-  .pg_req(pg_req),
-  .pg_ack(pg_ack),
+  .pg_req_addr(xdom_pg_req_addr),
+  .pg_optype(xdom_pg_optype),
+  .pg_req(xdom_pg_req),
+  .pg_ack(xdom_pg_ack),
   .ddr3_sys_rst(ddr3_sys_rst),
   .ddr3_cal_complete(ddr3_cal_complete),
   .ddr3_ui_sync_rst(ddr3_ui_sync_rst),
   .ddr3_device_temp(ddr3_device_temp),
   .ddr3_dpram_addr(ddr3_dpram_addr),
-  .ddr3_dpram_wren(ddr3_dpram_wren),
+  .ddr3_dpram_wren(xdom_ddr3_dpram_wren),
   .ddr3_dpram_din(ddr3_dpram_din),
-  .ddr3_dpram_dout(ddr3_dpram_dout),
+  .ddr3_dpram_dout(xdom_ddr3_dpram_dout),
+
+  // hit buffer controller
+  .hbuf_enable(hbuf_enable),
+  .hbuf_start_pg(hbuf_start_pg),
+  .hbuf_stop_pg(hbuf_stop_pg),
+  .hbuf_first_pg(hbuf_first_pg),
+  .hbuf_last_pg(hbuf_last_pg),
+  .hbuf_pg_clr_count(hbuf_pg_clr_count),
+  .hbuf_pg_clr_req(hbuf_pg_clr_req),
+  .hbuf_pg_clr_ack(hbuf_pg_clr_ack),
+  .hbuf_flush_req(hbuf_flush_req),
+  .hbuf_flush_ack(hbuf_flush_ack),
+  .hbuf_rd_pg_num(hbuf_rd_pg_num),
+  .hbuf_wr_pg_num(hbuf_wr_pg_num),
+  .hbuf_n_used_pgs(hbuf_n_used_pgs),
+  .hbuf_empty(hbuf_empty),
+  .hbuf_full(hbuf_full),
+  .hbuf_buffered_data(hbuf_buffered_data),
 
   // debug UART
   .debug_txd(UART_TXD),
@@ -329,10 +380,66 @@ generate
   end
 endgenerate
 
+//
+// hit buffer controller
+//
+wire hbuf_dpram_busy;
+wire[127:0] hbuf_dpram_dout;
+wire[7:0] hbuf_dpram_addr;
+wire hbuf_pg_req;
+wire hbuf_pg_ack;
+wire hbuf_pg_optype;
+wire[27:0] hbuf_pg_req_addr;
+
+hbuf_ctrl HBUF_CTRL_0
+(
+ .clk(lclk),
+ .rst(lclk_rst),
+ .en(hbuf_enable),
+
+ .start_pg(hbuf_start_pg),
+ .stop_pg(hbuf_stop_pg),
+ .first_pg(hbuf_first_pg),
+ .last_pg(hbuf_last_pg),
+
+ .flush_req(hbuf_flush_req),
+ .flush_ack(hbuf_flush_ack),
+
+ .empty(hbuf_empty),
+ .full(hbuf_full),
+ .rd_pg_num(hbuf_rd_pg_num),
+ .wr_pg_num(hbuf_wr_pg_num),
+ .n_used_pgs(hbuf_n_used_pgs),
+ 
+ .pg_clr_cnt(hbuf_pg_clr_count),
+ .pg_clr_req(hbuf_pg_clr_req),
+ .pg_clr_ack(hbuf_pg_clr_ack),
+ 
+ .buffered_data(hbuf_buffered_data),
+ 
+ .dpram_len_in(rdout_dpram_len),
+ .rdout_dpram_run(rdout_dpram_run && hbuf_enable),
+ .dpram_busy(hbuf_dpram_busy),
+ .rdout_dpram_wren(rdout_dpram_wren && hbuf_enable),
+
+ .rdout_dpram_wr_addr(rdout_dpram_wr_addr),
+ .rdout_dpram_data(rdout_dpram_data),
+ 
+ .ddr3_ui_clk(ddr3_ui_clk),
+ .ddr3_dpram_dout(hbuf_dpram_dout),
+ .ddr3_dpram_rd_addr(ddr3_dpram_addr),
+
+ .pg_ack(hbuf_pg_ack),
+ .pg_req(hbuf_pg_req),
+ .pg_optype(hbuf_pg_optype),
+ .pg_addr(hbuf_pg_req_addr)
+);
 
 //
 // Waveform buffer reader
 // 
+
+wire rdout_dpram_busy = hbuf_enable ? hbuf_dpram_busy : xdom_rdout_dpram_busy;
 
 wvb_reader #(.N_CHANNELS(N_CHANNELS),
              .P_WVB_ADR_WIDTH(P_WVB_ADR_WIDTH),
@@ -362,6 +469,44 @@ WVB_READER
 );
 
 //
+// DDR3 pg transfer mux
+// runs in DDR3 UI clock domain
+//
+
+wire ddr3_pg_req;
+wire ddr3_pg_optype;
+wire ddr3_pg_ack;
+wire[27:0] ddr3_pg_req_addr;
+wire[127:0] ddr3_dpram_dout;
+wire ddr3_dpram_wren;
+
+DDR3_pg_transfer_mux DDR3_MUX
+(
+ .clk(ddr3_ui_clk),
+ .rst(ddr3_ui_sync_rst),
+
+ .hbuf_pg_req(hbuf_pg_req),
+ .hbuf_pg_optype(hbuf_pg_optype),
+ .hbuf_pg_ack(hbuf_pg_ack),
+ .hbuf_pg_req_addr(hbuf_pg_req_addr),
+ .hbuf_dpram_dout(hbuf_dpram_dout),
+
+ .xdom_pg_req(xdom_pg_req),
+ .xdom_pg_optype(xdom_pg_optype),
+ .xdom_pg_ack(xdom_pg_ack),
+ .xdom_pg_req_addr(xdom_pg_req_addr),
+ .xdom_dpram_dout(xdom_ddr3_dpram_dout),
+ .xdom_dpram_wren(xdom_ddr3_dpram_wren),
+
+ .ddr3_pg_req(ddr3_pg_req),
+ .ddr3_pg_optype(ddr3_pg_optype),
+ .ddr3_pg_ack(ddr3_pg_ack),
+ .ddr3_pg_req_addr(ddr3_pg_req_addr),
+ .ddr3_dpram_dout(ddr3_dpram_dout),
+ .ddr3_dpram_wren(ddr3_dpram_wren)
+);
+
+//
 // DDR3 page transter
 //
 
@@ -388,22 +533,21 @@ DDR3_DPRAM_transfer DDR3_TRANSFER_0
  .ui_clk(ddr3_ui_clk),
 
  .sys_rst(ddr3_sys_rst),
- .pg_req(pg_req),
- .pg_optype(pg_optype),
- .pg_req_addr(pg_req_addr),
+ 
+ .pg_req(ddr3_pg_req),
+ .pg_optype(ddr3_pg_optype),
+ .pg_req_addr(ddr3_pg_req_addr),
+ .pg_ack(ddr3_pg_ack),
 
- .pg_ack(pg_ack),
  .init_calib_complete(ddr3_cal_complete),
  .ui_clk_sync_rst(ddr3_ui_sync_rst),
  .device_temp(ddr3_device_temp),
 
  .dpram_dout(ddr3_dpram_dout),
-
  .dpram_din(ddr3_dpram_din),
  .dpram_addr(ddr3_dpram_addr),
  .dpram_wren(ddr3_dpram_wren)
 );
-
 
 //
 // LED controls
@@ -423,7 +567,7 @@ assign TRICOLOR_LED[2:0] = rgb_0_out & {3{led_toggle[0]}};
 rgb_led_ctrl rgb_0
 (
   .clk(lclk),
-  .rst(lck_rst),
+  .rst(lclk_rst),
   .red(red_led_lvl_0),
   .green(green_led_lvl_0),
   .blue(blue_led_lvl_0),
@@ -442,7 +586,7 @@ assign TRICOLOR_LED[5:3] = rgb_1_out & {3{led_toggle[1]}};
 rgb_led_ctrl rgb_1
 (
   .clk(lclk),
-  .rst(lck_rst),
+  .rst(lclk_rst),
   .red(red_led_lvl_1),
   .green(green_led_lvl_1),
   .blue(blue_led_lvl_1),

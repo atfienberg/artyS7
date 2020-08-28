@@ -65,6 +65,24 @@ module xdom #(parameter N_CHANNELS = 24)
  input[127:0] ddr3_dpram_din,
  output[127:0] ddr3_dpram_dout,
 
+ // hit buffer controller
+ output reg hbuf_enable = 0,
+ output reg[15:0] hbuf_start_pg = 0,
+ output reg[15:0] hbuf_stop_pg = 0,
+ input[15:0] hbuf_first_pg,
+ input[15:0] hbuf_last_pg,
+ output reg[15:0] hbuf_pg_clr_count = 0,
+ output reg hbuf_pg_clr_req = 0,
+ input hbuf_pg_clr_ack,
+ output reg hbuf_flush_req = 0,
+ input hbuf_flush_ack,
+ input[15:0] hbuf_rd_pg_num,
+ input[15:0] hbuf_wr_pg_num,
+ input[15:0] hbuf_n_used_pgs,
+ input hbuf_empty,
+ input hbuf_full,
+ input hbuf_buffered_data,
+
  // Debug FT232R I/O
  input             debug_txd,
  output            debug_rxd,
@@ -262,12 +280,41 @@ always @(posedge clk) begin
     pg_req <= 0;
   end
 
-  else if (pg_req_start) begin
+  else if (pg_req_start && !pg_ack_s) begin
     pg_req <= 1;
   end
-
 end
 wire pg_task_val = pg_ack_s || pg_req;
+
+// hbuf_flush task reg
+reg flush_req_start = 0;
+always @(posedge clk) begin
+  hbuf_flush_req <= hbuf_flush_req;
+
+  if (hbuf_flush_ack || !hbuf_enable) begin
+    hbuf_flush_req <= 0;
+  end
+
+  else if (flush_req_start && !hbuf_flush_ack) begin
+    hbuf_flush_req <= 1;
+  end
+end
+wire flush_req_val = hbuf_flush_req || hbuf_flush_ack;
+
+// hbuf_pg_clr task reg
+reg pg_clr_req_start = 0;
+always @(posedge clk) begin
+  hbuf_pg_clr_req <= hbuf_pg_clr_req;
+
+  if (hbuf_pg_clr_ack || !hbuf_enable) begin
+    hbuf_pg_clr_req <= 0;
+  end
+
+  else if (pg_clr_req_start && !hbuf_pg_clr_ack) begin
+    hbuf_pg_clr_req <= 1;
+  end
+end
+wire pg_clr_req_val = hbuf_pg_clr_req || hbuf_pg_clr_ack;
 
 always @(*)
  begin
@@ -316,6 +363,19 @@ always @(*)
       12'hdfa: begin y_rd_data =       {15'b0, ddr3_cal_complete};                             end
       12'hdf9: begin y_rd_data =       {5'b0, ddr3_device_temp};                               end
       12'hdf8: begin y_rd_data =       {15'b0, ddr3_ui_sync_rst};                              end
+      12'hcff: begin y_rd_data =       {15'b0, hbuf_enable};                                   end
+      12'hcfe: begin y_rd_data =       hbuf_start_pg;                                          end
+      12'hcfd: begin y_rd_data =       hbuf_stop_pg;                                           end
+      12'hcfc: begin y_rd_data =       hbuf_first_pg;                                          end
+      12'hcfb: begin y_rd_data =       hbuf_last_pg;                                           end
+      12'hcfa: begin y_rd_data =       hbuf_pg_clr_count;                                      end
+      12'hcf9: begin y_rd_data =       {14'b0, pg_clr_req_val, flush_req_val};                 end
+      12'hcf8: begin y_rd_data =       hbuf_rd_pg_num;                                         end
+      12'hcf7: begin y_rd_data =       hbuf_wr_pg_num;                                         end
+      12'hcf6: begin y_rd_data =       hbuf_n_used_pgs;                                        end
+      12'hcf5: begin y_rd_data =       {13'b0, 
+                                        hbuf_buffered_data, 
+                                        hbuf_full, hbuf_empty};                                end
       12'h8ff: begin y_rd_data =       {13'h0, led_toggle};                                    end
       12'h8fe: begin y_rd_data =       {1'h0, red_led_lvl};                                    end
       12'h8fd: begin y_rd_data =       {1'h0, green_led_lvl};                                  end
@@ -340,6 +400,8 @@ always @(posedge clk)
     xdom_wvb_arm <= 0;
 
     pg_req_start <= 0;
+    flush_req_start <= 0;
+    pg_clr_req_start <= 0;
 
     if(y_wr) 
       case(y_adr)       
@@ -375,6 +437,14 @@ always @(posedge clk)
         12'hdfd: begin pg_optype <= y_wr_data[0];                                              end
         12'hdfc: begin pg_req_start <= y_wr_data[0];                                           end
         12'hdfb: begin ddr3_sys_rst <= y_wr_data[0];                                           end        
+        12'hcff: begin hbuf_enable <= y_wr_data[0];                                            end        
+        12'hcfe: begin hbuf_start_pg <= y_wr_data;                                             end        
+        12'hcfd: begin hbuf_stop_pg <= y_wr_data;                                              end        
+        12'hcfa: begin hbuf_pg_clr_count <= y_wr_data;                                         end        
+        12'hcf9: begin 
+           flush_req_start <= y_wr_data[0];                                           
+           pg_clr_req_start <= y_wr_data[1];                                           
+         end        
         12'h8ff: begin led_toggle <= y_wr_data[2:0];                                           end
         12'h8fe: begin red_led_lvl <= y_wr_data[14:0];                                         end
         12'h8fd: begin green_led_lvl <= y_wr_data[14:0];                                       end

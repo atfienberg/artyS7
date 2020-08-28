@@ -11,7 +11,7 @@ import sys
 import numpy as np
 
 PGS_TO_TEST = 1000
-START_PG = np.random.randint(0, (65536-PGS_TO_TEST))
+START_PG = np.random.randint(0, (65536 - PGS_TO_TEST))
 
 
 def set_pg_num(arty, pg):

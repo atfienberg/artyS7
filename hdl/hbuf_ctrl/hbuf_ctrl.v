@@ -86,7 +86,7 @@ module hbuf_ctrl
 // instantiate the reader DPRAM and the DDR3 DPRAM
 
 //
-// wvb_reader DPRAM
+// wvb_reader readout DPRAM
 //
 
 reg[8:0] rdout_dpram_rd_addr = 0;
@@ -103,7 +103,7 @@ HBUF_RDOUT_DPRAM READER_DPRAM_0
 );
 
 //
-// DDR3 dpram
+// DDR3 page transfer dpram
 //
 
 reg pg_dpram_wren = 0;
@@ -270,22 +270,26 @@ localparam S_IDLE = 0,
            S_FLUSH = 8,
            S_FLUSH_ACK = 9,
            S_FULL = 10;
+reg[3:0] fsm = S_IDLE;
 assign full = fsm == S_FULL;
 assign empty = (!en) || ((rd_pg_num == wr_pg_num) && !full);
-reg[3:0] fsm = S_IDLE;
 
 localparam DPRAM_RD_LATENCY = 2;
 localparam LAST_PG_DPRAM_ADDR = 511;
-// the address of the data currently presented 
-// during a stream
+// the address of the data currently presented during a stream
 wire[8:0] stream_rd_addr = rdout_dpram_rd_addr - DPRAM_RD_LATENCY;
-// whether the DPRAM len is odd; if so, we will need to zero-pad the last word
-wire odd_dpram_len = dpram_len[0] == 1'b1;
-wire[8:0] shifted_dpram_len = dpram_len >> 1'b1;
-// dpram_len on the 64-bit read side
+
+// dpram_len is in units of 16-bit words, we need it in units of 32-bit words
+wire[9:0] half_dpram_len = dpram_len >> 1'b1;
+// whether the 32-bit DPRAM len is odd; if so, we will need to zero-pad the last 64-bit word
+wire odd_dpram_len = half_dpram_len[0] == 1'b1;
+// calculate the required number of 64-bit reads
+wire[8:0] shifted_dpram_len = half_dpram_len >> 1'b1;
 wire[8:0] rd_side_dpram_len = odd_dpram_len ? shifted_dpram_len + 9'b1 : shifted_dpram_len; 
+
 reg[8:0] final_dpram_rd_addr = 0;
 always @(posedge clk) begin
+  // this is the quantity used in the state machine logic below
   final_dpram_rd_addr <= rd_side_dpram_len - 9'b1; 
 end
 
@@ -293,7 +297,7 @@ wire[15:0] next_wr_pg_num = wr_pg_num == i_stop_pg ? i_start_pg : wr_pg_num + 1;
 
 localparam HDR = {16'h5555, 16'hAAAA, 16'h5555, 16'hA000};
 // leave out FTR CRC until I get everything else working
-localparam FTR = {16'hAAAA, 16'h5555, 16'hAAAA, 16'hBEEF};
+localparam FTR = {16'hBEEF, 16'hAAAA, 16'h5555, 16'hAAAA};
 
 reg[31:0] cnt = 0;
 // state to return to after writing the header
@@ -431,14 +435,14 @@ always @(posedge clk) begin
 
       S_INC_WR_PG: begin
         if (!pg_ack) begin
-          buffered_data <= 0;         
+          buffered_data <= dpram_busy;
 
           wr_pg_num <= next_wr_pg_num;
-          if (next_wr_pg_num == rd_pg_num) begin            
-            fsm <= S_FULL;            
+          if (next_wr_pg_num == rd_pg_num) begin
+            fsm <= S_FULL;
           end
 
-          else begin            
+          else begin
             fsm <= S_WR_HDR;
           end
         end
