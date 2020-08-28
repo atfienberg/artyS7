@@ -1,4 +1,5 @@
 // Aaron Fienberg
+// Aug 2020
 //
 // Controller to transfer pages 
 // from/to external DDR3 memory to/from FPGA DPRAM

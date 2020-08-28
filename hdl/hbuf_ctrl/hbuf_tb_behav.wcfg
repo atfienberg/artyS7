@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="hbuf_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="hbuf_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="174794458333fs"></ZoomStartTime>
+      <ZoomEndTime time="174879108334fs"></ZoomEndTime>
+      <Cursor1Time time="174745000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="329"></NameColumnWidth>
+      <ValueColumnWidth column_width="170"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="32" />
+   <wvobject fp_name="/hbuf_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/ltc" type="array">
+      <obj_property name="ElementShortName">ltc[47:0]</obj_property>
+      <obj_property name="ObjectShortName">ltc[47:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/en" type="logic">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/start_pg" type="array">
+      <obj_property name="ElementShortName">start_pg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">start_pg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/stop_pg" type="array">
+      <obj_property name="ElementShortName">stop_pg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">stop_pg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/flush_req" type="logic">
+      <obj_property name="ElementShortName">flush_req</obj_property>
+      <obj_property name="ObjectShortName">flush_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/flush_ack" type="logic">
+      <obj_property name="ElementShortName">flush_ack</obj_property>
+      <obj_property name="ObjectShortName">flush_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/buffered_data" type="logic">
+      <obj_property name="ElementShortName">buffered_data</obj_property>
+      <obj_property name="ObjectShortName">buffered_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/wr_pg_num" type="array">
+      <obj_property name="ElementShortName">wr_pg_num[15:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_pg_num[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/rd_pg_num" type="array">
+      <obj_property name="ElementShortName">rd_pg_num[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_pg_num[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/n_used_pgs" type="array">
+      <obj_property name="ElementShortName">n_used_pgs[15:0]</obj_property>
+      <obj_property name="ObjectShortName">n_used_pgs[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/dpram_len_in" type="array">
+      <obj_property name="ElementShortName">dpram_len_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dpram_len_in[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/dpram_run" type="logic">
+      <obj_property name="ElementShortName">dpram_run</obj_property>
+      <obj_property name="ObjectShortName">dpram_run</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/dpram_busy" type="logic">
+      <obj_property name="ElementShortName">dpram_busy</obj_property>
+      <obj_property name="ObjectShortName">dpram_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/rdout_dpram_wren" type="logic">
+      <obj_property name="ElementShortName">rdout_dpram_wren</obj_property>
+      <obj_property name="ObjectShortName">rdout_dpram_wren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/fsm" type="array">
+      <obj_property name="ElementShortName">fsm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fsm[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/rdout_dpram_wr_addr" type="array">
+      <obj_property name="ElementShortName">rdout_dpram_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rdout_dpram_wr_addr[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/rdout_dpram_wr_data" type="array">
+      <obj_property name="ElementShortName">rdout_dpram_wr_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rdout_dpram_wr_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_req" type="logic">
+      <obj_property name="ElementShortName">pg_req</obj_property>
+      <obj_property name="ObjectShortName">pg_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_ack" type="logic">
+      <obj_property name="ElementShortName">pg_ack</obj_property>
+      <obj_property name="ObjectShortName">pg_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_addr" type="array">
+      <obj_property name="ElementShortName">pg_addr[27:0]</obj_property>
+      <obj_property name="ObjectShortName">pg_addr[27:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_clr_cnt" type="array">
+      <obj_property name="ElementShortName">pg_clr_cnt[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pg_clr_cnt[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_clr_req" type="logic">
+      <obj_property name="ElementShortName">pg_clr_req</obj_property>
+      <obj_property name="ObjectShortName">pg_clr_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/pg_clr_ack" type="logic">
+      <obj_property name="ElementShortName">pg_clr_ack</obj_property>
+      <obj_property name="ObjectShortName">pg_clr_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/empty" type="logic">
+      <obj_property name="ElementShortName">empty</obj_property>
+      <obj_property name="ObjectShortName">empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/full" type="logic">
+      <obj_property name="ElementShortName">full</obj_property>
+      <obj_property name="ObjectShortName">full</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/fsm" type="array">
+      <obj_property name="ElementShortName">fsm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fsm[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/ret" type="array">
+      <obj_property name="ElementShortName">ret[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ret[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/stream_rd_addr" type="array">
+      <obj_property name="ElementShortName">stream_rd_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">stream_rd_addr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/pg_dpram_wr_addr" type="array">
+      <obj_property name="ElementShortName">pg_dpram_wr_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">pg_dpram_wr_addr[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/pg_dpram_wren" type="logic">
+      <obj_property name="ElementShortName">pg_dpram_wren</obj_property>
+      <obj_property name="ObjectShortName">pg_dpram_wren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/hbuf_tb/HBUF_CTRL_0/pg_dpram_din" type="array">
+      <obj_property name="ElementShortName">pg_dpram_din[63:0]</obj_property>
+      <obj_property name="ObjectShortName">pg_dpram_din[63:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+</wave_config>
