@@ -149,7 +149,7 @@ always @(posedge clk) begin
     S_RUN: begin
       if (!dpram_busy) begin
         dpram_run <= 1;
-        dpram_len_in <= RAMP_LEN;
+        dpram_len_in <= 2*RAMP_LEN;
         fsm <= S_BUSY;
       end
     end
