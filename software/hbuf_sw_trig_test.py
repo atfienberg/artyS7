@@ -9,7 +9,11 @@ from ddr3_test import read_DDR3_pg
 from sw_trig_all import *
 import time
 import sys
+
+import crcmod
 import numpy as np
+
+CRC16 = crcmod.mkCrcFun(0x18005, rev=False, initCrc=0xFFFF, xorOut=0x0000)
 
 test_conf = 1021
 
@@ -27,6 +31,10 @@ def print_hbuf_status(arty):
     print(f"hbuf n pages used: {n_used_pgs}")
 
 
+def calc_pg_crc(pg_data):
+    return CRC16(pg_data[4:-4].byteswap().tobytes())
+
+
 def pop_hbuf_pg(arty):
     is_empty = arty.fpga_read("hbuf_stat") & 0x1
     if is_empty:
@@ -40,9 +48,11 @@ def pop_hbuf_pg(arty):
     arty.fpga_write("hbuf_pg_clr_count", 1)
     arty.fpga_write("hbuf_task_reg", 0x2)
 
+    crc = calc_pg_crc(pg_data)
+
     # check header and footer
     hdr = np.array([0xA000, 0x5555, 0xAAAA, 0x5555], dtype=np.uint16)
-    ftr = np.array([0xAAAA, 0x5555, 0xAAAA, 0xBEEF], dtype=np.uint16)
+    ftr = np.array([0xAAAA, 0x5555, 0xAAAA, crc], dtype=np.uint16)
 
     if not np.array_equal(pg_data[:4], hdr):
         failed_hdr = [f"0x{v:04x}" for v in pg_data[:4]]

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Thu Aug 27 12:15:16 2020
+| Date         : Sat Aug 29 17:49:14 2020
 | Host         : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -24,12 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 3
+             Violations found: 11
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
 | REQP-1709 | Warning  | Clock output buffering                              | 1          |
+| REQP-1839 | Warning  | RAMB36 async control check                          | 8          |
 | RTSTAT-10 | Warning  | No routable loads                                   | 1          |
 +-----------+----------+-----------------------------------------------------+------------+
 
@@ -53,9 +54,49 @@ Clock output buffering
 PLLE2_ADV connectivity violation. The signal DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/pll_clk3_out on the DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i/CLKOUT3 pin of DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/plle2_i does not drive the same kind of BUFFER load as the other CLKOUT pins. Routing from the different buffer types will not be phase aligned.
 Related violations: <none>
 
+REQP-1839#1 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_53) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#2 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_53) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#3 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_54) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#4 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_54) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#5 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_55) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#6 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_55) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#7 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_56) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#8 Warning
+RAMB36 async control check  
+The RAMB36E1 XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/ENBWREN (net: XDOM_0/PG_DPRAM/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_56) which is driven by a register (DDR3_TRANSFER_0/MIG_7_SERIES/u_mig_7series_0_mig/u_ddr3_infrastructure/rstdiv0_sync_r_reg[11]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
 RTSTAT-10#1 Warning
 No routable loads  
-123 net(s) have no routable loads. The problem bus(es) and/or net(s) are waveform_acq_gen[0].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[21].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[5].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[1].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[7].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[20].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[2].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[15].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[10].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[11].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[16].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[23].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[3].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[4].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[19].WFM_ACQ/i_xdom_wvb_config_bundle[37] (the first 15 of 123 listed).
+123 net(s) have no routable loads. The problem bus(es) and/or net(s) are waveform_acq_gen[0].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[15].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[22].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[1].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[23].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[16].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[7].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[10].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[2].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[19].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[17].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[3].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[11].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[21].WFM_ACQ/i_xdom_wvb_config_bundle[37], waveform_acq_gen[18].WFM_ACQ/i_xdom_wvb_config_bundle[37] (the first 15 of 123 listed).
 Related violations: <none>
 
 

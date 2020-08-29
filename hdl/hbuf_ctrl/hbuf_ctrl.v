@@ -269,7 +269,8 @@ localparam S_IDLE = 0,
            S_INC_WR_PG = 7,
            S_FLUSH = 8,
            S_FLUSH_ACK = 9,
-           S_FULL = 10;
+           S_FULL = 10,
+           S_CRC_WAIT = 11;
 reg[3:0] fsm = S_IDLE;
 assign full = fsm == S_FULL;
 assign empty = (!en) || ((rd_pg_num == wr_pg_num) && !full);
@@ -295,9 +296,26 @@ end
 
 wire[15:0] next_wr_pg_num = wr_pg_num == i_stop_pg ? i_start_pg : wr_pg_num + 1;
 
+// crc module
+reg crc_rst = 1;
+reg crc_en = 0;
+wire[15:0] crc_out;
+// reorder the words to simulate a 16-bit CRC
+wire[63:0] crc_in = {pg_dpram_din[15:0], 
+                     pg_dpram_din[31:16], 
+                     pg_dpram_din[47:32],
+                     pg_dpram_din[63:48]};
+crc16_64b_parallel CRC
+(
+  .data_in(crc_in),
+  .crc_en(crc_en),
+  .crc_out(crc_out),
+  .rst(crc_rst),
+  .clk(clk)
+);
+
 localparam HDR = {16'h5555, 16'hAAAA, 16'h5555, 16'hA000};
-// leave out FTR CRC until I get everything else working
-localparam FTR = {16'hBEEF, 16'hAAAA, 16'h5555, 16'hAAAA};
+wire[63:0] pg_ftr = {crc_out, 16'hAAAA, 16'h5555, 16'hAAAA};
 
 // synchronize pg_ack
 wire pg_ack_s;
@@ -321,6 +339,9 @@ always @(posedge clk) begin
     pg_dpram_wren <= 0;
 
     buffered_data <= 0;   
+    
+    crc_rst <= 1;
+    crc_en <= 0;
 
     cnt <= 0;
     ret <= S_IDLE;
@@ -332,6 +353,9 @@ always @(posedge clk) begin
     dpram_done <= 0;  
     pg_req <= 0;
     flush_ack <= 0;
+
+    crc_rst <= 0;
+    crc_en <= 0;
 
     case (fsm)
       S_IDLE: begin
@@ -363,6 +387,8 @@ always @(posedge clk) begin
         pg_dpram_wren <= 1;
         pg_dpram_din <= HDR;
 
+        crc_rst <= 1;
+
         fsm <= ret;
       end
 
@@ -378,12 +404,14 @@ always @(posedge clk) begin
       S_WR_DATA: begin
         buffered_data <= 1;
 
+
         rdout_dpram_rd_addr <= rdout_dpram_rd_addr + 1;
 
         pg_dpram_wr_addr <= pg_dpram_wr_addr + 1;
         pg_dpram_wren <= 1;
-
+      
         pg_dpram_din <= rdout_dpram_dout;
+        crc_en <= 1;
 
         if (stream_rd_addr == final_dpram_rd_addr) begin
           dpram_done <= 1;
@@ -401,7 +429,7 @@ always @(posedge clk) begin
           rdout_dpram_rd_addr <= stream_rd_addr + 1;
           cnt <= 0;
           ret <= S_START_STREAM;
-          fsm <= S_WR_FTR;
+          fsm <= S_CRC_WAIT;
         end
       end
 
@@ -409,7 +437,7 @@ always @(posedge clk) begin
         if (!dpram_busy) begin
           if (pg_dpram_wr_addr == LAST_PG_DPRAM_ADDR - 1) begin
             ret <= S_IDLE;
-            fsm <= S_WR_FTR;
+            fsm <= S_CRC_WAIT;
           end
 
           else begin
@@ -418,10 +446,15 @@ always @(posedge clk) begin
         end
       end
 
+      S_CRC_WAIT: begin
+        // wait one clock cycle for the CRC
+        fsm <= S_WR_FTR;
+      end
+
       S_WR_FTR: begin
         pg_dpram_wr_addr <= pg_dpram_wr_addr + 1;
         pg_dpram_wren <= 1;
-        pg_dpram_din <= FTR;
+        pg_dpram_din <= pg_ftr;
 
         fsm <= S_SEND_PG;
       end
@@ -461,11 +494,13 @@ always @(posedge clk) begin
       S_FLUSH: begin
         pg_dpram_wr_addr <= pg_dpram_wr_addr + 1;
         pg_dpram_wren <= 1;
+        
         pg_dpram_din <= 64'b0;
+        crc_en <= 1;
 
         if (pg_dpram_wr_addr == LAST_PG_DPRAM_ADDR - 2) begin
           ret <= S_FLUSH_ACK;
-          fsm <= S_WR_FTR;
+          fsm <= S_CRC_WAIT;
         end
       end
 

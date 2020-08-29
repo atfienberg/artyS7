@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Thu Aug 27 09:48:47 2020
+// Date        : Thu Aug 27 09:48:39 2020
 // Host        : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top mig_7series_0 -prefix
+//               mig_7series_0_ mig_7series_0_sim_netlist.v
 // Design      : mig_7series_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -2013,7 +2013,6 @@ module mig_7series_0
         .\wr_ptr_reg[3]_0 (\u_memc_ui_top_std/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/of_pre_fifo_gen.u_ddr_of_pre_fifo/wr_ptr ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_0_mig" *) 
 module mig_7series_0_mig_7series_0_mig
    (\gen_mmcm.mmcm_i ,
     app_ref_ack,
@@ -2473,7 +2472,6 @@ module mig_7series_0_mig_7series_0_mig
         .\wr_ptr_timing_reg[2] (u_ddr3_infrastructure_n_9));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_arb_mux" *) 
 module mig_7series_0_mig_7series_v4_2_arb_mux
    (granted_col_r_reg,
     insert_maint_r1_lcl_reg,
@@ -2868,7 +2866,6 @@ module mig_7series_0_mig_7series_v4_2_arb_mux
         .rnk_config_r(rnk_config_r));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_arb_row_col" *) 
 module mig_7series_0_mig_7series_v4_2_arb_row_col
    (granted_col_r_reg_0,
     insert_maint_r1_lcl_reg_0,
@@ -3359,7 +3356,6 @@ module mig_7series_0_mig_7series_v4_2_arb_row_col
         .sent_row(sent_row));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_arb_select" *) 
 module mig_7series_0_mig_7series_v4_2_arb_select
    (\col_mux.col_periodic_rd_r ,
     col_rd_wr_r,
@@ -3433,7 +3429,6 @@ module mig_7series_0_mig_7series_v4_2_arb_select
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_cntrl" *) 
 module mig_7series_0_mig_7series_v4_2_bank_cntrl
    (idle_r,
     req_periodic_rd_r,
@@ -5196,7 +5191,6 @@ module mig_7series_0_mig_7series_v4_2_bank_cntrl__parameterized1
         .wr_this_rank_r(wr_this_rank_r));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_common" *) 
 module mig_7series_0_mig_7series_v4_2_bank_common
    (periodic_rd_ack_r_lcl_reg_0,
     accept_ns,
@@ -5769,7 +5763,6 @@ module mig_7series_0_mig_7series_v4_2_bank_common
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_compare" *) 
 module mig_7series_0_mig_7series_v4_2_bank_compare
    (req_periodic_rd_r,
     rd_wr_r_lcl_reg_0,
@@ -7526,7 +7519,6 @@ module mig_7series_0_mig_7series_v4_2_bank_compare_1
         .O(start_wtp_timer0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_mach" *) 
 module mig_7series_0_mig_7series_v4_2_bank_mach
    (periodic_rd_ack_r_lcl_reg,
     accept_ns,
@@ -8414,7 +8406,6 @@ module mig_7series_0_mig_7series_v4_2_bank_mach
         .was_wr0(was_wr0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_queue" *) 
 module mig_7series_0_mig_7series_v4_2_bank_queue
    (idle_r_lcl_reg_0,
     E,
@@ -10499,7 +10490,6 @@ module mig_7series_0_mig_7series_v4_2_bank_queue__parameterized1
         .R(wait_for_maint_r_lcl_reg_1));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_bank_state" *) 
 module mig_7series_0_mig_7series_v4_2_bank_state
    (act_wait_r_lcl_reg_0,
     ras_timer_zero_r,
@@ -12398,7 +12388,6 @@ module mig_7series_0_mig_7series_v4_2_bank_state__parameterized1
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_clk_ibuf" *) 
 module mig_7series_0_mig_7series_v4_2_clk_ibuf
    (mmcm_clk,
     sys_clk_i);
@@ -12420,7 +12409,6 @@ module mig_7series_0_mig_7series_v4_2_clk_ibuf
         .O(sys_clk_ibufg));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_col_mach" *) 
 module mig_7series_0_mig_7series_v4_2_col_mach
    (D,
     mc_wrdata_en_ns,
@@ -12916,7 +12904,6 @@ module mig_7series_0_mig_7series_v4_2_col_mach
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_byte_group_io" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_byte_group_io
    (mem_dq_out,
     oserdes_clk,
@@ -17503,7 +17490,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_byte_group_io__parameterized2
         .TQ(\NLW_slave_ts.oserdes_slave_ts_TQ_UNCONNECTED ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_byte_lane" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_byte_lane
    (ofifo_rst,
     ddr_ck_out,
@@ -21487,7 +21473,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_byte_lane__parameterized2
         .SYSCLK(CLK));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_calib_top" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_calib_top
    (dqs_po_dec_done,
     po_cnt_dec_reg,
@@ -24262,7 +24247,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_calib_top
         .wrlvl_done_r1(wrlvl_done_r1));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_if_post_fifo" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_if_post_fifo
    (\rd_ptr_timing_reg[1]_0 ,
     rd_data_en,
@@ -29300,7 +29284,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_if_post_fifo_7
         .R(ififo_rst));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_mc_phy" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_mc_phy
    (A_rst_primitives_reg,
     \rd_ptr_reg[0] ,
@@ -31137,7 +31120,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_mc_phy
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_mc_phy_wrapper" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_mc_phy_wrapper
    (A_rst_primitives,
     \rd_ptr_reg[0] ,
@@ -33532,7 +33514,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_mc_phy_wrapper
         .O(ddr3_we_n));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_of_pre_fifo" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_of_pre_fifo
    (\my_empty_reg[5]_0 ,
     \my_empty_reg[3]_0 ,
@@ -37635,7 +37616,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_of_pre_fifo__parameterized1_9
         .R(ofifo_rst));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_4lanes" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_4lanes
    (A_rst_primitives_reg_0,
     \rd_ptr_reg[0] ,
@@ -39809,7 +39789,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_4lanes
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_ck_addr_cmd_delay" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_ck_addr_cmd_delay
    (ck_addr_cmd_delay_done,
     cmd_po_en_stg2_f,
@@ -40159,7 +40138,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_ck_addr_cmd_delay
         .S(\wait_cnt_r_reg[0]_2 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_dqs_found_cal_hr" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_dqs_found_cal_hr
    (rd_data_offset_cal_done,
     pi_dqs_found_all_bank,
@@ -42860,7 +42838,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_dqs_found_cal_hr
         .R(init_dqsfound_done_r_reg_0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_init" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_init
    (prech_done,
     out,
@@ -54560,7 +54537,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_init
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_rdlvl" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_rdlvl
    (\rd_mux_sel_r_reg[0]_0 ,
     new_cnt_cpt_r_reg_0,
@@ -67598,7 +67574,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_rdlvl
         .O(D[1]));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_tempmon" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_tempmon
    (pi_f_inc_reg_0,
     pi_f_dec_reg_0,
@@ -72978,7 +72953,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_tempmon
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_top" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_top
    (\rd_ptr_reg[0] ,
     \rd_ptr_reg[1] ,
@@ -74885,7 +74859,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_top
         .O(\wrdq_div2_4to1_rdlvl_first.phy_wrdata[127]_i_1_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_wrcal" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_wrcal
    (wrcal_resume_w,
     E,
@@ -78870,7 +78843,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_wrcal
         .R(cal2_prech_req_r_reg_0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ddr_phy_wrlvl" *) 
 module mig_7series_0_mig_7series_v4_2_ddr_phy_wrlvl
    (wrlvl_byte_redo_r,
     dqs_po_dec_done_reg_0,
@@ -83518,7 +83490,6 @@ module mig_7series_0_mig_7series_v4_2_ddr_phy_wrlvl
         .R(\smallest_reg[1][3]_0 [0]));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_infrastructure" *) 
 module mig_7series_0_mig_7series_v4_2_infrastructure
    (\gen_mmcm.mmcm_i_i_1_0 ,
     CLK,
@@ -84447,7 +84418,6 @@ module mig_7series_0_mig_7series_v4_2_infrastructure
         .O(pi_cnt_dec_reg));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_iodelay_ctrl" *) 
 module mig_7series_0_mig_7series_v4_2_iodelay_ctrl
    (rst_tmp,
     AS,
@@ -84614,7 +84584,6 @@ module mig_7series_0_mig_7series_v4_2_iodelay_ctrl
         .RST(rst_ref));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_mc" *) 
 module mig_7series_0_mig_7series_v4_2_mc
    (periodic_rd_ack_r_lcl_reg,
     accept_ns,
@@ -85752,7 +85721,6 @@ module mig_7series_0_mig_7series_v4_2_mc
         .S({rank_mach0_n_31,rank_mach0_n_32,rank_mach0_n_33,rank_mach0_n_34}));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_mem_intfc" *) 
 module mig_7series_0_mig_7series_v4_2_mem_intfc
    (periodic_rd_ack_r,
     accept_ns,
@@ -86982,7 +86950,6 @@ module mig_7series_0_mig_7series_v4_2_mem_intfc
         .was_wr0(was_wr0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_memc_ui_top_std" *) 
 module mig_7series_0_mig_7series_v4_2_memc_ui_top_std
    (bm_end_r1,
     app_ref_ack,
@@ -88047,7 +88014,6 @@ module mig_7series_0_mig_7series_v4_2_memc_ui_top_std
         .\write_data_control.wb_wr_data_addr_r_reg[2] (mem_intfc0_n_256));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_rank_cntrl" *) 
 module mig_7series_0_mig_7series_v4_2_rank_cntrl
    (inhbt_act_faw_r,
     \periodic_rd_generation.periodic_rd_request_r ,
@@ -88349,7 +88315,6 @@ module mig_7series_0_mig_7series_v4_2_rank_cntrl
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_rank_common" *) 
 module mig_7series_0_mig_7series_v4_2_rank_common
    (maint_prescaler_tick_r,
     \maintenance_request.maint_req_r_lcl_reg_0 ,
@@ -89492,7 +89457,6 @@ module mig_7series_0_mig_7series_v4_2_rank_common
         .R(\zq_cntrl.zq_timer.zq_timer_r0 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_rank_mach" *) 
 module mig_7series_0_mig_7series_v4_2_rank_mach
    (maint_req_r,
     app_ref_ack,
@@ -89782,7 +89746,6 @@ module mig_7series_0_mig_7series_v4_2_rank_mach
         .\zq_cntrl.zq_timer.zq_timer_r_reg[7]_1 (\zq_cntrl.zq_timer.zq_timer_r_reg[7]_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_round_robin_arb" *) 
 module mig_7series_0_mig_7series_v4_2_round_robin_arb
    (\maintenance_request.maint_rank_r_lcl_reg[0] ,
     \maintenance_request.maint_sre_ns ,
@@ -92178,7 +92141,6 @@ module mig_7series_0_mig_7series_v4_2_round_robin_arb_5
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_tempmon" *) 
 module mig_7series_0_mig_7series_v4_2_tempmon
    (out,
     D,
@@ -93700,7 +93662,6 @@ module mig_7series_0_mig_7series_v4_2_tempmon
         .R(\xadc_supplied_temperature.rst_r2 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ui_cmd" *) 
 module mig_7series_0_mig_7series_v4_2_ui_cmd
    (E,
     app_en_r2_reg_0,
@@ -94829,7 +94790,6 @@ module mig_7series_0_mig_7series_v4_2_ui_cmd
         .O(\wr_req_counter.wr_req_cnt_r_reg[0] ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ui_rd_data" *) 
 module mig_7series_0_mig_7series_v4_2_ui_rd_data
    (\not_strict_mode.status_ram.rd_buf_we_r1_reg_0 ,
     ADDRA,
@@ -97148,7 +97108,6 @@ module mig_7series_0_mig_7series_v4_2_ui_rd_data
         .R(\not_strict_mode.rd_buf.rd_buf_indx_copy_r_reg[0]_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ui_top" *) 
 module mig_7series_0_mig_7series_v4_2_ui_top
    (\not_strict_mode.status_ram.rd_buf_we_r1_reg ,
     \rd_buf_indx.rd_buf_indx_r_reg[4] ,
@@ -97942,7 +97901,6 @@ module mig_7series_0_mig_7series_v4_2_ui_top
         .\write_data_control.wb_wr_data_addr_r_reg[2]_0 (\write_data_control.wb_wr_data_addr_r_reg[2] ));
 endmodule
 
-(* ORIG_REF_NAME = "mig_7series_v4_2_ui_wr_data" *) 
 module mig_7series_0_mig_7series_v4_2_ui_wr_data
    (wr_data_buf_addr,
     p_0_in,

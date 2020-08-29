@@ -92,7 +92,9 @@ set rc [catch {
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/mig_7series_0/mig_7series_0.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/DPRAM_2048_16/DPRAM_2048_16.xci
   read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM.xci
-  read_ip -quiet c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_RDOUT_DPRAM/HBUF_RDOUT_DPRAM.xci
+  read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_DDR3_PG/HBUF_DDR3_PG.xci
   read_xdc C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/constrs_1/new/constraints.xdc
   link_design -top top -part xc7s50csga324-2
   close_msg_db -file init_design.pb

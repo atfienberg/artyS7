@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Thu Aug 27 12:09:21 2020
+| Date         : Sat Aug 29 17:42:23 2020
 | Host         : LAPTOP-GBOUD091 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,14 +30,14 @@ Table of Contents
 +-------------------------+-------+-------+-----------+-------+
 |        Site Type        |  Used | Fixed | Available | Util% |
 +-------------------------+-------+-------+-----------+-------+
-| Slice LUTs*             |  9951 |     0 |     32600 | 30.52 |
-|   LUT as Logic          |  9951 |     0 |     32600 | 30.52 |
+| Slice LUTs*             | 10554 |     0 |     32600 | 32.37 |
+|   LUT as Logic          | 10554 |     0 |     32600 | 32.37 |
 |   LUT as Memory         |     0 |     0 |      9600 |  0.00 |
-| Slice Registers         | 12752 |     0 |     65200 | 19.56 |
-|   Register as Flip Flop | 12752 |     0 |     65200 | 19.56 |
+| Slice Registers         | 13117 |     0 |     65200 | 20.12 |
+|   Register as Flip Flop | 13117 |     0 |     65200 | 20.12 |
 |   Register as Latch     |     0 |     0 |     65200 |  0.00 |
-| F7 Muxes                |   379 |     0 |     16300 |  2.33 |
-| F8 Muxes                |    13 |     0 |      8150 |  0.16 |
+| F7 Muxes                |   370 |     0 |     16300 |  2.27 |
+| F8 Muxes                |    21 |     0 |      8150 |  0.26 |
 +-------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 11    |          Yes |           - |        Reset |
-| 603   |          Yes |         Set |            - |
-| 12138 |          Yes |       Reset |            - |
+| 17    |          Yes |           - |        Reset |
+| 631   |          Yes |         Set |            - |
+| 12469 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -145,19 +145,19 @@ Table of Contents
 +----------+-------+---------------------+
 | Ref Name |  Used | Functional Category |
 +----------+-------+---------------------+
-| FDRE     | 12138 |        Flop & Latch |
-| LUT6     |  3646 |                 LUT |
-| LUT4     |  2967 |                 LUT |
-| LUT3     |  1568 |                 LUT |
-| CARRY4   |  1558 |          CarryLogic |
-| LUT5     |  1407 |                 LUT |
-| LUT1     |  1338 |                 LUT |
-| LUT2     |  1018 |                 LUT |
-| FDSE     |   603 |        Flop & Latch |
-| MUXF7    |   379 |               MuxFx |
-| MUXF8    |    13 |               MuxFx |
+| FDRE     | 12469 |        Flop & Latch |
+| LUT6     |  3800 |                 LUT |
+| LUT4     |  3247 |                 LUT |
+| LUT5     |  1615 |                 LUT |
+| CARRY4   |  1603 |          CarryLogic |
+| LUT3     |  1586 |                 LUT |
+| LUT1     |  1337 |                 LUT |
+| LUT2     |  1030 |                 LUT |
+| FDSE     |   631 |        Flop & Latch |
+| MUXF7    |   370 |               MuxFx |
+| MUXF8    |    21 |               MuxFx |
+| FDCE     |    17 |        Flop & Latch |
 | OBUF     |    11 |                  IO |
-| FDCE     |    11 |        Flop & Latch |
 | IBUF     |     2 |                  IO |
 +----------+-------+---------------------+
 
@@ -175,6 +175,8 @@ Table of Contents
 | XDOM_DDR3_PG       |    1 |
 | REFCLK_MMCM        |    1 |
 | LCLK_MMCM          |    1 |
+| HBUF_RDOUT_DPRAM   |    1 |
+| HBUF_DDR3_PG       |    1 |
 | FIFO_2048_32       |    1 |
 | DIRECT_RDOUT_DPRAM |    1 |
 +--------------------+------+

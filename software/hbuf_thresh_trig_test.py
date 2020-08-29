@@ -116,7 +116,6 @@ def main():
     print("Disabling triggers")
     arty.fpga_write("trig_settings", 0x0)
     print_hbuf_status(arty)
-    print("Overflow status")
     low_overflow = arty.fpga_read(0xEFA)
     high_overflow = arty.fpga_read(0xEF1)
     overflow = (high_overflow << 16) | low_overflow

@@ -83,6 +83,9 @@ read_verilog -library xil_defaultlib {
   C:/Users/atfie/IceCube/artyS7/hdl/bundles/mDOM_wvb_hdr_bundle_1/mDOM_wvb_hdr_bundle_1_fan_in.v
   C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_pg_transfer_ctrl.v
   C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_DPRAM_transfer.v
+  C:/Users/atfie/IceCube/artyS7/hdl/hbuf_ctrl/hbuf_ctrl.v
+  C:/Users/atfie/IceCube/artyS7/hdl/DDR3/DDR3_pg_transfer_mux.v
+  C:/Users/atfie/IceCube/artyS7/hdl/crc16_64b_parallel/crc16_64b_parallel.v
 }
 read_ip -quiet C:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/IPCORES/LCLK_MMCM/LCLK_MMCM_board.xdc]
@@ -131,8 +134,14 @@ set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/REFCLK_MMCM/REFCLK_MMCM_ooc.xdc]
 
-read_ip -quiet c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22.xci
 set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/DIST_BUFFER_32_22/DIST_BUFFER_32_22_ooc.xdc]
+
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_RDOUT_DPRAM/HBUF_RDOUT_DPRAM.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_RDOUT_DPRAM/HBUF_RDOUT_DPRAM_ooc.xdc]
+
+read_ip -quiet C:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_DDR3_PG/HBUF_DDR3_PG.xci
+set_property used_in_implementation false [get_files -all c:/Users/atfie/IceCube/artyS7/vivado_project/artyS7.srcs/sources_1/ip/HBUF_DDR3_PG/HBUF_DDR3_PG_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
