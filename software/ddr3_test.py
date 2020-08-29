@@ -14,7 +14,7 @@ PGS_TO_TEST = 1000
 START_PG = np.random.randint(0, (65536 - PGS_TO_TEST))
 
 
-def set_pg_num(arty, pg):
+def set_DDR3_pg_addr(arty, pg):
     # only test low addresses for now
     byte_addr = pg * 4096
     addr_low = byte_addr & 0xFFFF
@@ -24,14 +24,14 @@ def set_pg_num(arty, pg):
 
 
 def send_DPRAM_to_pg(arty, pg):
-    set_pg_num(arty, pg)
+    set_DDR3_pg_addr(arty, pg)
     arty.fpga_write("dpram_sel", 0)
     arty.fpga_write("ddr3_pg_optype", 1)
     arty.fpga_write("ddr3_pg_req", 1)
 
 
 def read_DDR3_pg(arty, pg):
-    set_pg_num(arty, pg)
+    set_DDR3_pg_addr(arty, pg)
     arty.fpga_write("dpram_sel", 0)
     arty.fpga_write("ddr3_pg_optype", 0)
     arty.fpga_write("ddr3_pg_req", 1)

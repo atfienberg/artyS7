@@ -48,7 +48,7 @@ def main():
     arty.fpga_write("pre_conf", pre_conf)
     arty.fpga_write("post_conf", post_conf)
     arty.fpga_write("trig_mode", 1)
-    arty.fpga_write("trig_threshold", 97)
+    arty.fpga_write("trig_threshold", thresh_val)
 
     print("Arming triggers")
     arty.fpga_write(0xFFA, 0xFFFF)

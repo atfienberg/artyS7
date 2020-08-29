@@ -299,6 +299,10 @@ localparam HDR = {16'h5555, 16'hAAAA, 16'h5555, 16'hA000};
 // leave out FTR CRC until I get everything else working
 localparam FTR = {16'hBEEF, 16'hAAAA, 16'h5555, 16'hAAAA};
 
+// synchronize pg_ack
+wire pg_ack_s;
+sync PGACKSYNC(.clk(clk), .rst_n(!rst), .a(pg_ack), .y(pg_ack_s));
+
 reg[31:0] cnt = 0;
 // state to return to after writing the header
 reg[3:0] ret = S_IDLE;
@@ -427,14 +431,14 @@ always @(posedge clk) begin
         pg_optype <= 1'b1;
         pg_req <= 1;
 
-        if (pg_ack) begin
+        if (pg_ack_s) begin
           pg_req <= 0;
           fsm <= S_INC_WR_PG;         
         end
       end
 
       S_INC_WR_PG: begin
-        if (!pg_ack) begin
+        if (!pg_ack_s) begin
           buffered_data <= dpram_busy;
 
           wr_pg_num <= next_wr_pg_num;
