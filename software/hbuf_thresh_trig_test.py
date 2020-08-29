@@ -24,7 +24,7 @@ TRIG_THRESH = 101
 START_PG = 0
 STOP_PG = 30000
 
-PGS_TO_READ = 20
+PGS_TO_READ = 200
 
 from collections import defaultdict
 
@@ -126,7 +126,7 @@ def main():
     print_hbuf_status(arty)
 
     # check waveforms, verify trigger rates, etc
-    print("Reading the first 200 pages")
+    print(f"Reading the first {PGS_TO_READ} pages")
     pgs = [pop_hbuf_pg(arty) for i in range(PGS_TO_READ)]
     print_hbuf_status(arty)
 
