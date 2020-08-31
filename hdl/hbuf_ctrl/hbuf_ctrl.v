@@ -383,7 +383,7 @@ always @(posedge clk) begin
       end
 
       S_WR_HDR: begin
-        pg_dpram_wr_addr <= pg_dpram_wr_addr + 1;
+        pg_dpram_wr_addr <= 9'b0;
         pg_dpram_wren <= 1;
         pg_dpram_din <= HDR;
 
