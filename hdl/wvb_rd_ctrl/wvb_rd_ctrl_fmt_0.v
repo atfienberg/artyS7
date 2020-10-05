@@ -218,8 +218,8 @@ always @(posedge clk) begin
       end
 
       S_SAMPLE_WORD: begin
-        dpram_data = {wvb_discr, 6'b0, wvb_tot, wvb_eoe,
-                      wvb_adc_ext};
+        dpram_data <= {wvb_discr, 6'b0, wvb_tot, wvb_eoe,
+                       wvb_adc_ext};
 
         // stop streaming data when nearing end of DPRAM
         // (but not if dpram_a == L_DPRAM_LAST, which
