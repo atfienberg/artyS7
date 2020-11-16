@@ -1,7 +1,7 @@
 // Aaron Fienberg
 // Aug 2020
 //
-// Controller to transfer pages 
+// Controller to transfer pages
 // from/to external DDR3 memory to/from FPGA DPRAM
 //
 
@@ -17,7 +17,7 @@ module DDR3_pg_transfer_ctrl
   output reg pg_ack = 0,
 
   // memory interface UI inputs
-  input app_rdy,  
+  input app_rdy,
   input app_wdf_rdy,
   input app_rd_data_valid,
   input[127:0] app_rd_data,
@@ -33,22 +33,22 @@ module DDR3_pg_transfer_ctrl
   output reg app_wdf_end = 0,
   output reg[2:0] app_cmd = 0,
 
- // DPRAM outputs
- output reg[127:0] dpram_din = 0,
- output reg[7:0] dpram_addr = 0,
- output reg dpram_wren = 0
+  // DPRAM outputs
+  output reg[127:0] dpram_din = 0,
+  output reg[7:0] dpram_addr = 0,
+  output reg dpram_wren = 0
 );
 
 localparam APP_CMD_WRITE = 0,
            APP_CMD_RD = 1;
 
-localparam DPRAM_RD_LATENCY = 2; 
+localparam DPRAM_RD_LATENCY = 2;
 localparam REQS_PER_PG = 256;
 localparam N_APP_REQS_MAX = 255;
 localparam N_DPRAM_OPS_MAX = 255;
 
 localparam OPREAD = 0,
-           OPWRITE = 1;   
+           OPWRITE = 1;
 
 // DDR3 page transfer logic
 // app FSM states
@@ -87,11 +87,11 @@ always @(posedge clk) begin
     app_fsm <= S_IDLE;
   end
 
-  else begin 
+  else begin
     dpram_start <= 0;
     app_en <= 0;
 
-    case (app_fsm) 
+    case (app_fsm)
       S_IDLE: begin
         next_app_addr <= 0;
         pg_ack <= 0;
@@ -101,11 +101,11 @@ always @(posedge clk) begin
           next_app_addr <= pg_req_addr;
 
           if (pg_optype == OPREAD) begin
-            app_fsm <= S_RD_PG_BEGIN; 
+            app_fsm <= S_RD_PG_BEGIN;
           end
-          
+
           else if (pg_optype == OPWRITE) begin
-            app_fsm <= S_WR_PG_BEGIN;  
+            app_fsm <= S_WR_PG_BEGIN;
           end
         end
 
@@ -123,17 +123,17 @@ always @(posedge clk) begin
           app_en <= 1;
           app_addr <= next_app_addr;
           // memory interface bursts 8 16-bit words at a time
-          next_app_addr <= next_app_addr + 16; 
-          
+          next_app_addr <= next_app_addr + 16;
+
           app_fsm <= S_APP_REQ_WR;
         end
       end
 
-      S_APP_REQ_WR: begin      
+      S_APP_REQ_WR: begin
         app_cmd = APP_CMD_WRITE;
 
         // don't send app_en reqs if the DPRAM fsm has stalled
-        if ((n_app_reqs + 1 < n_writes) || 
+        if ((n_app_reqs + 1 < n_writes) ||
             (n_writes == REQS_PER_PG)) begin
           app_en <= 1;
         end
@@ -145,12 +145,12 @@ always @(posedge clk) begin
 
           n_app_reqs <= n_app_reqs + 1;
           if (n_app_reqs == N_APP_REQS_MAX) begin
-            app_en <= 0;        
-            app_fsm <= S_DPRAM_FSM_CHECK;          
+            app_en <= 0;
+            app_fsm <= S_DPRAM_FSM_CHECK;
           end
-      
+
         end
-      
+
       end
 
       S_RD_PG_BEGIN: begin
@@ -169,7 +169,7 @@ always @(posedge clk) begin
         app_cmd = APP_CMD_RD;
 
         app_en <= 1;
-   
+
         if (app_rdy && app_en) begin
           // current command will be accepted
           app_addr <= next_app_addr;
@@ -201,13 +201,13 @@ always @(posedge clk) begin
       default: begin
         app_fsm <= S_IDLE;
       end
-    endcase 
+    endcase
   end
 end
 
 // dpram fsm
 reg[31:0] dpram_cnt = 0;
-reg[7:0] dpram_hold_addr = 0; 
+reg[7:0] dpram_hold_addr = 0;
 always @(posedge clk) begin
   if (rst) begin
     n_writes <= 0;
@@ -221,7 +221,7 @@ always @(posedge clk) begin
     dpram_fsm <= S_IDLE;
   end
 
-  else begin 
+  else begin
     dpram_wren <= 0;
     app_wdf_wren <= 0;
     app_wdf_end <= 0;
@@ -231,7 +231,7 @@ always @(posedge clk) begin
         dpram_hold_addr <= 0;
 
         if (dpram_start) begin
-          
+
           if (i_optype == OPREAD) begin
             dpram_addr <= -1;
 
@@ -239,12 +239,12 @@ always @(posedge clk) begin
           end
 
           else if (i_optype == OPWRITE) begin
-            dpram_addr <= 0;          
-            
+            dpram_addr <= 0;
+
             n_writes <= 0;
 
             dpram_cnt <= 0;
-            dpram_fsm <= S_START_WR_STREAM;  
+            dpram_fsm <= S_START_WR_STREAM;
           end
         end
 
@@ -252,7 +252,7 @@ always @(posedge clk) begin
 
       S_START_WR_STREAM: begin
         dpram_addr <= dpram_addr + 1;
-        
+
         dpram_cnt <= dpram_cnt + 1;
 
         if (dpram_cnt >= DPRAM_RD_LATENCY - 1) begin
@@ -262,7 +262,7 @@ always @(posedge clk) begin
 
       S_WR_STREAM: begin
         dpram_addr <= dpram_addr + 1;
-        
+
         app_wdf_wren <= 1;
         app_wdf_end <= 1;
         app_wdf_data <= dpram_dout;
@@ -298,11 +298,11 @@ always @(posedge clk) begin
 
           app_wdf_wren <= 0;
           app_wdf_end <= 0;
-          
+
           if (n_writes == N_DPRAM_OPS_MAX) begin
             dpram_fsm <= S_IDLE;
           end
-          
+
           else begin
             // restart data stream
             dpram_addr <= dpram_hold_addr + 1;

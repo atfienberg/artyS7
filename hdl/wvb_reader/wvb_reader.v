@@ -48,12 +48,12 @@ module wvb_reader #(parameter P_DATA_WIDTH = 22,
 );
 
 // handle multiplexing/demultiplexing
-(* max_fanout = 20 *) reg[4:0] chan_index = 0; 
+(* max_fanout = 20 *) reg[4:0] chan_index = 0;
 wire[P_DATA_WIDTH-1:0] wvb_data_mux_out;
 wire[P_HDR_WIDTH-1:0] hdr_data_mux_out;
 wire hdr_empty_mux_out;
 
-// register signals going into muxes 
+// register signals going into muxes
 // Note: currently not registering hdr_empty to simplify
 // state machine logic
 reg[N_CHANNELS*P_DATA_WIDTH-1:0] wvb_data_reg = 0;
@@ -83,28 +83,28 @@ always @(posedge clk) begin
   end
 end
 
-n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+n_channel_mux #(.N_INPUTS(N_CHANNELS),
                 .INPUT_WIDTH(P_DATA_WIDTH)) WVB_DATA_MUX
   (
    .in(wvb_data_reg),
    .sel(chan_index),
-   .out(wvb_data_mux_out)  
+   .out(wvb_data_mux_out)
   );
 
-n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+n_channel_mux #(.N_INPUTS(N_CHANNELS),
                 .INPUT_WIDTH(P_HDR_WIDTH)) HDR_DATA_MUX
   (
    .in(hdr_data_reg),
    .sel(chan_index),
-   .out(hdr_data_mux_out)  
+   .out(hdr_data_mux_out)
   );
 
-n_channel_mux #(.N_INPUTS(N_CHANNELS), 
+n_channel_mux #(.N_INPUTS(N_CHANNELS),
                 .INPUT_WIDTH(1)) HDR_EMPTY_MUX
   (
    .in(hdr_empty),
    .sel(chan_index),
-   .out(hdr_empty_mux_out)  
+   .out(hdr_empty_mux_out)
   );
 
 reg i_hdr_rdreq = 0;
@@ -130,7 +130,7 @@ wire[15:0] rd_ctrl_dpram_len;
 
 // read controller
 wvb_rd_ctrl_fmt_0 #(.P_WVB_ADR_WIDTH(P_WVB_ADR_WIDTH),
-                    .P_HDR_WIDTH(P_HDR_WIDTH)) 
+                    .P_HDR_WIDTH(P_HDR_WIDTH))
 RD_CTRL
   (
    .clk(clk),
@@ -180,7 +180,7 @@ always @(posedge clk) begin
     i_hdr_rdreq <= 0;
     dpram_run <= 0;
 
-    case (fsm) 
+    case (fsm)
       S_IDLE: begin
         rd_ctrl_req <= 0;
         cnt <= 0;
@@ -204,8 +204,8 @@ always @(posedge clk) begin
           cnt <= 0;
           fsm <= S_RD_CTRL_REQ;
         end
-      end 
-    
+      end
+
       S_RD_CTRL_REQ: begin
         rd_ctrl_req <= 1;
         // wait for ack
@@ -251,7 +251,7 @@ always @(posedge clk) begin
       default: begin
         fsm <= S_IDLE;
       end
-    
+
     endcase
   end
 end
