@@ -173,7 +173,7 @@ class artyS7:
     def set_rgb_led_color(self, rgb_vals):
         """ takes a tuple of 15-bit rgb vals (red_val, green_val, blue_val)
 
-        sets the configurable RGB LED intensities accordingly        
+        sets the configurable RGB LED intensities accordingly
         """
 
         if len(rgb_vals) != 3:

@@ -26,7 +26,7 @@ def unpack_wfm(payload):
     wfm["trig_type"] = trig_type_map[payload[2] & 0x3]
     wfm["ltc"] = (payload[3] << 32) + (payload[4] << 16) + payload[5]
 
-    wfm["adc_samples"] = (payload[6:-2:2]) & 0xFFF
+    wfm["adc_samples"] = payload[6:-2:2]
 
     discr_words = payload[7:-2:2]
     wfm["discr_samples"] = discr_words >> 8
