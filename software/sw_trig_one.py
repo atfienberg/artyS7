@@ -20,7 +20,7 @@ def print_wfm_count(arty):
 
 def build_signed_view(wfm):
     # interpret samples as signed 16-bit ints
-    wfm['signed_samples'] = wfm['adc_samples'].view(np.int16)
+    wfm["signed_samples"] = wfm["adc_samples"].view(np.int16)
 
 
 def main():
@@ -62,8 +62,8 @@ def main():
     # print low bits of first 10 samples
     low_bits = [hex(samp & 0x3F) for samp in wfm["adc_samples"][:10]]
     high_bits = [hex((samp >> 6) & 0x3F) for samp in wfm["adc_samples"][:10]]
-    print(f'low bits: {low_bits}')
-    print(f'high bits: {high_bits}')
+    print(f"low bits: {low_bits}")
+    print(f"high bits: {high_bits}")
 
 
 if __name__ == "__main__":

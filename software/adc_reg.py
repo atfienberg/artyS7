@@ -15,6 +15,38 @@ ADC_WR_DATA_HIGH = 0xEE2
 ADC_WR_DATA_LOW = 0xEE1
 ADC_RD_DATA = 0xEE0
 
+adc_adrs = {
+    "sw_rst": 0x6,
+    "test_pat_enbl": 0x6,
+    "test_pat": [0x0A, 0x0A, 0x0B, 0x0B],
+    "custom_pattern_high": 0x0E,
+    "custom_pattern_low": 0x0F,
+    "sp_mode": [0x139, 0x439, 0x539, 0x239],
+    "dither_low": 0x1,
+    "dither_high": [0x134, 0x434, 0x534, 0x234],
+    "chopper": [0x122, 0x422, 0x522, 0x222],
+}
+
+adc_data = {
+    "sw_rst": (1, 0),
+    "test_pat_enbl": (1, 1),
+    "test_pats": {
+        "none": [(0x0, 4), (0x0, 0), (0x0, 4), (0x0, 0)],
+        "zeros": [(0x1, 4), (0x1, 0), (0x1, 4), (0x1, 0)],
+        "ones": [(0x2, 4), (0x2, 0), (0x2, 4), (0x2, 0)],
+        "toggle": [(0x3, 4), (0x3, 0), (0x3, 4), (0x3, 0)],
+        "ramp": [(0x4, 4), (0x4, 0), (0x4, 4), (0x4, 0)],
+        "custom": [(0x5, 4), (0x5, 0), (0x5, 4), (0x5, 0)],
+        "deskew": [(0x6, 4), (0x6, 0), (0x6, 4), (0x6, 0)],
+        "PRBS": [(0x8, 4), (0x8, 0), (0x8, 4), (0x8, 0)],
+        "sine": [(0x9, 4), (0x9, 0), (0x9, 4), (0x9, 0)],
+    },
+    "disable_dither_low": 0xFF,
+    "disable_dither_high": 0x28,
+    "enable_sp": 0x8,
+    "disable_chopper": 0x2,
+}
+
 
 def adc_hw_reset(arty):
     arty.fpga_write(ADC_RESET, 0x1)
@@ -24,6 +56,17 @@ def adc_hw_reset(arty):
 def check_spi_task(arty):
     if arty.fpga_read(ADC_TASK) & 0x1 != 0:
         raise RuntimeError("ADC SPI task did not complete")
+
+
+def build_adc_wr_data(data_in):
+    try:
+        data = data_in[0]
+        shift = data_in[1]
+    except TypeError:
+        data = data_in
+        shift = 0
+
+    return data << shift
 
 
 def adc_write(arty, adc_nums, adr, data):
