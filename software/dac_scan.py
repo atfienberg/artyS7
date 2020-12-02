@@ -22,7 +22,6 @@ def set_baseline_dac(arty, chan_idx, value):
 
 
 def dac_scan(arty, chan_idx, dac_vals):
-
     for val in dac_vals:
         set_baseline_dac(arty, chan_idx, val)
 
@@ -36,7 +35,7 @@ def dac_scan(arty, chan_idx, dac_vals):
         mean = np.average(samps)
         std = np.std(samps)
 
-        print(f"chan {chan_idx}, dac_val {val}: mean: {mean:.3f}, std: {std:.3f}")
+        print(f"dac_val {val}: mean: {mean:.3f}, std: {std:.3f}")
 
 
 def main():
