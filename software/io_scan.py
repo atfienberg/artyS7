@@ -11,7 +11,7 @@ from adc_reg import adc_data, adc_adrs, adc_hw_reset, adc_write, build_adc_wr_da
 ADC_IO_CHAN_SEL = 0xEEE
 ADC_IO_CTRL = 0xEED
 ADC_DELAY_TAPOUT = 0xEEC
-ADC_IO_RESET = [0xEEB, 0xEEA]
+ADC_IO_RESET = [0xEEA, 0xEEB]
 SW_TRIG = [0xFFC, 0xEF4]
 BUF_RST = [0xEF9, 0xEF0]
 
