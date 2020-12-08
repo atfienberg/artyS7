@@ -104,7 +104,7 @@ def scan_delays(arty, chan_idx, line):
         valid = True
         for sample in wfm["adc_samples"]:
             line_sample = (sample >> bit_pos) & mask
-            if line_sample != 0x2A:
+            if line_sample != 0x2A and line_sample != 0x15:
                 valid = False
                 break
 
