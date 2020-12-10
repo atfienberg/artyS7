@@ -5,15 +5,18 @@
 #
 
 from artyS7 import artyS7, read_dev_path
+
 import sys
 import time
 import numpy as np
 
-PULSER_WIDTH_REG = 0xEDA
-PULSER_IO_RESET = 0xED9
-PULSER_TRIG_MASK = [0xED7, 0xED8]
-PULSER_FIRE = 0xED6
-DISCR_IO_RESET = [0xEE6, 0xEE7]
+from io_scan import reset_wfm_buffers
+
+PULSER_WIDTH_REG = 0xBD2
+PULSER_IO_RESET = 0xBD1
+PULSER_TRIG_MASK = [0xBCF, 0xBD0]
+PULSER_FIRE = 0xBCE
+DISCR_IO_RESET = [0xBDE, 0xBDF]
 
 test_conf = 100
 
@@ -36,10 +39,7 @@ def main():
     arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"), uart_sleep=1)
 
     # reset waveform buffers
-    arty.fpga_write(0xEF9, 0xFFFF)
-    arty.fpga_write(0xEF0, 0xFFFF)
-    arty.fpga_write(0xEF9, 0x0)
-    arty.fpga_write(0xEF0, 0x0)
+    reset_wfm_buffers(arty)
 
     # configure fpga regs
     arty.fpga_write("test_conf", test_conf)

@@ -6,7 +6,7 @@
 # (by running the configure_adcs script, for example)
 
 from artyS7 import artyS7, read_dev_path
-from io_scan import get_sw_wfm
+from io_scan import get_sw_wfm, reset_wfm_buffers
 from set_dac import set_dac
 import time
 import numpy as np
@@ -41,11 +41,7 @@ def dac_scan(arty, chan_idx, dac_vals):
 def main():
     arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"), uart_sleep=0.1)
 
-    # reset waveform buffers
-    arty.fpga_write(0xEF9, 0xFFFF)
-    arty.fpga_write(0xEF0, 0xFFFF)
-    arty.fpga_write(0xEF9, 0x0)
-    arty.fpga_write(0xEF0, 0x0)
+    reset_wfm_buffers(arty)
 
     # configure test conf and dpram mode
     arty.fpga_write("test_conf", test_conf)

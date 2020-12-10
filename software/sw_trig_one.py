@@ -7,7 +7,10 @@
 from artyS7 import artyS7, read_dev_path
 import numpy as np
 
+from io_scan import get_sw_wfm, reset_wfm_buffers
+
 test_conf = 50
+chan_num = 0
 
 
 def print_wfm_count(arty):
@@ -27,10 +30,7 @@ def main():
     arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"), uart_sleep=1)
 
     print("Resetting waveform buffers...")
-    arty.fpga_write(0xEF9, 0xFFFF)
-    arty.fpga_write(0xEF0, 0xFFFF)
-    arty.fpga_write(0xEF9, 0x0)
-    arty.fpga_write(0xEF0, 0x0)
+    reset_wfm_buffers(arty)
 
     print("Configuring test conf")
     arty.fpga_write("test_conf", test_conf)
@@ -40,7 +40,7 @@ def main():
     print_wfm_count(arty)
 
     print("Sending software trigger")
-    arty.fpga_write(0xFFC, 0x1)
+    get_sw_wfm(chan_num)
 
     print_wfm_count(arty)
 

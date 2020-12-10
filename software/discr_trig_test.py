@@ -15,10 +15,15 @@ from pulser_trig_test import (
     DISCR_IO_RESET,
 )
 
+from io_scan import reset_wfm_buffers
+
 import sys
 import time
 
 import numpy as np
+
+TRIG_ARM_MASK = [0xBF9, 0xBFA]
+TRIG_ARM = 0xBF8
 
 pre_conf = 16
 post_conf = 32
@@ -32,7 +37,9 @@ def arm_discr_trigger(arty):
     arty.fpga_write("trig_settings", 0x18)
 
     # arm the trigger for channel 0
-    arty.fpga_write("trig_arm", 0x1)
+    arty.fpga_write(TRIG_ARM_MASK[0], 0x1)
+    arty.fpga_write(TRIG_ARM_MASK[1], 0x0)
+    arty.fpga_write(TRIG_ARM, 0x2)
 
 
 def main():
@@ -44,10 +51,7 @@ def main():
     arty = artyS7(dev_path=read_dev_path("./conf/uart_path.txt"), uart_sleep=1)
 
     # reset waveform buffers
-    arty.fpga_write(0xEF9, 0xFFFF)
-    arty.fpga_write(0xEF0, 0xFFFF)
-    arty.fpga_write(0xEF9, 0x0)
-    arty.fpga_write(0xEF0, 0x0)
+    reset_wfm_buffers(arty)
 
     # configure fpga regs
     arty.fpga_write("pre_conf", pre_conf)

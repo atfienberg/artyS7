@@ -8,12 +8,13 @@ from artyS7 import artyS7, read_dev_path
 from adc_reg import adc_data, adc_adrs, adc_hw_reset, adc_write, build_adc_wr_data
 
 
-ADC_IO_CHAN_SEL = 0xEEE
-ADC_IO_CTRL = 0xEED
-ADC_DELAY_TAPOUT = 0xEEC
-ADC_IO_RESET = [0xEEA, 0xEEB]
-SW_TRIG = [0xFFC, 0xEF4]
-BUF_RST = [0xEF9, 0xEF0]
+ADC_IO_CHAN_SEL = 0xBE6
+ADC_IO_CTRL = 0xBE5
+ADC_DELAY_TAPOUT = 0xBE4
+ADC_IO_RESET = [0xBE2, 0xBE3]
+SW_TRIG_MASK = [0xBFB, 0xBFC]
+SW_TRIG = 0xBF8
+BUF_RST = [0xBE9, 0xBEA]
 
 test_conf = 200
 
@@ -65,11 +66,19 @@ def set_delay(arty, chan_idx, line, delay):
             )
 
 
-def send_sw_trigger(arty, chan_idx):
-    adr_idx = chan_idx // 16
-    adr_bit = chan_idx % 16
+def reset_wfm_buffers(arty):
+    arty.fpga_write(BUF_RST[0], 0xFFFF)
+    arty.fpga_write(BUF_RST[1], 0xFFFF)
+    arty.fpga_write(BUF_RST[0], 0x0)
+    arty.fpga_write(BUF_RST[1], 0x0)
 
-    arty.fpga_write(SW_TRIG[adr_idx], 1 << adr_bit)
+
+def send_sw_trigger(arty, chan_idx):
+    sw_trig_mask = 1 << chan_idx
+
+    arty.fpga_write(SW_TRIG_MASK[0], sw_trig_mask & 0xFFFF)
+    arty.fpga_write(SW_TRIG_MASK[1], sw_trig_mask >> 16)
+    arty.fpga_write(SW_TRIG, 0x1)
 
 
 def get_sw_wfm(arty, chan_idx):
@@ -213,10 +222,7 @@ def main():
         arty.fpga_write(ADC_IO_RESET[i], 0x0)
 
     # reset waveform buffers
-    arty.fpga_write(0xEF9, 0xFFFF)
-    arty.fpga_write(0xEF0, 0xFFFF)
-    arty.fpga_write(0xEF9, 0x0)
-    arty.fpga_write(0xEF0, 0x0)
+    reset_wfm_buffers(arty)
 
     # configure test conf and dpram mode
     arty.fpga_write("test_conf", test_conf)

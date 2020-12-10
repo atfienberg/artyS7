@@ -8,11 +8,11 @@ from artyS7 import artyS7, read_dev_path
 import sys
 import time
 
-SPI_SEL = 0xEDF
-DAC_SEL = 0xEDE
-DAC_TASK = 0xEDD
-DAC_DATA_HIGH = 0xEDC
-DAC_DATA_LOW = 0xEDB
+SPI_SEL = 0xBD7
+DAC_SEL = 0xBD6
+DAC_TASK = 0xBD5
+DAC_DATA_HIGH = 0xBD4
+DAC_DATA_LOW = 0xBD3
 
 
 def check_spi_task(arty):

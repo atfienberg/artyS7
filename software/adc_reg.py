@@ -8,12 +8,12 @@ from artyS7 import artyS7, read_dev_path
 import sys
 import time
 
-ADC_RESET = 0xEE5
-ADC_SEL = 0xEE4
-ADC_TASK = 0xEE3
-ADC_WR_DATA_HIGH = 0xEE2
-ADC_WR_DATA_LOW = 0xEE1
-ADC_RD_DATA = 0xEE0
+ADC_RESET = 0xBDD
+ADC_SEL = 0xBDC
+ADC_TASK = 0xBDB
+ADC_WR_DATA_HIGH = 0xBDA
+ADC_WR_DATA_LOW = 0xBD9
+ADC_RD_DATA = 0xBD8
 
 adc_adrs = {
     "sw_rst": 0x6,
