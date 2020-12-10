@@ -13,7 +13,7 @@ trig_type_map = {0: "sw", 1: "thresh", 2: "discr", 3: "sw"}
 
 
 def unpack_wfm(payload):
-    if payload[0] >> 8 != 0x80:
+    if payload[0] >> 8 != 0x90:
         raise RuntimeError(f"Invalid header word! Got 0x{payload[0]:04x}")
 
     wfm = {}
@@ -37,7 +37,7 @@ def unpack_wfm(payload):
 
 
 def wfm_n_words(payload):
-    if payload[0] >> 8 != 0x80:
+    if payload[0] >> 8 != 0x90:
         raise RuntimeError(f"Invalid header word! Got 0x{payload[0]:04x}")
     # format 1
     return 8 + 2 * payload[1]
