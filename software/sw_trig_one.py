@@ -7,7 +7,7 @@
 from artyS7 import artyS7, read_dev_path
 import numpy as np
 
-from io_scan import get_sw_wfm, reset_wfm_buffers
+from io_scan import send_sw_trigger, reset_wfm_buffers
 
 test_conf = 50
 chan_num = 0
@@ -40,7 +40,7 @@ def main():
     print_wfm_count(arty)
 
     print("Sending software trigger")
-    get_sw_wfm(chan_num)
+    wfm = send_sw_trigger(arty, chan_num)
 
     print_wfm_count(arty)
 
