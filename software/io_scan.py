@@ -11,6 +11,7 @@ from adc_reg import adc_data, adc_adrs, adc_hw_reset, adc_write, build_adc_wr_da
 ADC_IO_CHAN_SEL = 0xBE6
 ADC_IO_CTRL = 0xBE5
 ADC_DELAY_TAPOUT = 0xBE4
+ADC_DELAY_RESET = [0xBE0, 0xBE1]
 ADC_IO_RESET = [0xBE2, 0xBE3]
 SW_TRIG_MASK = [0xBFB, 0xBFC]
 SW_TRIG = 0xBF8
@@ -215,11 +216,15 @@ def main():
     # reset ADC
     adc_hw_reset(arty)
 
-    # reset ADC IO
+    # reset ADC IO and delays
     for i in range(2):
         arty.fpga_write(ADC_IO_RESET[i], 0xFFFF)
         time.sleep(0.001)
         arty.fpga_write(ADC_IO_RESET[i], 0x0)
+
+        arty.fpga_write(ADC_DELAY_RESET[i], 0xFFFF)
+        time.sleep(0.001)
+        arty.fpga_write(ADC_DELAY_RESET[i], 0x0)
 
     # reset waveform buffers
     reset_wfm_buffers(arty)
