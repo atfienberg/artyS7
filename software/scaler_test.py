@@ -27,10 +27,17 @@ PULSER_PERIOD_HIGH = 0xBB3
 PULSER_PERIOD_LOW = 0xBB2
 PERIODIC_PULSER_ENABLE = 0xBB1
 
+THRESH = 0xBFD
+TRIG_SETTINGS = 0xBFE
+THRESH_SCALER_CNT_HIGH = 0xBB0
+THRESH_SCALER_CNT_LOW = 0xBAF
+
 CLK_FREQ = 125000000
 
 pulser_width = 2
 scaler_period = 1  # one second
+
+adc_threshold = 1960
 
 deadtime = 1  # microseconds
 
@@ -61,7 +68,13 @@ def enable_periodic_pulser(arty, pulser_period, clk_freq=CLK_FREQ):
     arty.fpga_write(PERIODIC_PULSER_ENABLE, 0x1)
 
 
-def read_scaler(arty, channel):
+def set_adc_threshold(arty, threshold):
+    """ configures threshold scaler for <= """
+    arty.fpga_write(THRESH, threshold)
+    arty.fpga_write(TRIG_SETTINGS, 0x4)
+
+
+def read_discr_scaler(arty, channel):
     arty.fpga_write(SCALER_CHAN_SEL, channel)
 
     high = arty.fpga_read(SCALER_CNT_HIGH)
@@ -70,9 +83,19 @@ def read_scaler(arty, channel):
     return (high << 16) | low
 
 
+def read_thresh_scaler(arty, channel):
+    arty.fpga_write(SCALER_CHAN_SEL, channel)
+
+    high = arty.fpga_read(THRESH_SCALER_CNT_HIGH)
+    low = arty.fpga_read(THRESH_SCALER_CNT_LOW)
+
+    return (high << 16) | low
+
+
 def print_scaler_count(arty, channels):
     for chan in channels:
-        print(f"Channel {chan} scaler count: {read_scaler(arty, chan)}")
+        print(f"Channel {chan} discr scaler count: {read_discr_scaler(arty, chan)}")
+        print(f"Channel {chan} thresh scaler count: {read_thresh_scaler(arty, chan)}")
 
 
 def main():
@@ -88,6 +111,7 @@ def main():
     # set scaler period, deadtime, enable periodic pulser, wait two periods
     set_scaler_deadtime(arty, deadtime)
     set_scaler_period(arty, scaler_period)
+    set_adc_threshold(arty, adc_threshold)
     enable_periodic_pulser(arty, pulser_period)
     print("Waiting...")
     time.sleep(2 * scaler_period)
